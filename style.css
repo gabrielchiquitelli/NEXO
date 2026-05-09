@@ -1,0 +1,233 @@
+:root {
+    --nexo-purple: #D85EFF;
+    --nexo-blue: #1001FA;
+    --nexo-grad: linear-gradient(135deg, #D85EFF 0%, #1001FA 100%);
+    --white: #ffffff;
+    --black: #050505;
+    --glass: rgba(255, 255, 255, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    background: var(--black); 
+    color: var(--white); 
+    overflow-x: hidden;
+}
+
+/* Fundo Degradê Imersivo */
+.bg-fixed {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--nexo-grad); z-index: -2; opacity: 0.85;
+}
+
+.logo { 
+    font-weight: 900; font-size: 30px; letter-spacing: -2px; 
+    color: var(--white); text-decoration: none;
+}
+
+/* Seções e Títulos */
+section {
+    min-height: 100vh;
+    /* Aumentamos aqui para empurrar o título para baixo */
+    padding: 200px 8% 100px; 
+    display: flex;
+    flex-direction: column;
+    /* Se quiser que o conteúdo fique bem centralizado verticalmente, 
+       mas com esse espaço no topo, mantenha o flex */
+}
+
+.titulo-gigante {
+    font-size: clamp(40px, 10vw, 100px); 
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -4px;
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -6px;
+    /* Você também pode adicionar uma margem extra no próprio título se preferir */
+    margin-top: 20px; 
+    margin-bottom: 30px;
+}
+.sub { font-size: 12px; letter-spacing: 8px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
+
+/* Grid de Projetos e Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+.card-glass {
+    background: var(--glass); backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.1); padding: 50px;
+    border-radius: 2px; transition: 0.5s;
+}
+.card-glass:hover { transform: translateY(-10px); border-color: var(--white); background: rgba(255,255,255,0.15); }
+
+/* Inputs para o Contato */
+input, textarea {
+    width: 100%; background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding: 20px 0; color: white; font-size: 1.2rem; outline: none; margin-bottom: 30px;
+}
+input:focus { border-bottom-color: var(--white); }
+.btn-acao { background: var(--white); color: var(--black); padding: 20px 60px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; }
+
+/* Importando uma fonte mais robusta e elegante */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap');
+
+/* Estilo padrão da Nav (como ela começa) */
+nav {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background: rgba(255, 255, 255, 0.05); /* Começa bem transparente */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100px;
+    z-index: 1000;
+    transition: all 0.4s ease; /* Isso faz a transição ser suave */
+}
+
+/* Efeito Escuro ao Rolar */
+nav.scroll {
+    top: 15px; /* Ela sobe um pouquinho para ficar mais compacta */
+    background: rgba(0, 0, 0, 0.8); /* Fica escura com 80% de opacidade */
+    border-color: rgba(255, 255, 255, 0.05);
+    height: 70px; /* Diminui um pouco a altura para ficar elegante */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra leve */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%; /* O container ocupa a altura da nav */
+}
+
+.logo-img {
+    height: 80px; /* Aumente aqui o quanto quiser */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    
+    /* Se a logo ficar cortada ou empurrar a barra, use isso: */
+    position: relative; 
+    top: 0; /* Ajuste aqui (ex: 5px) para centralizar visualmente se necessário */
+}
+
+.logo-img:hover {
+    transform: scale(1.1); /* Efeito elegante ao passar o mouse */
+}
+
+/* Links da Navbar - Ajuste de alinhamento */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 45px;
+    align-items: center; /* Garante que os textos fiquem centralizados na altura */
+}
+
+.nav-links a {
+    font-family: 'Lexend', sans-serif;
+    text-decoration: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+.desc-pag {
+    max-width: 600px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.7;
+    line-height: 1.8;
+}
+
+/* Deixa os cards de equipe mais bonitos */
+h3 {
+    font-family: 'Lexend', sans-serif;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Espaçamento entre seções */
+section {
+    padding-bottom: 150px; /* Mais espaço para não embolar uma seção na outra */
+}
+
+/* --- AJUSTES PARA CELULAR (MOBILE) --- */
+@media (max-width: 768px) {
+    /* Navbar compacta para mobile */
+    nav {
+        top: 10px;
+        width: 95%;
+        padding: 10px 20px;
+        height: 60px; /* Reduzimos a altura na versão mobile */
+    }
+
+    .logo-img {
+        height: 60px; /* Logo um pouco menor para não apertar os links */
+    }
+
+    .nav-links {
+        gap: 15px; /* Diminuímos o espaço entre os nomes das páginas */
+    }
+
+    .nav-links a {
+        font-size: 9px; /* Texto menor para caber tudo em uma linha */
+        letter-spacing: 1px;
+    }
+
+    /* Títulos que não estouram a tela */
+    section {
+        padding: 140px 6% 60px; /* Menos recuo lateral no celular */
+    }
+
+    .titulo-gigante {
+        font-size: 50px; /* Tamanho fixo menor para evitar quebras estranhas */
+        letter-spacing: -3px;
+        line-height: 1;
+    }
+
+    /* Grids viram uma coluna única */
+    .grid {
+        grid-template-columns: 1fr !important; 
+        gap: 20px;
+    }
+
+    /* Ajuste específico para a página de contato (formulário) */
+    section div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+
+    .btn-acao {
+        width: 100%; /* Botão ocupa a largura toda no celular para facilitar o clique */
+        text-align: center;
+    }
+
+    /* Esconder o indicador (ponto) no mobile se ficar muito poluído */
+    .nav-links a.active::after {
+        bottom: -5px;
+    }
+}
+
+/* Ajuste extra para celulares muito pequenos (iPhone SE, etc) */
+@media (max-width: 380px) {
+    .nav-links {
+        gap: 10px;
+    }
+    .nav-links a {
+        font-size: 8px;
+    }
+    .titulo-gigante {
+        font-size: 40px;
+    }
+}
