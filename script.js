@@ -31,3 +31,23 @@ window.addEventListener('scroll', function() {
         navbar.classList.remove('scroll');
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenu) {
+        mobileMenu.onclick = function() {
+            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        };
+    }
+
+    // Fecha o menu ao clicar em um link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.onclick = () => {
+            mobileMenu.classList.remove('active');
+            navLinks.classList.remove('active');
+        };
+    });
+});

@@ -75,21 +75,20 @@ input:focus { border-bottom-color: var(--white); }
 /* Estilo padrão da Nav (como ela começa) */
 nav {
     position: fixed;
-    top: 30px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: 95%; /* Aumentamos um pouco a largura para chegar mais perto da borda da tela */
     height: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Isso joga a logo pra um lado e os links/risquinhos pro outro */
     align-items: center;
-    padding: 0 50px;
-    background: rgba(255, 255, 255, 0.05); /* Começa bem transparente */
-    backdrop-filter: blur(10px);
+    padding: 0 15px; /* Diminuímos o padding para os itens encostarem mais no canto da barra */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
     z-index: 1000;
-    transition: all 0.4s ease; /* Isso faz a transição ser suave */
 }
 
 /* Efeito Escuro ao Rolar */
@@ -104,7 +103,7 @@ nav.scroll {
 .logo-container {
     display: flex;
     align-items: center;
-    height: 100%; /* O container ocupa a altura da nav */
+    margin-left: 0; /* Garante que não haja margem empurrando a logo */
 }
 
 .logo-img {
@@ -162,72 +161,55 @@ section {
     padding-bottom: 150px; /* Mais espaço para não embolar uma seção na outra */
 }
 
-/* --- AJUSTES PARA CELULAR (MOBILE) --- */
-@media (max-width: 768px) {
-    /* Navbar compacta para mobile */
+/* --- MOBILE REVOLUTION --- */
+@media screen and (max-width: 768px) {
+    /* Navbar estilo "Pílula" para Celular */
     nav {
-        top: 10px;
-        width: 95%;
-        padding: 10px 20px;
-        height: 60px; /* Reduzimos a altura na versão mobile */
+        top: 15px !important;
+        width: 92% !important;
+        height: 70px !important;
+        padding: 0 25px !important;
+        background: rgba(0, 0, 0, 0.8) !important; /* Força fundo escuro */
+        border-radius: 50px !important;
+    }
+
+    /* Esconde as letras e mostra os 3 traços */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--black);
+        flex-direction: column;
+        justify-content: center;
+        display: flex !important; /* Garante que o flex funcione */
+        transition: 0.5s ease-in-out;
+    }
+
+    .nav-links.active {
+        right: 0 !important;
+    }
+
+    .menu-toggle {
+        display: flex;
+        margin-right: 10px; /* Pequeno ajuste para não colar na borda física da pílula */
+    }
+
+    /* Títulos Gigantes ajustados para não quebrar */
+    .titulo-gigante {
+        font-size: 45px !important;
+        letter-spacing: -2px !important;
+        line-height: 1.1 !important;
+        margin-top: 20px !important;
     }
 
     .logo-img {
-        height: 60px; /* Logo um pouco menor para não apertar os links */
+        height: 90px !important; /* Ajuste para a logo não ficar gigante no celular */
     }
 
-    .nav-links {
-        gap: 15px; /* Diminuímos o espaço entre os nomes das páginas */
-    }
-
-    .nav-links a {
-        font-size: 9px; /* Texto menor para caber tudo em uma linha */
-        letter-spacing: 1px;
-    }
-
-    /* Títulos que não estouram a tela */
-    section {
-        padding: 140px 6% 60px; /* Menos recuo lateral no celular */
-    }
-
-    .titulo-gigante {
-        font-size: 50px; /* Tamanho fixo menor para evitar quebras estranhas */
-        letter-spacing: -3px;
-        line-height: 1;
-    }
-
-    /* Grids viram uma coluna única */
+    /* Empilha tudo que for grid */
     .grid {
-        grid-template-columns: 1fr !important; 
-        gap: 20px;
-    }
-
-    /* Ajuste específico para a página de contato (formulário) */
-    section div[style*="grid-template-columns"] {
         grid-template-columns: 1fr !important;
-        gap: 40px !important;
-    }
-
-    .btn-acao {
-        width: 100%; /* Botão ocupa a largura toda no celular para facilitar o clique */
-        text-align: center;
-    }
-
-    /* Esconder o indicador (ponto) no mobile se ficar muito poluído */
-    .nav-links a.active::after {
-        bottom: -5px;
-    }
-}
-
-/* Ajuste extra para celulares muito pequenos (iPhone SE, etc) */
-@media (max-width: 380px) {
-    .nav-links {
-        gap: 10px;
-    }
-    .nav-links a {
-        font-size: 8px;
-    }
-    .titulo-gigante {
-        font-size: 40px;
     }
 }
