@@ -23,12 +23,12 @@
             <li><a href="contato.html">Contato</a></li>
         </ul>
 
-  <a href="login.html" class="user-profile" aria-label="Acessar conta">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-</a>
+        <a href="login.html" class="user-profile" aria-label="Acessar conta">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
 
         <div class="menu-toggle" id="mobile-menu">
             <span></span>
@@ -37,6 +37,12 @@
         </div>
     </div>
 </nav>
+
+<section class="section-full-img">
+        <div class="container-img-empresa">
+            <img src="nexo2.png" alt="Nexo Office" class="img-banner">
+        </div>
+    </section>
 
     <section>
         <span class="sub">Performance & Estética</span>
@@ -64,17 +70,52 @@
     <section>
         <span class="sub">Depoimentos</span>
         <h2 class="titulo-gigante" style="font-size: 80px;">QUEM CONFIA.</h2>
-        <div class="grid">
-            <div class="card-glass">
-                <p>"A Nexo mudou o patamar da nossa empresa. O site novo converte 3x mais."</p>
-                <br>
-                <span class="sub">—— Ricardo M., CEO TechFlow</span>
+        
+        <div class="form-depoimento-container">
+            <h3 style="margin-bottom: 20px; font-size: 16px;">DEIXE SUA EXPERIÊNCIA</h3>
+            <form id="form-depoimento" class="modern-form" style="max-width: 600px;">
+                <div class="input-group">
+                    <input type="text" id="dep-nome" required placeholder=" ">
+                    <label for="dep-nome">Seu Nome / Empresa</label>
+                </div>
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <textarea id="dep-texto" rows="3" required placeholder=" " style="width: 100%; padding: 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; color: #fff; outline: none; font-family: 'Lexend', sans-serif; resize: none;"></textarea>
+                    <label for="dep-texto" style="top: 25px;">O que achou da Nexo?</label>
+                </div>
+                <button type="submit" class="btn-acao" style="padding: 15px 40px; font-size: 12px; border-radius: 10px;">Publicar Feedback</button>
+            </form>
+        </div>
+
+        <div class="slider-wrapper" style="position: relative; margin-top: 60px; width: 100%;">
+            
+            <button id="btn-prev" class="slider-arrow prev-arrow">←</button>
+
+            <div class="slider-depoimentos" id="lista-depoimentos">
+                
+                <div class="card-glass depoimento-card">
+                    <p>Melhor empresa, ajudou muito com meus problemas!</p>
+                    <br><span class="sub">pessoa desconhecida</span>
+                </div>
+                
+                <div class="card-glass depoimento-card">
+                    <p>pika dmsssssssssssssssssssss</p>
+                    <br><span class="sub">doutor nefario</span>
+                </div>
+
+                <div class="card-glass depoimento-card">
+                    <p>o dono é lindo demais slk</p>
+                    <br><span class="sub">cristiano ronaldo</span>
+                </div>
+
+                <div class="card-glass depoimento-card">
+                    <p>ankara messi</p>
+                    <br><span class="sub">pessi</span>
+                </div>
+
             </div>
-            <div class="card-glass">
-                <p>"Design impecável e entrega antes do prazo. Recomendo para qualquer marca de luxo."</p>
-                <br>
-                <span class="sub">—— Ana Paula, Fundadora Studio A</span>
-            </div>
+
+            <button id="btn-next" class="slider-arrow next-arrow">→</button>
+            
         </div>
     </section>
 
@@ -85,7 +126,7 @@
             <div style="text-align: center;">
                 <div style="background: #222; height: 350px; border-radius: 20px; margin-bottom: 20px;"></div>
                 <h3>GABRIEL CHIQUITELLI</h3>
-                <p class="sub">Diretor de Arte</p>
+                <p class="sub">CEO</p>
             </div>
             <div style="text-align: center;">
                 <div style="background: #222; height: 350px; border-radius: 20px; margin-bottom: 20px;"></div>
@@ -97,6 +138,12 @@
                 <h3>GUSTAVO MORAES</h3>
                 <p class="sub">Gerente Administrativo</p>
             </div>
+        </div>
+    </section>
+
+    <section class="section-full-img">
+        <div class="container-img-empresa">
+            <img src="nexo3.png" alt="Nexo Office" class="img-banner">
         </div>
     </section>
 

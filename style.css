@@ -1,3 +1,8 @@
+/* =========================================
+   1. VARIÁVEIS E FONTES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap');
+
 :root {
     --nexo-purple: #D85EFF;
     --nexo-blue: #1001FA;
@@ -7,7 +12,19 @@
     --glass: rgba(255, 255, 255, 0.08);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+/* =========================================
+   2. RESET E BASE
+   ========================================= */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased; 
+}
+
+html {
+    overflow-y: scroll; /* Evita que o site "trema" ao mudar de página */
+}
 
 body { 
     font-family: 'Inter', sans-serif; 
@@ -16,26 +33,24 @@ body {
     overflow-x: hidden;
 }
 
-/* Fundo Degradê Imersivo */
+/* Fundo Degradê Imersivo Global */
 .bg-fixed {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--nexo-grad); z-index: -2; opacity: 0.85;
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: var(--nexo-grad); 
+    z-index: -2; 
+    opacity: 0.85;
 }
 
-.logo { 
-    font-weight: 900; font-size: 30px; letter-spacing: -2px; 
-    color: var(--white); text-decoration: none;
-}
-
-/* Seções e Títulos */
+/* =========================================
+   3. TIPOGRAFIA GLOBAL E SEÇÕES
+   ========================================= */
 section {
     min-height: 100vh;
-    /* Aumentamos aqui para empurrar o título para baixo */
     padding: 200px 8% 100px; 
     display: flex;
     flex-direction: column;
-    /* Se quiser que o conteúdo fique bem centralizado verticalmente, 
-       mas com esse espaço no topo, mantenha o flex */
 }
 
 .titulo-gigante {
@@ -43,43 +58,42 @@ section {
     font-weight: 900;
     line-height: 0.85;
     letter-spacing: -4px;
-    font-weight: 900;
-    line-height: 0.85;
-    letter-spacing: -6px;
-    /* Você também pode adicionar uma margem extra no próprio título se preferir */
     margin-top: 20px; 
     margin-bottom: 30px;
 }
-.sub { font-size: 12px; letter-spacing: 8px; text-transform: uppercase; opacity: 0.7; margin-bottom: 10px; }
 
-/* Grid de Projetos e Cards */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
-.card-glass {
-    background: var(--glass); backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.1); padding: 50px;
-    border-radius: 2px; transition: 0.5s;
+.sub { 
+    font-size: 12px; 
+    letter-spacing: 8px; 
+    text-transform: uppercase; 
+    opacity: 0.7; 
+    margin-bottom: 10px; 
 }
-.card-glass:hover { transform: translateY(-10px); border-color: var(--white); background: rgba(255,255,255,0.15); }
 
-/* Inputs para o Contato */
-input, textarea {
-    width: 100%; background: transparent; border: none; border-bottom: 2px solid rgba(255,255,255,0.2);
-    padding: 20px 0; color: white; font-size: 1.2rem; outline: none; margin-bottom: 30px;
+h3 {
+    font-family: 'Lexend', sans-serif;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    font-size: 18px;
 }
-input:focus { border-bottom-color: var(--white); }
-.btn-acao { background: var(--white); color: var(--black); padding: 20px 60px; border: none; font-weight: 900; text-transform: uppercase; cursor: pointer; letter-spacing: 2px; }
 
-/* Importando uma fonte mais robusta e elegante */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap');
+.desc-pag {
+    max-width: 600px;
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.7;
+    line-height: 1.8;
+}
 
+/* =========================================
+   4. NAVBAR (BARRA DE NAVEGAÇÃO)
+   ========================================= */
 nav {
     position: fixed;
     top: 25px;
-    /* Alteramos de left: 50% para um posicionamento fixo nas laterais */
     left: 2.5%; 
     right: 2.5%;
     width: 95%; 
-    
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -90,31 +104,16 @@ nav {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 100px;
     z-index: 1000;
-    
-    /* Removemos o transform: translateX(-50%) que causava o bug de movimento */
-    transform: none; 
-}
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding-right: 10px;
-}
-
-/* Garante que o corpo da página sempre reserve espaço para a barra de rolagem, 
-   evitando que o site "trema" ao mudar de página */
-html {
-    overflow-y: scroll;
+    transition: 0.4s ease;
 }
 
 /* Efeito Escuro ao Rolar */
 nav.scroll {
-    top: 15px; /* Ela sobe um pouquinho para ficar mais compacta */
-    background: rgba(0, 0, 0, 0.8); /* Fica escura com 80% de opacidade */
+    top: 15px; 
+    background: rgba(0, 0, 0, 0.8); 
     border-color: rgba(255, 255, 255, 0.05);
-    height: 70px; /* Diminui um pouco a altura para ficar elegante */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra leve */
+    height: 70px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
 }
 
 .logo-container {
@@ -124,26 +123,28 @@ nav.scroll {
 }
 
 .logo-img {
-    height: 80px; /* Aumente aqui o quanto quiser */
+    height: 80px; 
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
-    
-    /* Se a logo ficar cortada ou empurrar a barra, use isso: */
-    position: relative; 
-    top: 0; /* Ajuste aqui (ex: 5px) para centralizar visualmente se necessário */
 }
 
 .logo-img:hover {
-    transform: scale(1.1); /* Efeito elegante ao passar o mouse */
+    transform: scale(1.1); 
 }
 
-/* Links da Navbar - Ajuste de alinhamento */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; 
+    padding-right: 10px;
+}
+
 .nav-links {
     display: flex;
     list-style: none;
     gap: 45px;
-    align-items: center; /* Garante que os textos fiquem centralizados na altura */
+    align-items: center; 
 }
 
 .nav-links a {
@@ -155,90 +156,14 @@ nav.scroll {
     letter-spacing: 2px;
     font-weight: 600;
     opacity: 0.5;
+    transition: 0.3s ease;
 }
 
-.desc-pag {
-    max-width: 600px;
-    font-size: 1.2rem;
-    font-weight: 300;
-    opacity: 0.7;
-    line-height: 1.8;
+.nav-links a:hover, 
+.nav-links a.active {
+    opacity: 1;
 }
 
-/* Deixa os cards de equipe mais bonitos */
-h3 {
-    font-family: 'Lexend', sans-serif;
-    letter-spacing: 2px;
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-/* Espaçamento entre seções */
-section {
-    padding-bottom: 150px; /* Mais espaço para não embolar uma seção na outra */
-}
-
-/* --- MOBILE REVOLUTION --- */
-@media screen and (max-width: 768px) {
-    /* Navbar estilo "Pílula" para Celular */
-    nav {
-        top: 15px !important;
-        width: 92% !important;
-        height: 70px !important;
-        padding: 0 25px !important;
-        background: rgba(0, 0, 0, 0.8) !important; /* Força fundo escuro */
-        border-radius: 50px !important;
-    }
-
-    /* Esconde as letras e mostra os 3 traços */
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background: var(--black);
-        flex-direction: column;
-        justify-content: center;
-        display: flex !important; /* Garante que o flex funcione */
-        transition: 0.5s ease-in-out;
-    }
-
-    .nav-links.active {
-        right: 0 !important;
-    }
-
-    .menu-toggle {
-        display: flex;
-        margin-right: 10px; /* Pequeno ajuste para não colar na borda física da pílula */
-    }
-
-    /* Títulos Gigantes ajustados para não quebrar */
-    .titulo-gigante {
-        font-size: 45px !important;
-        letter-spacing: -2px !important;
-        line-height: 1.1 !important;
-        margin-top: 20px !important;
-    }
-
-    .logo-img {
-        height: 90px !important; /* Ajuste para a logo não ficar gigante no celular */
-    }
-
-    /* Empilha tudo que for grid */
-    .grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-/* Container que agrupa links e ícone na direita */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 30px; /* Espaço entre os links e o ícone de usuário */
-}
-
-/* Estilo do Ícone de Usuário */
 .user-profile {
     width: 40px;
     height: 40px;
@@ -258,25 +183,81 @@ section {
 }
 
 .user-profile:hover {
-    background: var(--nexo-grad); /* Usa seu degradê no hover */
+    background: var(--nexo-grad); 
     transform: scale(1.1);
     border-color: transparent;
     box-shadow: 0 0 20px rgba(216, 94, 255, 0.4);
 }
 
-/* Ajuste Mobile */
-@media screen and (max-width: 768px) {
-    .nav-right {
-        gap: 15px;
-    }
-    
-    .user-profile {
-        width: 35px;
-        height: 35px;
-    }
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
 }
 
-/* Layout Geral */
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* =========================================
+   5. COMPONENTES (CARDS, BOTÕES E GRIDS)
+   ========================================= */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    margin-top: 40px; 
+}
+
+.card-glass {
+    background: var(--glass); 
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 50px;
+    border-radius: 2px; 
+    transition: 0.5s;
+}
+
+.card-glass:hover { 
+    transform: translateY(-10px); 
+    border-color: var(--white); 
+    background: rgba(255,255,255,0.15); 
+}
+
+.btn-acao { 
+    background: var(--white); 
+    color: var(--black); 
+    padding: 20px 60px; 
+    border: none; 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    letter-spacing: 2px; 
+}
+
+/* Formulário de Contato Padrão */
+input, textarea {
+    width: 100%; 
+    background: transparent; 
+    border: none; 
+    border-bottom: 2px solid rgba(255,255,255,0.2);
+    padding: 20px 0; 
+    color: white; 
+    font-size: 1.2rem; 
+    outline: none; 
+    margin-bottom: 30px;
+}
+
+input:focus { border-bottom-color: var(--white); }
+
+/* =========================================
+   6. PÁGINAS DE AUTH (LOGIN / REGISTRO)
+   ========================================= */
 .login-wrapper {
     min-height: 100vh;
     display: flex;
@@ -298,10 +279,9 @@ section {
     margin: 20px;
 }
 
-/* Logo Magnífica e Centralizada */
 .login-brand {
     position: absolute;
-    top: -60px; /* Faz a logo flutuar metade para fora da caixa */
+    top: -60px; 
     left: 50%;
     transform: translateX(-50%);
     width: 120px;
@@ -317,7 +297,7 @@ section {
 }
 
 .logo-central {
-    height: 90px; /* Ajuste conforme o formato da sua logo */
+    height: 90px; 
     width: auto;
     filter: drop-shadow(0 0 10px rgba(216, 94, 255, 0.3));
 }
@@ -337,7 +317,6 @@ section {
     -webkit-text-fill-color: transparent;
 }
 
-/* Inputs com Efeito Flutuante */
 .input-group {
     position: relative;
     margin-bottom: 25px;
@@ -352,6 +331,7 @@ section {
     color: #fff;
     outline: none;
     transition: 0.3s;
+    margin-bottom: 0; /* Remove a margem do input genérico */
 }
 
 .input-group label {
@@ -365,7 +345,6 @@ section {
     font-size: 14px;
 }
 
-/* Efeito quando clica no input */
 .input-group input:focus,
 .input-group input:not(:placeholder-shown) {
     border-color: var(--nexo-purple);
@@ -378,11 +357,10 @@ section {
     left: 12px;
     font-size: 12px;
     color: var(--nexo-purple);
-    background: #111; /* Cor de fundo para "cortar" a borda */
+    background: #111; 
     padding: 0 8px;
 }
 
-/* Botão com Brilho */
 .glow-button {
     width: 100%;
     padding: 20px;
@@ -410,3 +388,192 @@ section {
 
 .login-footer-links a { color: #fff; text-decoration: none; }
 .separator { margin: 0 10px; }
+
+/* Ajustes Específicos do Registro */
+.terms-container { margin-bottom: 20px; text-align: left; }
+.check-box { display: flex; align-items: flex-start; gap: 10px; font-size: 11px; color: rgba(255,255,255,0.6); }
+
+/* =========================================
+   7. RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Navbar e Menu Lateral */
+    nav {
+        top: 15px !important;
+        width: 92% !important;
+        height: 70px !important;
+        padding: 0 20px !important;
+        background: rgba(0, 0, 0, 0.8) !important; 
+        border-radius: 50px !important;
+    }
+
+    .logo-img { height: 50px !important; }
+
+    .nav-right { gap: 15px; }
+
+    .menu-toggle {
+        display: flex !important;
+        margin-right: 5px; 
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: var(--black);
+        flex-direction: column;
+        justify-content: center;
+        display: flex !important; 
+        transition: 0.5s ease-in-out;
+    }
+
+    .nav-links.active { right: 0 !important; }
+    
+    .nav-links a { font-size: 22px; letter-spacing: 4px; }
+
+    /* Animação do ícone de menu (X) */
+    .menu-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle.active span:nth-child(2) { opacity: 0; }
+    .menu-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .user-profile { width: 35px; height: 35px; }
+
+    /* Textos e Grids */
+    .titulo-gigante {
+        font-size: 45px !important;
+        letter-spacing: -2px !important;
+        line-height: 1.1 !important;
+    }
+
+    .grid { grid-template-columns: 1fr !important; }
+
+    section { padding: 140px 6% 60px; }
+}
+
+/*teste !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+/* Ajuste do Floating Label para Textarea no Depoimento */
+#form-depoimento .input-group textarea:focus + label,
+#form-depoimento .input-group textarea:not(:placeholder-shown) + label {
+    top: -10px !important;
+    left: 12px;
+    font-size: 12px;
+    color: var(--nexo-purple);
+    background: #111; 
+    padding: 0 8px;
+}
+
+.form-depoimento-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+/* Animação para o novo depoimento surgindo */
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.novo-depoimento {
+    animation: popIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    border-color: var(--nexo-purple) !important; /* Destaca o comentário novo */
+
+}
+
+/* --- CARROSSEL DE DEPOIMENTOS --- */
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.slider-depoimentos {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0; /* Espaço para a sombra dos cards não cortar */
+    width: 100%;
+    
+    /* Esconde a barra de rolagem (Fica mais elegante) */
+    -ms-overflow-style: none;  /* IE e Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.slider-depoimentos::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.depoimento-card {
+    min-width: 380px; /* Largura fixa para os cards no carrossel */
+    scroll-snap-align: start;
+    flex: 0 0 auto; /* Impede os cards de encolherem */
+}
+
+/* Setas Flutuantes */
+.slider-arrow {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.slider-arrow:hover {
+    background: var(--nexo-purple);
+    border-color: var(--nexo-purple);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(216, 94, 255, 0.4);
+}
+
+.prev-arrow { left: -25px; }
+.next-arrow { right: -25px; }
+
+/* Ajuste Mobile para o Slider */
+@media screen and (max-width: 768px) {
+    .depoimento-card { min-width: 300px; }
+    .prev-arrow { left: 0px; top: -60px; } /* Joga as setas pra cima no celular */
+    .next-arrow { right: 0px; top: -60px; }
+}
+
+/*IMAGEM ENTRE OS SELECTION*/
+
+/* --- SEÇÃO DE IMAGEM PARALLAX --- */
+.section-full-img {
+    min-height: 70vh !important; /* Altura da imagem (70% do ecrã) */
+    padding: 0 !important;
+    width: 100%;
+    
+    /* A Mágica do Parallax */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    
+    position: relative;
+    z-index: 1; /* Garante que fica por cima do fundo degradê */
+}
+
+/* Película escura para dar um ar premium */
+.section-full-img::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Película a 50% de opacidade */
+    z-index: 2;
+}
