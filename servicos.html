@@ -2,65 +2,290 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Serviços | Nexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pacotes & Briefing | Nexo</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="bg-fixed"></div>
-    <nav id="navbar">
-    <a href="index.html" class="logo-container">
-        <img src="logo.png" alt="Nexo Logo" class="logo-img">
-    </a>
-    
-    <div class="nav-right">
-        <ul class="nav-links">
-            <li><a href="index.html">Início</a></li>
-            <li><a href="servicos.html">Serviços</a></li>
-            <li><a href="portfolio.html">Portfólio</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-        </ul>
-
-        <a href="login.html" class="user-profile" aria-label="Acessar conta">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </a>
-
-        <div class="menu-toggle" id="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="ticker-wrap">
+        <div class="ticker-move">
+            <div class="ticker-item">NEXO DIGITAL ✦</div>
+            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
+            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
+            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
+            <div class="ticker-item">NEXO DIGITAL ✦</div>
+            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
+            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
+            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
         </div>
     </div>
-</nav>
 
-    <section>
-        <span class="sub">Nossa Expertise</span>
-        <h1 class="titulo-gigante">SOLUÇÕES<br>MODULARES.</h1>
+    <nav id="navbar">
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Nexo Logo" class="logo-img">
+        </a>
         
-        <div class="grid">
-            <div class="card-glass">
-                <h3 style="color: var(--white); font-size: 10px; letter-spacing: 4px; margin-bottom: 20px;">01. WEB</h3>
-                <h3>Estrutura Digital</h3>
-                <p style="opacity: 0.6;">Landing Pages e sites institucionais de alta performance e conversão.</p>
-            </div>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="servicos.html" class="active">Serviços</a></li>
+                <li><a href="portfolio.html">Portfólio</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
 
-            <div class="card-glass">
-                <h3 style="color: var(--white); font-size: 10px; letter-spacing: 4px; margin-bottom: 20px;">02. VIDEO</h3>
-                <h3>Audiovisual</h3>
-                <p style="opacity: 0.6;">Edição dinâmica para Reels e TikTok focada em retenção absoluta.</p>
-            </div>
+            <a href="login.html" class="user-profile" aria-label="Acessar conta">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
 
-            <div class="card-glass">
-                <h3 style="color: var(--white); font-size: 10px; letter-spacing: 4px; margin-bottom: 20px;">03. BRAND</h3>
-                <h3>Design Visual</h3>
-                <p style="opacity: 0.6;">Identidade visual minimalista que comunica autoridade e luxo.</p>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </nav>
+
+    <section class="section-pacotes">
+        <span class="sub">Engine de Orçamentos</span>
+        <h1 class="titulo-gigante">MONTE SEU<br>PACOTE.</h1>
+        <p class="desc-pag" style="margin-bottom: 60px;">Selecione os módulos que seu negócio precisa, defina sua proposta e nossa cúpula fará uma oferta comercial exclusiva.</p>
+
+        <form id="form-briefing" class="pacotes-wrapper">
+            
+            <div class="step-container">
+                <h2 class="step-title">01. Selecione os Módulos desejados</h2>
+                <div class="grid-selecao">
+                    
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="web">
+                        <div class="card-content-glass">
+                            <span class="card-number">01</span>
+                            <h3>ESTRUTURA WEB</h3>
+                            <p>Landing Pages e plataformas institucionais focadas em conversão extrema.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="video">
+                        <div class="card-content-glass">
+                            <span class="card-number">02</span>
+                            <h3>AUDIOVISUAL</h3>
+                            <p>Edição dinâmica e roteirização para Reels/TikTok com retenção absoluta.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="brand">
+                        <div class="card-content-glass">
+                            <span class="card-number">03</span>
+                            <h3>BRANDING DESIGN</h3>
+                            <p>Identidades visuais minimalistas que comunicam luxo, poder e autoridade.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="ads">
+                        <div class="card-content-glass">
+                            <span class="card-number">04</span>
+                            <h3>PERFORMANCE & ADS</h3>
+                            <p>Gestão de tráfego pesado no Google e Meta Ads para escalar seu faturamento.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="social">
+                        <div class="card-content-glass">
+                            <span class="card-number">05</span>
+                            <h3>SOCIAL MEDIA</h3>
+                            <p>Posicionamento de marca e criação de conteúdo magnético para redes sociais.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="seo">
+                        <div class="card-content-glass">
+                            <span class="card-number">06</span>
+                            <h3>DOMÍNIO SEO</h3>
+                            <p>Otimização extrema para dominar o topo das buscas do Google organicamente.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="copywriting">
+                        <div class="card-content-glass">
+                            <span class="card-number">07</span>
+                            <h3>COPYWRITING</h3>
+                            <p>Textos persuasivos para páginas de vendas, e-mails e anúncios que convertem leitores em clientes.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="ecommerce">
+                        <div class="card-content-glass">
+                            <span class="card-number">08</span>
+                            <h3>Lojas Virtuais</h3>
+                            <p>Criação de e-commerce completo e otimizado para você vender produtos 24 horas por dia.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="automacao">
+                        <div class="card-content-glass">
+                            <span class="card-number">09</span>
+                            <h3>Automações & Bots</h3>
+                            <p>Chatbots inteligentes para WhatsApp e Instagram para atender seus clientes no automático.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="uiux">
+                        <div class="card-content-glass">
+                            <span class="card-number">10</span>
+                            <h3>UI/UX Design</h3>
+                            <p>Desenho visual de aplicativos e sistemas com foco total na facilidade de uso do seu cliente.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="comunidade">
+                        <div class="card-content-glass">
+                            <span class="card-number">11</span>
+                            <h3>Gestão de Comunidade</h3>
+                            <p>Moderação e engajamento humano para seus grupos de WhatsApp, Telegram ou Discord.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="consultoria">
+                        <div class="card-content-glass">
+                            <span class="card-number">12</span>
+                            <h3>Consultoria Digital</h3>
+                            <p>Reuniões estratégicas exclusivas para mapear seu negócio e desenhar um plano de ação.</p>
+                        </div>
+                    </label>
+
+                    <label class="card-selecionavel">
+                        <input type="checkbox" name="modulos" value="consultoria">
+                        <div class="card-content-glass">
+                            <span class="card-number">13</span>
+                            <h3>Serviço não citado</h3>
+                            <p>Serviço o qual não cita na lista anterior.</p>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="step-container" style="margin-top: 80px;">
+                <h2 class="step-title">02. Detalhes do Projeto</h2>
+                
+                <div class="form-inputs-grid">
+                    <div class="input-group">
+                        <input type="text" id="client-name" required placeholder=" ">
+                        <label for="client-name">Seu Nome / Nome da Empresa</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="tel" id="client-phone" required placeholder=" ">
+                        <label for="client-phone">Contato (WhatsApp/Email)</label>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-top: 20px;">
+                    <textarea id="project-desc" rows="4" required placeholder=" " style="width: 100%; padding: 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; color: #fff; outline: none; font-family: 'Lexend', sans-serif; resize: none;"></textarea>
+                    <label for="project-desc" style="top: 25px;">Descrição do Projeto & Objetivos</label>
+                </div>
+
+                <div class="input-group price-bidding-group" style="margin-top: 40px; max-width: 400px;">
+                    <input type="text" id="target-price" required placeholder=" ">
+                    <label for="target-price">Preço Pretendido (R$)</label>
+                    <span class="bidding-badge">Oferta do Cliente</span>
+                </div>
+
+                <button type="submit" class="glow-button" style="margin-top: 40px; max-width: 300px;">
+                    SOLICITAR
+                </button>
+            </div>
+
+        </form>
     </section>
+
+    </form> </section> <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-glass" id="modal-confirmacao">
+            <div class="modal-icon">?</div>
+            <h3>REVISAR BRIEFING</h3>
+            <p style="margin-bottom: 15px;">Confira os detalhes da sua solicitação antes de enviar para nossa cúpula:</p>
+            
+            <div id="briefing-resumo" class="briefing-resumo"></div>
+            
+            <div class="modal-buttons">
+                <button type="button" class="btn-secondary" id="btn-editar">Editar Escolhas</button>
+                <button type="button" class="btn-primary" id="btn-confirmar">Sim, Enviar</button>
+            </div>
+        </div>
+
+        <div class="modal-glass" id="modal-sucesso" style="display: none;">
+            <div class="modal-icon icon-success">✓</div>
+            <h3>BRIEFING RECEBIDO</h3>
+            <p>Nossa cúpula analisará seu projeto. Entraremos em contato no seu WhatsApp muito em breve com uma oferta exclusiva.</p>
+            <button type="button" class="btn-primary" id="btn-fechar-sucesso" style="margin-top: 20px; width: 100%;">Voltar ao Site</button>
+        </div>
+    </div>
+
+    <footer class="footer-nexo">
+        
+    </div>
+
+    <footer class="footer-nexo">
+        <div class="footer-container">
+            <div class="footer-column branding">
+                <img src="logo.png" alt="Nexo Logo" class="footer-logo">
+                <p>O nexo entre grandes ideias e resultados extraordinários. Elevando o padrão digital desde 2024.</p>
+                <div class="footer-socials">
+                    <a href="#">IG</a>
+                    <a href="#">IN</a>
+                    <a href="#">BE</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contato</h3>
+                <ul>
+                    <li><a href="contato.html">Iniciar Projeto</a></li>
+                    <li><a href="mailto:hello@nexo.digital">hello@nexo.digital</a></li>
+                    <li><a href="login.html">Área do Cliente</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="bottom-container">
+                <p>&copy; 2026 Nexo Digital. Todos os direitos reservados.</p>
+                <div class="legal-links">
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+    </a>
 
     <script src="script.js"></script>
 </body>

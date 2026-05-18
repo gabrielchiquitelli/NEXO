@@ -103,3 +103,94 @@ if (sliderDepoimentos && btnPrev && btnNext) {
         sliderDepoimentos.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
 }
+
+// =========================================
+// LÓGICA DO FORMULÁRIO DE PACOTES COM REVISÃO
+// =========================================
+const formBriefing = document.getElementById('form-briefing');
+const modalOverlay = document.getElementById('modal-overlay');
+const modalConfirmacao = document.getElementById('modal-confirmacao');
+const modalSucesso = document.getElementById('modal-sucesso');
+const briefingResumo = document.getElementById('briefing-resumo');
+
+const btnEditar = document.getElementById('btn-editar');
+const btnConfirmar = document.getElementById('btn-confirmar');
+const btnFecharSucesso = document.getElementById('btn-fechar-sucesso');
+
+if (formBriefing && modalOverlay && briefingResumo) {
+    
+    // 1. Quando o usuário clica em "Solicitar Oferta"
+    formBriefing.addEventListener('submit', function(e) {
+        e.preventDefault(); // Impede a página de recarregar
+        
+        // --- COLETA OS DADOS EM TEMPO REAL ---
+        const nome = document.getElementById('client-name').value.trim();
+        const telefone = document.getElementById('client-phone').value.trim();
+        const descricao = document.getElementById('project-desc').value.trim();
+        const preco = document.getElementById('target-price').value.trim();
+        
+        // Coleta quais módulos foram selecionados
+        const checkboxes = document.querySelectorAll('input[name="modulos"]:checked');
+        let modulosSelecionados = [];
+        checkboxes.forEach((cb) => {
+            // Pega o título (h3) de dentro do card selecionado
+            const tituloModulo = cb.parentNode.querySelector('h3').innerText;
+            modulosSelecionados.push(tituloModulo);
+        });
+
+        // Se a pessoa não selecionou nenhum serviço, avisa e para o envio
+        if (modulosSelecionados.length === 0) {
+            alert('Por favor, selecione pelo menos um módulo para o seu pacote.');
+            return;
+        }
+
+        // --- MONTA O HTML DO RESUMO DENTRO DO MODAL ---
+        // Cria as pequenas tags roxas para cada serviço escolhido
+        let tagsHTML = modulosSelecionados.map(mod => `<span class="resumo-tag">${mod}</span>`).join('');
+
+        briefingResumo.innerHTML = `
+            <div class="resumo-item">
+                <strong>Módulos Escolhidos:</strong>
+                <div class="resumo-tags">${tagsHTML}</div>
+            </div>
+            <div class="resumo-item">
+                <strong>Identificação:</strong>
+                <span>${nome}</span>
+            </div>
+            <div class="resumo-item">
+                <strong>Contato (WhatsApp/Email):</strong>
+                <span>${telefone}</span>
+            </div>
+            <div class="resumo-item">
+                <strong>Descrição do Projeto:</strong>
+                <span>${descricao}</span>
+            </div>
+            <div class="resumo-item">
+                <strong>Preço Pretendido:</strong>
+                <span style="color: #D85EFF; font-weight: bold;">R$ ${preco}</span>
+            </div>
+        `;
+        
+        // Abre a tela escura e exibe a tela com o resumo pronto
+        modalOverlay.classList.add('active');
+        modalConfirmacao.style.display = 'block';
+        modalSucesso.style.display = 'none';
+    });
+
+    // 2. Se o usuário clicar em "Editar Escolhas"
+    btnEditar.addEventListener('click', function() {
+        modalOverlay.classList.remove('active');
+    });
+
+    // 3. Se o usuário clicar em "Sim, Enviar"
+    btnConfirmar.addEventListener('click', function() {
+        modalConfirmacao.style.display = 'none';
+        modalSucesso.style.display = 'block';
+        formBriefing.reset(); // Limpa a tela
+    });
+
+    // 4. Botão final para fechar tudo e voltar pro site
+    btnFecharSucesso.addEventListener('click', function() {
+        modalOverlay.classList.remove('active');
+    });
+}
