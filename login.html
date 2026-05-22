@@ -2,48 +2,68 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login Premium | Nexo</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Nexo</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="login-page">
-    <div class="bg-fixed"></div>
+<body style="margin: 0; padding: 0; overflow: hidden; background: #050505;">
 
-    <div class="login-wrapper">
-        <div class="login-card">
-            <div class="login-brand">
-                <a href="index.html">
-                    <img src="logo.png" alt="Nexo" class="logo-central">
-                </a>
-            </div>
+    <div class="split-login-container">
+        <div class="split-image-side" style="background-image: url('nexo2.png');">
+            <div class="image-overlay"></div>
+        </div>
 
-            <div class="login-content">
-                <h1 class="main-title">BEM-VINDO</h1>
+        <div class="split-form-side">
+            <a href="index.html" class="back-link">Voltar ao site ↗</a>
+            
+            <div class="split-form-wrapper">
+                <img src="logo.png" alt="Nexo Logo" class="split-logo">
                 
-                <form class="modern-form">
-                    <div class="input-group">
-                        <input type="email" id="email" required placeholder=" ">
-                        <label for="email">USUÁRIO</label>
-                    </div>
-                    
-                    <div class="input-group">
-                        <input type="password" id="pass" required placeholder=" ">
-                        <label for="pass">SENHA</label>
+                <h2 class="split-title">Bem-vindo de volta</h2>
+                <p class="split-subtitle">Por favor, insira seus dados para acessar.</p>
+
+                <button type="button" class="btn-google">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Entrar com o Google
+                </button>
+
+                <div class="split-divider">
+                    <span>ou</span>
+                </div>
+
+                <form id="split-login-form">
+                    <div class="split-input-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" placeholder="contato@suaempresa.com" required>
                     </div>
 
-                    <button type="submit" class="glow-button">
-                        ENTRAR
-                    </button>
+                    <div class="split-input-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="split-form-options">
+                        <label class="split-remember">
+                            <input type="checkbox"> Lembrar de mim
+                        </label>
+                        <a href="#" class="split-forgot">Esqueceu a senha?</a>
+                    </div>
+
+                    <button type="submit" class="split-btn-submit">Entrar na conta</button>
                 </form>
 
-                <div class="login-footer-links">
-                    <a href="registrar.html">Registrar-se</a>
-                    <span class="separator">•</span>
-                    <a href="#">Suporte</a>
-                </div>
+                <p class="split-footer-text">Não tem uma conta? <a href="registrar.html">Cadastre-se</a></p>
             </div>
         </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

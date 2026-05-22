@@ -194,3 +194,36 @@ if (formBriefing && modalOverlay && briefingResumo) {
         modalOverlay.classList.remove('active');
     });
 }
+
+// =========================================
+// TRANSIÇÃO SUAVE ENTRE PÁGINAS (FADE OUT)
+// =========================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Pega todos os links do site
+    const links = document.querySelectorAll('a');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Ignora links que abrem em nova aba (target="_blank") ou links com "#" (mesma página)
+            if (this.target === '_blank' || this.getAttribute('href').startsWith('#') || !this.href) {
+                return;
+            }
+            
+            // Ignora se for o botão do WhatsApp
+            if (this.classList.contains('whatsapp-float')) {
+                return;
+            }
+
+            e.preventDefault(); // Segura o clique original
+            const destino = this.href;
+
+            // Aplica a classe que faz a tela apagar e subir
+            document.body.classList.add('fade-out');
+
+            // Espera exatos 400 milissegundos (tempo da animação) e muda a página
+            setTimeout(() => {
+                window.location.href = destino;
+            }, 500);
+        });
+    });
+});

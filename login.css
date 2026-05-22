@@ -1,0 +1,261 @@
+/* =========================================
+   TELA DE LOGIN SPLIT-SCREEN (TELA DIVIDIDA)
+   ========================================= */
+
+.split-login-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: #050505;
+}
+
+/* --- LADO DA IMAGEM (ESQUERDA) --- */
+.split-image-side {
+    flex: 1; /* Ocupa 50% da tela */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Transição suave do preto pro transparente em cima da foto */
+.image-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(5,5,5,0.1) 50%, rgba(5,5,5,1) 100%);
+}
+
+/* --- LADO DO FORMULÁRIO (DIREITA) --- */
+.split-form-side {
+    flex: 1; /* Ocupa os outros 50% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 40px;
+    background: #050505;
+}
+
+.back-link {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    font-size: 13px;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: #fff;
+}
+
+.split-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+    text-align: left; /* Textos alinhados à esquerda como na referência */
+}
+
+.split-logo {
+    height: 40px;
+    margin-bottom: 40px;
+}
+
+.split-title {
+    font-family: 'Lexend', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.split-subtitle {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 35px;
+}
+
+/* --- BOTÃO DO GOOGLE --- */
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-google:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- LINHA DO "OU" --- */
+.split-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 13px;
+    margin: 30px 0;
+}
+
+.split-divider::before,
+.split-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.split-divider span {
+    padding: 0 15px;
+}
+
+/* --- INPUTS --- */
+.split-input-group {
+    margin-bottom: 20px;
+}
+
+.split-input-group label {
+    display: block;
+    font-family: 'Lexend', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+}
+
+.split-input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    transition: 0.3s;
+    outline: none;
+    box-sizing: border-box; /* Garante que não passe da largura */
+}
+
+.split-input-group input:focus {
+    border-color: var(--nexo-purple);
+    background: rgba(216, 94, 255, 0.02);
+    box-shadow: 0 0 15px rgba(216, 94, 255, 0.1);
+}
+
+/* --- OPÇÕES INFERIORES --- */
+.split-form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.split-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+}
+
+.split-remember input {
+    accent-color: var(--nexo-purple);
+    width: 16px;
+    height: 16px;
+}
+
+.split-forgot {
+    font-size: 13px;
+    color: var(--nexo-purple);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.split-forgot:hover {
+    filter: brightness(1.2);
+    text-decoration: underline;
+}
+
+/* --- BOTÃO DE LOGIN PRINCIPAL --- */
+.split-btn-submit {
+    width: 100%;
+    padding: 16px;
+    background: var(--nexo-grad);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.split-btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(216, 94, 255, 0.2);
+}
+
+.split-footer-text {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 30px;
+}
+
+.split-footer-text a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.split-footer-text a:hover {
+    color: var(--nexo-purple);
+}
+/* =========================================
+   ANIMAÇÃO GLOBAL DE TRANSIÇÃO (PAGE LOAD)
+   ========================================= */
+
+/* Estado inicial do corpo do site */
+body {
+    opacity: 0; 
+    animation: smoothPageLoad 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* A mágica da entrada cinematográfica */
+@keyframes smoothPageLoad {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* A página começa um pouco mais para baixo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Desliza para o lugar original */
+    }
+}
+
+/* Classe de saída que o JavaScript vai usar quando clicar em um link */
+body.fade-out {
+    opacity: 0;
+    transform: translateY(-15px); /* Sobe um pouquinho ao sair */
+    transition: all 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
