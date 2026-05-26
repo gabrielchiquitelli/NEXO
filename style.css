@@ -26,11 +26,17 @@ html {
     overflow-y: scroll; /* Evita que o site "trema" ao mudar de página */
 }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-    background: var(--black); 
-    color: var(--white); 
+body {
+    font-family: 'Lexend', sans-serif;
+    background: var(--black);
+    color: var(--white);
     overflow-x: hidden;
+    transition: opacity 0.26s ease, transform 0.26s ease;
+}
+
+body.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 /* Fundo Degradê Imersivo Global */
@@ -181,7 +187,7 @@ nav.scroll {
     background: var(--nexo-grad); transform: scale(1.1);
     border-color: transparent; box-shadow: 0 0 20px rgba(216, 94, 255, 0.4);
 }
-.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: transparent; border: 0; padding: 0; }
 .menu-toggle span { width: 25px; height: 2px; background: #fff; border-radius: 5px; transition: 0.3s; }
 
 /* =========================================
@@ -205,7 +211,40 @@ input, textarea {
     border-bottom: 2px solid rgba(255,255,255,0.2); padding: 20px 0; 
     color: white; font-size: 1.2rem; outline: none; margin-bottom: 30px;
 }
-input:focus { border-bottom-color: var(--white); }
+input:focus, textarea:focus { border-bottom-color: var(--white); }
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.75;
+}
+
+.contact-section {
+    justify-content: center;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.8fr);
+    gap: 100px;
+    align-items: center;
+}
+
+.contact-email {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.contact-email:hover {
+    color: var(--nexo-purple);
+}
+
+.contact-form {
+    width: 100%;
+    margin-top: 50px;
+}
 
 /* =========================================
    7. PÁGINA INICIAL (HOME)
@@ -482,5 +521,175 @@ input:focus { border-bottom-color: var(--white); }
 .bottom-container { max-width: 1200px; margin: 0 auto; padding: 0 8%; display: flex; justify-content: space-between; align-items: center; }
 .footer-bottom p { font-size: 11px; opacity: 0.4; }
 .legal-links { display: flex; gap: 30px; }
-.legal-links a { font-size: 11px; color: var(--white); text-decoration: none; opacity: 0.4; transition: 0.3s; }
+.legal-links a, .legal-links span { font-size: 11px; color: var(--white); text-decoration: none; opacity: 0.4; transition: 0.3s; }
 .legal-links a:hover { opacity: 1; }
+
+/* =========================================
+   15. PÁGINA DE PACOTES FECHADOS (TÁTICOS)
+   ========================================= */
+.section-pacotes-fechados {
+    padding-bottom: 100px !important;
+}
+
+.grid-pacotes-fechados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    margin-top: 60px;
+    align-items: stretch; /* Faz todos os cards terem a mesma altura */
+}
+
+.card-pacote-fechado {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 45px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão pro final do card */
+    position: relative;
+    transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Efeito do Card Recomendado/Bestseller */
+.card-pacote-fechado.recomendado {
+    background: linear-gradient(180deg, rgba(216, 94, 255, 0.05) 0%, rgba(16, 1, 250, 0.05) 100%);
+    border-color: rgba(216, 94, 255, 0.4);
+    box-shadow: 0 30px 60px rgba(16, 1, 250, 0.15);
+    transform: translateY(-10px); /* Deixa ele levemente saltado para destacar */
+}
+
+/* Selo de Mais Vendido */
+.bestseller-badge {
+    position: absolute;
+    top: -15px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--nexo-grad);
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(216, 94, 255, 0.4);
+}
+
+/* Informações do Topo do Card */
+.pacote-header {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.pacote-tag {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--nexo-purple);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.pacote-header h3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.pacote-header p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0;
+}
+
+/* Lista de Recursos Inclusos */
+.pacote-entrega {
+    text-align: left;
+    flex-grow: 1; /* Faz a lista ocupar o espaço centralizado */
+    margin-bottom: 40px;
+}
+
+.pacote-entrega h4 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.pacote-entrega ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pacote-entrega ul li {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+}
+
+/* Botões de Ação do Card */
+.btn-pacote-action {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-family: 'Lexend', sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-pacote-action:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #fff;
+    transform: translateY(-3px);
+}
+
+/* Botão em Destaque do Growth */
+.btn-growth {
+    background: var(--nexo-grad);
+    border: none;
+    box-shadow: 0 5px 20px rgba(216, 94, 255, 0.3);
+}
+
+.btn-growth:hover {
+    background: var(--nexo-grad);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 25px rgba(216, 94, 255, 0.5);
+}
+
+/* Interações Gerais ao passar o mouse nos cards secundários */
+.card-pacote-fechado:not(.recomendado):hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

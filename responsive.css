@@ -8,7 +8,7 @@
 @media screen and (max-width: 992px) {
 
     /* Formulários e Serviços */
-    .form-inputs-grid { grid-template-columns: 1fr !important; }
+    .form-inputs-grid, .contact-grid { grid-template-columns: 1fr !important; }
     .price-bidding-group { max-width: 100% !important; }
     
     /* Trava o tamanho dos cartões de serviços no Tablet */
@@ -28,14 +28,15 @@
     .pillar-card { padding: 40px 25px; }
 
     /* Formulários e Serviços */
-    .form-inputs-grid { grid-template-columns: 1fr !important; }
+    .form-inputs-grid, .contact-grid { grid-template-columns: 1fr !important; }
     .price-bidding-group { max-width: 100% !important; }
 
     /* Portfólio */
-    .portfolio-img-box { height: 400px; }
+    .grid-pacotes-fechados { grid-template-columns: 1fr !important; }
+    .card-pacote-fechado.recomendado { transform: none; }
 
     /* Contato (Força o grid inline a quebrar para 1 coluna) */
-    section > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .contact-grid { gap: 40px !important; }
 
     /* Login / Registro (Split Screen) */
     .split-image-side { display: none; }
@@ -101,10 +102,8 @@
     input, textarea { font-size: 1rem; padding: 15px 0; }
     
     /* Portfólio */
-    .portfolio-img-box { height: 320px; }
-    .cta-portfolio-card { padding: 40px 20px; border-radius: 20px; }
-    .portfolio-overlay-info { padding: 25px 20px; }
-    .portfolio-overlay-info h3 { font-size: 20px; }
+    .contact-form { margin-top: 10px; }
+    .contact-email { word-break: break-word; }
 
     /* Serviços / Pacotes */
     .card-content-glass { padding: 30px 20px; }

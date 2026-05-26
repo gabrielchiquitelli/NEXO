@@ -2,6 +2,16 @@
    TELA DE LOGIN SPLIT-SCREEN (TELA DIVIDIDA)
    ========================================= */
 
+:root {
+    --nexo-purple: #D85EFF;
+    --nexo-blue: #1001FA;
+    --nexo-grad: linear-gradient(135deg, #D85EFF 0%, #1001FA 100%);
+}
+
+body {
+    font-family: 'Lexend', sans-serif;
+}
+
 .split-login-container {
     display: flex;
     width: 100vw;
@@ -238,7 +248,7 @@
 /* Estado inicial do corpo do site */
 body {
     opacity: 0; 
-    animation: smoothPageLoad 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation: smoothPageLoad 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
 /* A mágica da entrada cinematográfica */
@@ -257,5 +267,5 @@ body {
 body.fade-out {
     opacity: 0;
     transform: translateY(-15px); /* Sobe um pouquinho ao sair */
-    transition: all 1.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
