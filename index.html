@@ -1,217 +1,277 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
-    <meta name="description" content="Nexo Digital cria sites, identidades, automações e campanhas para transformar ideias em resultado.">
-    <title>Nexo | Início</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexo Digital cria sites, marcas, campanhas e automações para negócios que querem atrair clientes com uma presença profissional.">
+    <title>Nexo Digital | Sites, marca e marketing para vender mais</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
-            <div class="ticker-item">PROJETOS DE ALTA PERFORMANCE ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
-            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
+    <div class="site-shell">
+        <div class="announcement">
+            <span>Agenda 2026 aberta para novos projetos.</span>
+            <a href="contato.html">Solicitar diagnóstico</a>
         </div>
-    </div>
 
-    <nav id="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Nexo Logo" class="logo-img">
-        </a>
-        
-        <div class="nav-right">
+        <nav class="nav" id="navbar">
+            <a href="index.html" class="brand" aria-label="Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
+
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Início</a></li>
+                <li><a href="pacotes.html">Planos</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="pacotes.html">Pacotes</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
 
-            <a href="login.html" class="user-profile" aria-label="Acessar conta">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="bg-fixed"></div>
-
-    <section class="hero-section">
-        <div class="hero-content">
-            <span class="sub">Performance & Estética</span>
-            <h1 class="titulo-gigante">O NEXO ENTRE<br>IDEIA E RESULTADO.</h1>
-            <p class="desc-pag">Transformamos negócios comuns em marcas memoráveis através de tecnologia de ponta, design disruptivo e marketing focado em conversão extrema.</p>
-            
-            <div class="hero-buttons">
-                <a href="servicos.html" class="btn-primary-hero">Montar Pacote</a>
-                <a href="pacotes.html" class="btn-secondary-hero">Pacotes</a>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login" aria-label="Área do cliente">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12Z" stroke="white" stroke-width="1.6"/>
+                        <path d="M6 21V19C6 16.8 7.8 15 10 15H14C16.2 15 18 16.8 18 19V21" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-        </div>
-    </section>
+        </nav>
 
-    <section class="section-full-img" style="background-image: url('nexo2.png');"></section>
-
-    <section class="stats-section">
-        <div class="grid grid-stats">
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">+150</h2>
-                <p class="sub">Projetos Entregues</p>
-            </div>
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">98%</h2>
-                <p class="sub">Satisfação Real</p>
-            </div>
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">24h</h2>
-                <p class="sub">Suporte Ativo</p>
-            </div>
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">FLASH</h2>
-                <p class="sub">Entrega Rápida</p>
-            </div>
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">100%</h2>
-                <p class="sub">Legalizado</p>
-            </div>
-            <div class="card-glass stat-card">
-                <h2 class="glow-number">3</h2>
-                <p class="sub">Participantes</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
-        <span class="sub">Prova Social</span>
-        <h2 class="titulo-gigante" style="font-size: clamp(35px, 7vw, 80px);">QUEM CONFIA.</h2>
-        
-        <div class="form-depoimento-container">
-            <h3 style="margin-bottom: 20px; font-size: 14px; letter-spacing: 2px; color: var(--nexo-purple);">DEIXE SUA EXPERIÊNCIA</h3>
-            <form id="form-depoimento" class="modern-form" style="max-width: 600px;">
-                <div class="input-group">
-                    <label for="dep-nome">Seu Nome / Empresa</label>
-                                        <input type="text" id="dep-nome" required placeholder=" ">
-                </div>
-                <div class="input-group">
-                    <label for="dep-texto" style="top: 25px;">O que achou da nossa entrega?</label>
-                    <textarea id="dep-texto" rows="3" required placeholder=" "></textarea>
-                </div>
-                <button type="submit" class="btn-acao" style="padding: 15px 40px; font-size: 11px; border-radius: 8px;">Publicar Feedback</button>
-            </form>
-        </div>
-
-        <div class="slider-wrapper">
-            <button id="btn-prev" class="slider-arrow prev-arrow">←</button>
-            
-            <div class="slider-depoimentos" id="lista-depoimentos">
-                <div class="card-glass depoimento-card">
-                    <p>"A Nexo mudou o patamar da nossa empresa. O site novo converte 3x mais do que a estrutura anterior."</p>
-                    <br><span class="sub">—— Ricardo M., CEO TechFlow</span>
-                </div>
-                
-                <div class="card-glass depoimento-card">
-                    <p>"Design impecável e entrega antes do prazo combinado. Recomendo para qualquer marca de alto padrão."</p>
-                    <br><span class="sub">—— Ana Paula, Fundadora Studio A</span>
+        <main>
+            <section class="hero">
+                <div>
+                    <span class="eyebrow">Estratégia, design e conversão</span>
+                    <h1>Nexo Digital</h1>
+                    <p class="lead">Criamos a estrutura completa para sua marca parecer confiável, explicar melhor sua oferta e transformar atenção em clientes: site, identidade visual, marketing, conteúdo e automação.</p>
+                    <div class="hero-actions">
+                        <a href="contato.html" class="btn btn-primary">Quero atrair clientes</a>
+                        <a href="pacotes.html" class="btn btn-outline">Ver planos</a>
+                    </div>
+                    <div class="hero-proof">
+                        <span class="proof-pill">Site profissional</span>
+                        <span class="proof-pill">Marca mais forte</span>
+                        <span class="proof-pill">Campanhas e WhatsApp</span>
+                    </div>
                 </div>
 
-                <div class="card-glass depoimento-card">
-                    <p>"A atenção aos detalhes e a agilidade na resposta são surreais. Melhor investimento em tecnologia que fizemos."</p>
-                    <br><span class="sub">—— Carlos E., Diretor Nexus Corp</span>
+                <div class="hero-visual">
+                    <img src="nexo2.png" alt="Projeto visual da Nexo Digital">
+                    <div class="visual-panel">
+                        <div><strong>01</strong><span>Diagnóstico da oferta</span></div>
+                        <div><strong>02</strong><span>Presença digital pronta</span></div>
+                        <div><strong>03</strong><span>Campanhas para vender</span></div>
+                    </div>
                 </div>
+            </section>
+
+            <section class="section">
+                <div class="section-head">
+                    <h2>Seu cliente decide se confia em você antes de chamar no WhatsApp.</h2>
+                    <p>O trabalho da Nexo é remover dúvidas, elevar percepção de valor e criar caminhos simples para o comprador tomar a próxima ação.</p>
+                </div>
+                <div class="grid-3">
+                    <article class="card">
+                        <span class="card-kicker">Presença</span>
+                        <h3>Sua marca parece maior</h3>
+                        <p>Identidade, site e apresentação visual alinhados para passar confiança nos primeiros segundos.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">Oferta</span>
+                        <h3>Sua solução fica clara</h3>
+                        <p>Textos, estrutura e páginas que explicam o que você vende sem depender de conversa longa.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">Conversão</span>
+                        <h3>O contato vira próximo passo</h3>
+                        <p>Chamadas para ação, WhatsApp, formulários e automações para captar oportunidades com organização.</p>
+                    </article>
+                </div>
+            </section>
+
+            <div class="paper-band">
+                <section class="section">
+                    <div class="section-head">
+                        <h2>Planos pensados pelo momento do comprador.</h2>
+                        <p>Menos pacote confuso, mais decisão simples: escolha o estágio da sua empresa e fale com a Nexo para fechar o escopo ideal.</p>
+                    </div>
+                    <div class="plans-grid">
+                        <article class="plan-card">
+                            <span class="plan-tag">Começar certo</span>
+                            <h3>Presença Profissional</h3>
+                            <p class="plan-fit">Para negócios que precisam sair do improviso e parecer confiáveis online.</p>
+                            <ul class="plan-list">
+                                <li>Landing page ou site simples</li>
+                                <li>Direção visual inicial</li>
+                                <li>WhatsApp e contato bem posicionados</li>
+                            </ul>
+                            <div class="plan-footer">
+                                <span class="plan-note">Projeto de entrada</span>
+                                <a href="pacotes.html#presenca" class="btn btn-dark">Ver plano</a>
+                            </div>
+                        </article>
+
+                        <article class="plan-card featured">
+                            <span class="plan-badge">Recomendado</span>
+                            <span class="plan-tag">Marca + Site</span>
+                            <h3>Brand Site Premium</h3>
+                            <p class="plan-fit">Para quem quer identidade visual completa e site com apresentação profissional.</p>
+                            <ul class="plan-list">
+                                <li>Identidade visual completa</li>
+                                <li>Site institucional ou landing premium</li>
+                                <li>Copy, SEO base e versão mobile</li>
+                            </ul>
+                            <div class="plan-footer">
+                                <span class="plan-note">Melhor custo-benefício</span>
+                                <a href="pacotes.html#brand-site" class="btn btn-dark">Ver plano</a>
+                            </div>
+                        </article>
+
+                        <article class="plan-card">
+                            <span class="plan-tag">Vender mais</span>
+                            <h3>Máquina de Clientes</h3>
+                            <p class="plan-fit">Para transformar tráfego, campanha e página em geração de leads.</p>
+                            <ul class="plan-list">
+                                <li>Landing page de conversão</li>
+                                <li>Campanhas pagas e criativos</li>
+                                <li>Relatório e melhorias de performance</li>
+                            </ul>
+                            <div class="plan-footer">
+                                <span class="plan-note">Foco em aquisição</span>
+                                <a href="pacotes.html#maquina" class="btn btn-dark">Ver plano</a>
+                            </div>
+                        </article>
+
+                        <article class="plan-card">
+                            <span class="plan-tag">Operação completa</span>
+                            <h3>Marketing 360</h3>
+                            <p class="plan-fit">Para empresas que querem presença, conteúdo, anúncios e acompanhamento contínuo.</p>
+                            <ul class="plan-list">
+                                <li>Conteúdo para redes sociais</li>
+                                <li>Gestão de anúncios</li>
+                                <li>Rotina mensal de estratégia</li>
+                            </ul>
+                            <div class="plan-footer">
+                                <span class="plan-note">Plano recorrente</span>
+                                <a href="pacotes.html#marketing-360" class="btn btn-dark">Ver plano</a>
+                            </div>
+                        </article>
+                    </div>
+                </section>
             </div>
 
-            <button id="btn-next" class="slider-arrow next-arrow">→</button>
-        </div>
-    </section>
+            <section class="section">
+                <div class="section-head">
+                    <h2>Do briefing ao lançamento, sem ficar perdido no processo.</h2>
+                    <p>Você entende o que será feito, por que será feito e qual ação vem depois.</p>
+                </div>
+                <div class="grid-4">
+                    <article class="step-card">
+                        <span class="step-number">01</span>
+                        <h3>Diagnóstico</h3>
+                        <p>Entendemos seu negócio, oferta, público, concorrência e objetivo comercial.</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-number">02</span>
+                        <h3>Estratégia</h3>
+                        <p>Definimos plano, páginas, mensagens e caminhos de conversão antes de produzir.</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-number">03</span>
+                        <h3>Produção</h3>
+                        <p>Design, texto, site, criativos, automações e ajustes em uma direção coerente.</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-number">04</span>
+                        <h3>Lançamento</h3>
+                        <p>Entrega final com orientação, próximos passos e suporte para começar certo.</p>
+                    </article>
+                </div>
+            </section>
 
-    <section class="team-section">
-        <span class="sub">Nossa Cúpula</span>
-        <h2 class="titulo-gigante" style="font-size: clamp(35px, 7vw, 80px);">MENTES CRIATIVAS.</h2>
-        
-        <div class="grid grid-team">
-            <div class="team-card-premium">
-    <div class="member-image-box">
-        <img src="chiquitelli.png" alt="Gabriel Chiquitelli" class="member-img">
+            <section class="section">
+                <div class="media-strip">
+                    <img src="nexo1.png" alt="Identidade visual desenvolvida pela Nexo">
+                    <div class="quote-block">
+                        <p>Um site profissional não é enfeite. É o vendedor silencioso que trabalha antes da primeira mensagem.</p>
+                        <span>Nexo Digital</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-head">
+                    <h2>Quem está por trás.</h2>
+                    <p>Uma operação enxuta, direta e próxima o suficiente para entender seu negócio de verdade.</p>
+                </div>
+                <div class="team-grid">
+                    <article class="team-card">
+                        <img src="chiquitelli.png" alt="Gabriel Chiquitelli">
+                        <div class="team-info">
+                            <h3>Gabriel Chiquitelli</h3>
+                            <p>Direção criativa, estratégia digital e desenvolvimento de experiências para web.</p>
+                        </div>
+                    </article>
+                    <article class="team-card">
+                        <img src="anelyze.jpg" alt="Anelyze Oliveira">
+                        <div class="team-info">
+                            <h3>Anelyze Oliveira</h3>
+                            <p>Organização, atendimento, administração e acompanhamento dos projetos.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="cta-band">
+                <div>
+                    <h2>Quer um site que pareça sério e ajude a vender?</h2>
+                    <p>Conte para a Nexo onde seu negócio está hoje. Nós indicamos o melhor caminho sem empurrar um pacote aleatório.</p>
+                </div>
+                <div class="cta-row">
+                    <a href="contato.html" class="btn btn-dark">Pedir diagnóstico</a>
+                </div>
+            </section>
+        </main>
     </div>
-    <div class="member-info">
-        <h3>GABRIEL CHIQUITELLI</h3>
-        <p class="sub">CEO</p>
-    </div>
-</div>
 
-<div class="team-card-premium">
-    <div class="member-image-box">
-        <img src="anelyze.jpg" alt="Anelyze Oliveira" class="member-img">
-    </div>
-    <div class="member-info">
-        <h3>ANELYZE OLIVEIRA</h3>
-        <p class="sub">Administradora</p>
-    </div>
-</div>
-
-        </div>
-    </section>
-
-    <footer class="footer-nexo">
-        <div class="footer-container">
-            <div class="footer-column branding">
-                <img src="logo.png" alt="Nexo Logo" class="footer-logo">
-                <p>O nexo entre grandes ideias e resultados extraordinários. Elevando o padrão digital desde 2024.</p>
-                <div class="footer-socials">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" target="_blank" rel="noopener">WA</a>
-                    <a href="mailto:agnexo.company@gmail.com">E-MAIL</a>
-                </div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <img src="logo.png" alt="Nexo Digital" class="footer-logo">
+                <p>Sites, marcas e marketing para empresas que querem parecer confiáveis, explicar melhor sua oferta e atrair clientes.</p>
             </div>
-            <div class="footer-column">
+            <div>
                 <h3>Explorar</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
+                    <li><a href="pacotes.html">Planos</a></li>
                     <li><a href="servicos.html">Serviços</a></li>
-                    <li><a href="pacotes.html">Pacotes</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
+            <div>
                 <h3>Contato</h3>
                 <ul>
-                    <li><a href="contato.html">Iniciar Projeto</a></li>
+                    <li><a href="contato.html">Solicitar diagnóstico</a></li>
                     <li><a href="mailto:agnexo.company@gmail.com">agnexo.company@gmail.com</a></li>
-                    <li><a href="login.html">Área do Cliente</a></li>
+                    <li><a href="login.html">Área do cliente</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="bottom-container">
-                <p>&copy; 2026 Nexo Digital. Todos os direitos reservados.</p>
-                <div class="legal-links">
-                    <span>Termos em breve</span>
-                    <span>Privacidade em breve</span>
-                </div>
-            </div>
+            <p>© 2026 Nexo Digital. Todos os direitos reservados.</p>
+            <p>Agenda 2026 aberta.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20quero%20atrair%20mais%20clientes." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
         </svg>
     </a>

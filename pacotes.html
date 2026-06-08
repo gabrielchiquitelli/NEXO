@@ -2,179 +2,277 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Pacotes estratégicos da Nexo Digital para presença online, vendas, automação e crescimento de marca.">
-    <title>Pacotes Estratégicos | Nexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Planos da Nexo Digital para presença profissional, identidade visual com site, geração de clientes, marketing completo e operação digital.">
+    <title>Planos | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
-            <div class="ticker-item">COMBINAÇÕES DE ALTA PERFORMANCE ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
-            <div class="ticker-item">COMBINAÇÕES DE ALTA PERFORMANCE ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
+    <div class="site-shell">
+        <div class="announcement">
+            <span>Planos claros para momentos diferentes do negócio.</span>
+            <a href="contato.html">Receber indicação</a>
         </div>
-    </div>
 
-    <nav id="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Nexo Logo" class="logo-img">
-        </a>
-        
-        <div class="nav-right">
+        <nav class="nav" id="navbar">
+            <a href="index.html" class="brand" aria-label="Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
+                <li><a href="pacotes.html" class="active">Planos</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="pacotes.html" class="active">Pacotes</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login" aria-label="Área do cliente">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12Z" stroke="white" stroke-width="1.6"/>
+                        <path d="M6 21V19C6 16.8 7.8 15 10 15H14C16.2 15 18 16.8 18 19V21" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
 
-            <a href="login.html" class="user-profile" aria-label="Acessar conta">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
-
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <div class="bg-fixed"></div>
-
-    <section class="section-pacotes-fechados">
-        <span class="sub">Soluções Prontas</span>
-        <h1 class="titulo-gigante">COMBINAÇÕES<br>TÁTICAS.</h1>
-        <p class="desc-pag" style="margin-bottom: 60px;">Reunimos nossos serviços mais potentes em ecossistemas fechados para acelerar o posicionamento e o faturamento do seu negócio.</p>
-
-        <div class="grid-pacotes-fechados">
-            
-            <div class="card-pacote-fechado">
-                <div class="pacote-header">
-                    <span class="pacote-tag">Fundaçao</span>
-                    <h3>NEXO START</h3>
-                    <p>A estrutura ideal para quem precisa criar uma presença digital imponente e profissional do zero.</p>
+        <main>
+            <section class="page-hero">
+                <span class="eyebrow">Planos Nexo</span>
+                <h1>Escolha pelo resultado que você quer alcançar.</h1>
+                <p class="lead">A Nexo não vende um monte de serviço solto. Cada plano tem uma missão comercial: parecer profissional, lançar uma marca, gerar clientes, operar marketing ou estruturar o digital inteiro.</p>
+                <div class="cta-row">
+                    <a href="#planos" class="btn btn-primary">Comparar planos</a>
+                    <a href="contato.html" class="btn btn-outline">Me indique o melhor</a>
                 </div>
-                <div class="pacote-entrega">
-                    <h4>O que está incluso:</h4>
-                    <ul>
-                        <li>✦ Criação de Site / Landing Page</li>
-                        <li>✦ Identidade Visual Completa</li>
-                        <li>✦ Otimização Básica de SEO</li>
-                        <li>✦ Suporte de Lançamento (7 dias)</li>
-                    </ul>
+            </section>
+
+            <section class="section section-tight" id="planos">
+                <div class="plans-grid">
+                    <article class="plan-card" id="presenca">
+                        <span class="plan-tag">Para sair do improviso</span>
+                        <h3>Presença Profissional</h3>
+                        <p class="plan-fit">Ideal para autônomos, negócios locais e empresas começando que precisam de uma presença confiável para receber clientes.</p>
+                        <ul class="plan-list">
+                            <li>Landing page profissional ou site one-page</li>
+                            <li>Ajuste visual básico da marca para uso digital</li>
+                            <li>Texto de apresentação e chamadas para WhatsApp</li>
+                            <li>Configuração de contato, links e estrutura mobile</li>
+                            <li>SEO básico para presença no Google</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Para começar rápido e com seriedade</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Presença%20Profissional%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-primary">Quero esse</a>
+                        </div>
+                    </article>
+
+                    <article class="plan-card featured" id="brand-site">
+                        <span class="plan-badge">Mais indicado</span>
+                        <span class="plan-tag">Identidade visual + site</span>
+                        <h3>Brand Site Premium</h3>
+                        <p class="plan-fit">Para quem quer lançar ou reposicionar a marca com visual forte, site profissional e apresentação que aumenta percepção de valor.</p>
+                        <ul class="plan-list">
+                            <li>Identidade visual completa: logo, cores, fontes e direção visual</li>
+                            <li>Manual básico da marca para manter consistência</li>
+                            <li>Site institucional ou landing page premium</li>
+                            <li>Copy profissional para explicar sua oferta</li>
+                            <li>SEO inicial, integração WhatsApp e versão responsiva</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Melhor para marca + presença digital</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Brand%20Site%20Premium%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-dark">Quero esse</a>
+                        </div>
+                    </article>
+
+                    <article class="plan-card" id="maquina">
+                        <span class="plan-tag">Para gerar oportunidades</span>
+                        <h3>Máquina de Clientes</h3>
+                        <p class="plan-fit">Para empresas que já têm uma oferta validada e precisam captar leads com páginas, anúncios e mensagens que vendem.</p>
+                        <ul class="plan-list">
+                            <li>Landing page focada em conversão</li>
+                            <li>Copy de campanha e argumentos comerciais</li>
+                            <li>Criativos para anúncios pagos</li>
+                            <li>Configuração de campanha Google, Meta ou Instagram</li>
+                            <li>Relatório inicial e ajustes de performance</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Foco em leads e vendas</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Máquina%20de%20Clientes%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-primary">Quero esse</a>
+                        </div>
+                    </article>
+
+                    <article class="plan-card" id="marketing-360">
+                        <span class="plan-tag">Para ter constância</span>
+                        <h3>Marketing 360</h3>
+                        <p class="plan-fit">Para empresas que querem gestão mensal de presença digital, conteúdo, campanhas e melhoria contínua da comunicação.</p>
+                        <ul class="plan-list">
+                            <li>Planejamento mensal de marketing</li>
+                            <li>Conteúdo e peças para redes sociais</li>
+                            <li>Gestão e otimização de anúncios</li>
+                            <li>Landing pages e páginas de campanha quando necessário</li>
+                            <li>Relatório, reunião estratégica e próximos passos</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Plano recorrente para crescimento</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Marketing%20360%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-primary">Quero esse</a>
+                        </div>
+                    </article>
+
+                    <article class="plan-card" id="store">
+                        <span class="plan-tag">Para vender online</span>
+                        <h3>Loja Virtual Pro</h3>
+                        <p class="plan-fit">Para negócios que precisam vender produtos físicos ou digitais com uma loja organizada, bonita e fácil de divulgar.</p>
+                        <ul class="plan-list">
+                            <li>Loja virtual responsiva</li>
+                            <li>Cadastro inicial de produtos e categorias</li>
+                            <li>Páginas essenciais de compra, contato e políticas</li>
+                            <li>Integração com WhatsApp, checkout ou links de pagamento</li>
+                            <li>Treinamento básico para operar a loja</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Para produtos e catálogo</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Loja%20Virtual%20Pro%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-primary">Quero esse</a>
+                        </div>
+                    </article>
+
+                    <article class="plan-card" id="elite">
+                        <span class="plan-tag">Para terceirizar o digital</span>
+                        <h3>Operação Digital Completa</h3>
+                        <p class="plan-fit">Para empresas que querem a Nexo como braço estratégico de marca, site, campanhas, conteúdo e automações.</p>
+                        <ul class="plan-list">
+                            <li>Estratégia digital completa</li>
+                            <li>Site, páginas, campanhas e criativos sob demanda</li>
+                            <li>Gestão de anúncios e conteúdo</li>
+                            <li>Automações de atendimento e captação</li>
+                            <li>Consultoria estratégica recorrente</li>
+                        </ul>
+                        <div class="plan-footer">
+                            <span class="plan-note">Escopo sob diagnóstico</span>
+                            <a href="https://wa.me/5516997135849?text=Olá,%20quero%20saber%20mais%20sobre%20o%20plano%20Operação%20Digital%20Completa%20da%20Nexo." target="_blank" rel="noopener" class="btn btn-primary">Quero esse</a>
+                        </div>
+                    </article>
                 </div>
-                <div class="pacote-footer">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Pacote%20Nexo%20Start!" target="_blank" rel="noopener" class="btn-pacote-action">Escolher Start</a>
+            </section>
+
+            <section class="section">
+                <div class="section-head">
+                    <h2>Qual plano faz mais sentido?</h2>
+                    <p>Use a tabela para decidir rápido. Se ainda ficar em dúvida, a Nexo indica o caminho ideal no diagnóstico.</p>
                 </div>
+                <table class="comparison">
+                    <thead>
+                        <tr>
+                            <th>Se você precisa de...</th>
+                            <th>Escolha</th>
+                            <th>Por quê</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Um site simples e confiável para começar</td>
+                            <td>Presença Profissional</td>
+                            <td>Resolve o básico com aparência séria e contato claro.</td>
+                        </tr>
+                        <tr>
+                            <td>Marca nova, visual forte e site bonito</td>
+                            <td>Brand Site Premium</td>
+                            <td>Une identidade visual e site em uma entrega coerente.</td>
+                        </tr>
+                        <tr>
+                            <td>Mais leads entrando pelo WhatsApp</td>
+                            <td>Máquina de Clientes</td>
+                            <td>Foca em página, campanha e mensagem de conversão.</td>
+                        </tr>
+                        <tr>
+                            <td>Conteúdo, anúncios e rotina mensal</td>
+                            <td>Marketing 360</td>
+                            <td>Cria consistência e melhora a presença com acompanhamento.</td>
+                        </tr>
+                        <tr>
+                            <td>Digital completo nas mãos da Nexo</td>
+                            <td>Operação Digital Completa</td>
+                            <td>Serve para empresas que querem estrutura, execução e estratégia.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <div class="paper-band">
+                <section class="section">
+                    <div class="section-head">
+                        <h2>Por que não colocamos preço fixo em todos os planos?</h2>
+                        <p>Cada negócio muda em tamanho, urgência, quantidade de páginas, volume de criativos, integrações e nível de acompanhamento. O diagnóstico evita cobrar errado ou entregar algo que não resolve.</p>
+                    </div>
+                    <div class="grid-3">
+                        <article class="card">
+                            <span class="card-kicker">Escopo claro</span>
+                            <h3>Você sabe o que está comprando</h3>
+                            <p>Antes da proposta, definimos entregas, prioridade e objetivo comercial.</p>
+                        </article>
+                        <article class="card">
+                            <span class="card-kicker">Sem pacote aleatório</span>
+                            <h3>Plano certo para o momento</h3>
+                            <p>Se você precisa de leads, não faz sentido comprar só design. Se precisa de confiança, talvez anúncio ainda seja cedo.</p>
+                        </article>
+                        <article class="card">
+                            <span class="card-kicker">Caminho de crescimento</span>
+                            <h3>Você pode evoluir depois</h3>
+                            <p>Comece com presença, avance para campanhas e depois para marketing completo.</p>
+                        </article>
+                    </div>
+                </section>
             </div>
 
-            <div class="card-pacote-fechado recomendado">
-                <div class="bestseller-badge">Mais Vendido</div>
-                <div class="pacote-header">
-                    <span class="pacote-tag" style="color: var(--white);">Aceleraçao de Vendas</span>
-                    <h3>NEXO GROWTH</h3>
-                    <p>O combo perfeito para empresas que já existem e querem usar a internet para multiplicar o faturamento.</p>
+            <section class="cta-band">
+                <div>
+                    <h2>Quer saber qual plano vende melhor para o seu caso?</h2>
+                    <p>Explique seu negócio em poucas linhas e receba uma indicação direta da Nexo.</p>
                 </div>
-                <div class="pacote-entrega">
-                    <h4>O que está incluso:</h4>
-                    <ul>
-                        <li>✦ Site Premium Ultra Veloz</li>
-                        <li>✦ Configuração de Anúncios (Tráfego)</li>
-                        <li>✦ Criação de Textos Persuasivos</li>
-                        <li>✦ Automação de WhatsApp básica</li>
-                        <li>✦ Relatório de Métricas Mensal</li>
-                    </ul>
+                <div class="cta-row">
+                    <a href="contato.html" class="btn btn-dark">Solicitar indicação</a>
                 </div>
-                <div class="pacote-footer">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Pacote%20Nexo%20Growth!" target="_blank" rel="noopener" class="btn-pacote-action btn-growth">Escolher Growth</a>
-                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <img src="logo.png" alt="Nexo Digital" class="footer-logo">
+                <p>Sites, marcas e marketing para empresas que querem parecer confiáveis, explicar melhor sua oferta e atrair clientes.</p>
             </div>
-
-            <div class="card-pacote-fechado">
-                <div class="pacote-header">
-                    <span class="pacote-tag">Domínio Total</span>
-                    <h3>ELITE HUB</h3>
-                    <p>Terceirização completa do seu departamento digital. Estética de luxo com engenharia agressiva de dados.</p>
-                </div>
-                <div class="pacote-entrega">
-                    <h4>O que está incluso:</h4>
-                    <ul>
-                        <li>✦ Ecossistema Web Completo (Sites+Lojas)</li>
-                        <li>✦ Anúncios Patrocinados Avançados</li>
-                        <li>✦ Edição de Vídeos Dinâmicos (Linha)</li>
-                        <li>✦ Gestão Ativa de Redes Sociais</li>
-                        <li>✦ Chatbots & Automações Complexas</li>
-                        <li>✦ Consultoria Estratégica Quinzenal</li>
-                    </ul>
-                </div>
-                <div class="pacote-footer">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Pacote%20Elite%20Hub!" target="_blank" rel="noopener" class="btn-pacote-action">Acessar Cúpula</a>
-                </div>
-            </div>
-
-        </div>
-
-        <p class="ajuda-custom" style="text-align: center; margin-top: 60px; font-size: 14px; opacity: 0.5;">
-            Precisa de uma combinação diferente? <a href="servicos.html" style="color: var(--white); font-weight: 600; text-decoration: underline;">Monte seu próprio pacote personalizado ↗</a>
-        </p>
-    </section>
-
-    <footer class="footer-nexo">
-        <div class="footer-container">
-            <div class="footer-column branding">
-                <img src="logo.png" alt="Nexo Logo" class="footer-logo">
-                <p>O nexo entre grandes ideias e resultados extraordinários. Elevando o padrão digital desde 2024.</p>
-                <div class="footer-socials">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" target="_blank" rel="noopener">WA</a>
-                    <a href="mailto:agnexo.company@gmail.com">E-MAIL</a>
-                </div>
-            </div>
-            <div class="footer-column">
+            <div>
                 <h3>Explorar</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
+                    <li><a href="pacotes.html">Planos</a></li>
                     <li><a href="servicos.html">Serviços</a></li>
-                    <li><a href="pacotes.html">Pacotes</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
+            <div>
                 <h3>Contato</h3>
                 <ul>
-                    <li><a href="contato.html">Iniciar Projeto</a></li>
+                    <li><a href="contato.html">Solicitar diagnóstico</a></li>
                     <li><a href="mailto:agnexo.company@gmail.com">agnexo.company@gmail.com</a></li>
-                    <li><a href="login.html">Área do Cliente</a></li>
+                    <li><a href="login.html">Área do cliente</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="bottom-container">
-                <p>&copy; 2026 Nexo Digital. Todos os direitos reservados.</p>
-                <div class="legal-links">
-                    <span>Termos em breve</span>
-                    <span>Privacidade em breve</span>
-                </div>
-            </div>
+            <p>© 2026 Nexo Digital. Todos os direitos reservados.</p>
+            <p>Agenda 2026 aberta.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20quero%20escolher%20um%20plano." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
         </svg>
     </a>

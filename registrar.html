@@ -3,79 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crie seu acesso à área do cliente Nexo Digital.">
-    <title>Criar Conta | Nexo</title>
+    <meta name="description" content="Solicite cadastro na área do cliente Nexo Digital.">
+    <title>Solicitar acesso | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
-<body style="margin: 0; padding: 0; overflow: hidden; background: #050505;">
+<body>
+    <main class="login-page">
+        <section class="login-card">
+            <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
 
-    <div class="split-login-container">
-        <div class="split-image-side" style="background-image: url('nexo2.png');">
-            <div class="image-overlay"></div>
-        </div>
-
-        <div class="split-form-side">
-            <a href="index.html" class="back-link">Voltar ao site ↗</a>
-            
-            <div class="split-form-wrapper" style="max-height: 90vh; overflow-y: auto; padding-right: 10px;">
-                <img src="logo.png" alt="Nexo Logo" class="split-logo" style="margin-bottom: 20px;">
-                
-                <h2 class="split-title">Faça parte da Cúpula</h2>
-                <p class="split-subtitle">Crie sua conta para iniciar sua jornada estratégica.</p>
-
-                <button type="button" class="btn-google">
-                    <svg width="20" height="20" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    Registrar com o Google
-                </button>
-
-                <div class="split-divider">
-                    <span>ou preencha os dados</span>
-                </div>
-
-                <form id="split-register-form">
-                    <div class="split-input-group">
-                        <label for="reg-name">Nome Completo</label>
-                        <input type="text" id="reg-name" placeholder="Ex: Gabriel Chiquitelli" required>
-                    </div>
-
-                    <div class="split-input-group">
-                        <label for="reg-email">E-mail Corporativo</label>
-                        <input type="email" id="reg-email" placeholder="contato@empresa.com" required>
-                    </div>
-
-                    <div class="split-input-group">
-                        <label for="reg-phone">WhatsApp</label>
-                        <input type="tel" id="reg-phone" placeholder="(00) 00000-0000" required>
-                    </div>
-
-                    <div class="split-input-group">
-                        <label for="reg-password">Criar Senha</label>
-                        <input type="password" id="reg-password" placeholder="••••••••" required>
-                    </div>
-
-                    <div class="split-input-group" style="margin-bottom: 30px;">
-                        <label class="split-remember" style="justify-content: flex-start; cursor: default;">
-                            <input type="checkbox" required> 
-                            <span style="font-size: 11px;">Li e aceito os <span style="color: var(--nexo-purple);">Termos de Uso</span></span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="split-btn-submit">Criar minha conta</button>
-                </form>
-
-                <p class="split-footer-text">Já possui acesso? <a href="login.html">Fazer Login</a></p>
+            <div style="margin: 34px 0 24px;">
+                <span class="eyebrow">Novo acesso</span>
+                <h1 style="font-size: 34px; line-height: 1.1;">Solicite sua área do cliente</h1>
+                <p class="lead" style="font-size: 15px; margin-top: 12px;">Envie seus dados e a Nexo retorna pelo WhatsApp para liberar o acesso quando seu projeto estiver ativo.</p>
             </div>
-        </div>
-    </div>
 
+            <form id="split-register-form">
+                <div class="field">
+                    <label for="reg-name">Nome completo</label>
+                    <input type="text" id="reg-name" placeholder="Seu nome" required>
+                </div>
+                <div class="field">
+                    <label for="reg-email">E-mail</label>
+                    <input type="email" id="reg-email" placeholder="contato@empresa.com" required>
+                </div>
+                <div class="field">
+                    <label for="reg-phone">WhatsApp</label>
+                    <input type="tel" id="reg-phone" placeholder="(00) 00000-0000" required>
+                </div>
+                <div class="field">
+                    <label for="reg-password">Senha desejada</label>
+                    <input type="password" id="reg-password" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Solicitar cadastro</button>
+            </form>
+
+            <p style="margin-top: 20px; color: var(--muted); font-size: 14px;">Já tem acesso? <a href="login.html">Entrar</a></p>
+            <p style="margin-top: 10px; color: var(--muted); font-size: 14px;"><a href="index.html">Voltar ao site</a></p>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

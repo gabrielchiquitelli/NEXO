@@ -2,289 +2,203 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Monte um pacote personalizado com serviços de site, marca, tráfego, conteúdo, automação e consultoria da Nexo Digital.">
-    <title>Pacotes & Briefing | Nexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serviços da Nexo Digital: sites, identidade visual, tráfego pago, marketing, conteúdo, loja virtual e automação.">
+    <title>Serviços | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
-            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
-            <div class="ticker-item">NEXO DIGITAL ✦</div>
-            <div class="ticker-item">AGENDA 2026 ABERTA ✦</div>
-            <div class="ticker-item">SITE EM DESENVOLVIMENTO ✦</div>
-            <div class="ticker-item">ELEVE SUA MARCA ✦</div>
+    <div class="site-shell">
+        <div class="announcement">
+            <span>Não sabe qual serviço contratar?</span>
+            <a href="#diagnostico">Faça o briefing rápido</a>
         </div>
-    </div>
 
-    <nav id="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Nexo Logo" class="logo-img">
-        </a>
-        
-        <div class="nav-right">
+        <nav class="nav" id="navbar">
+            <a href="index.html" class="brand" aria-label="Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
+                <li><a href="pacotes.html">Planos</a></li>
                 <li><a href="servicos.html" class="active">Serviços</a></li>
-                                <li><a href="pacotes.html">Pacotes</a></li>
-
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login" aria-label="Área do cliente">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12Z" stroke="white" stroke-width="1.6"/>
+                        <path d="M6 21V19C6 16.8 7.8 15 10 15H14C16.2 15 18 16.8 18 19V21" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
 
-            <a href="login.html" class="user-profile" aria-label="Acessar conta">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 12C14.2091 12 16 10.2091 16 8C16 5.79086 14.2091 4 12 4C9.79086 4 8 5.79086 8 8C8 10.2091 9.79086 12 12 12Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6 21V19C6 16.7909 7.79086 15 10 15H14C16.2091 15 18 16.7909 18 19V21" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </a>
+        <main>
+            <section class="page-hero">
+                <span class="eyebrow">Serviços</span>
+                <h1>Tudo que sua presença digital precisa para vender com mais confiança.</h1>
+                <p class="lead">Você pode contratar serviços avulsos, fechar um plano pronto ou montar um escopo sob medida. O importante é que cada entrega tenha função comercial.</p>
+            </section>
 
-            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <section class="section-pacotes">
-        <span class="sub">Engine de Orçamentos</span>
-        <h1 class="titulo-gigante">MONTE SEU<br>PACOTE.</h1>
-        <p class="desc-pag" style="margin-bottom: 60px;">Selecione os módulos que seu negócio precisa, defina sua proposta e nossa cúpula fará uma oferta comercial exclusiva.</p>
-
-        <form id="form-briefing" class="pacotes-wrapper">
-            
-            <div class="step-container">
-                <h2 class="step-title">01. Selecione os Módulos desejados</h2>
-                <div class="grid-selecao">
-                    
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="web">
-                        <div class="card-content-glass">
-                            <span class="card-number">01</span>
-                            <h3>CRIAÇÃO DE SITES</h3>
-                            <p>Sites profissionais e páginas de vendas criadas sob medida para atrair clientes e gerar resultados na internet.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="video">
-                        <div class="card-content-glass">
-                            <span class="card-number">02</span>
-                            <h3>EDIÇÃO DE VÍDEOS</h3>
-                            <p>Vídeos curtos (Reels/TikTok) com edição dinâmica e roteiros focados em prender a atenção e viralizar sua marca.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="brand">
-                        <div class="card-content-glass">
-                            <span class="card-number">03</span>
-                            <h3>IDENTIDADE VISUAL</h3>
-                            <p>Criação de logotipos e da identidade visual completa da sua empresa para transmitir luxo, confiança e valor.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="ads">
-                        <div class="card-content-glass">
-                            <span class="card-number">04</span>
-                            <h3>ANÚNCIOS (TRÁFEGO PAGO)</h3>
-                            <p>Anúncios patrocinados no Google, Instagram e Facebook para atrair compradores qualificados todos os dias.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="social">
-                        <div class="card-content-glass">
-                            <span class="card-number">05</span>
-                            <h3>GESTÃO DE REDES SOCIAIS</h3>
-                            <p>Criação de artes, postagens e estratégias para manter seu Instagram e redes sempre ativos e profissionais.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="seo">
-                        <div class="card-content-glass">
-                            <span class="card-number">06</span>
-                            <h3>POSICIONAMENTO NO GOOGLE</h3>
-                            <p>Técnicas e otimizações para fazer o seu site aparecer nas primeiras posições das buscas sem pagar por cliques.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="copywriting">
-                        <div class="card-content-glass">
-                            <span class="card-number">07</span>
-                            <h3>TEXTOS PERSUASIVOS</h3>
-                            <p>Criação de textos profissionais para o seu site, anúncios e e-mails totalmente focados em convencer o cliente a comprar.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="ecommerce">
-                        <div class="card-content-glass">
-                            <span class="card-number">08</span>
-                            <h3>LOJA VIRTUAL</h3>
-                            <p>Montamos sua loja online completa, segura e pronta para você vender produtos físicos ou digitais 24h por dia.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="automacao">
-                        <div class="card-content-glass">
-                            <span class="card-number">09</span>
-                            <h3>AUTOMAÇÃO DE ATENDIMENTO</h3>
-                            <p>Robôs inteligentes (Chatbots) configurados para atender seus clientes automaticamente no WhatsApp e Instagram.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="uiux">
-                        <div class="card-content-glass">
-                            <span class="card-number">10</span>
-                            <h3>DESIGN DE APLICATIVOS</h3>
-                            <p>Desenhamos as telas e a experiência visual do seu aplicativo ou sistema antes de ele ser programado.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="comunidade">
-                        <div class="card-content-glass">
-                            <span class="card-number">11</span>
-                            <h3>GESTÃO DE GRUPOS</h3>
-                            <p>Administração, suporte humanizado e aquecimento de clientes para seus grupos de WhatsApp ou Telegram.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="consultoria">
-                        <div class="card-content-glass">
-                            <span class="card-number">12</span>
-                            <h3>CONSULTORIA ESTRATÉGICA</h3>
-                            <p>Reunião individual com especialistas para mapear seu negócio e criar um plano de ação direto ao ponto.</p>
-                        </div>
-                    </label>
-
-                    <label class="card-selecionavel">
-                        <input type="checkbox" name="modulos" value="outros">
-                        <div class="card-content-glass">
-                            <span class="card-number">13</span>
-                            <h3>OUTROS SERVIÇOS</h3>
-                            <p>Tem um projeto diferente em mente? Selecione aqui e nos conte os detalhes no campo de descrição abaixo.</p>
-                        </div>
-                    </label>
-
+            <section class="section section-tight">
+                <div class="service-grid">
+                    <article class="service-card">
+                        <span>01</span>
+                        <h3>Sites e landing pages</h3>
+                        <p>Páginas rápidas, responsivas e orientadas para converter visitantes em contatos.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>02</span>
+                        <h3>Identidade visual</h3>
+                        <p>Logo, paleta, tipografia e direção visual para sua marca parecer mais confiável.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>03</span>
+                        <h3>Copywriting</h3>
+                        <p>Textos para páginas, anúncios e mensagens que explicam valor e conduzem à ação.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>04</span>
+                        <h3>Tráfego pago</h3>
+                        <p>Campanhas em Google, Meta e Instagram para gerar demanda e oportunidades.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>05</span>
+                        <h3>Marketing e social</h3>
+                        <p>Planejamento, criativos e conteúdo para manter sua presença ativa e profissional.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>06</span>
+                        <h3>Loja virtual</h3>
+                        <p>Estrutura de e-commerce, catálogo, páginas essenciais e integração de venda.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>07</span>
+                        <h3>Automação</h3>
+                        <p>Fluxos de WhatsApp, captação de leads e respostas para organizar o atendimento.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>08</span>
+                        <h3>Consultoria estratégica</h3>
+                        <p>Diagnóstico de posicionamento, oferta, canais e próximos passos de crescimento.</p>
+                    </article>
+                    <article class="service-card">
+                        <span>09</span>
+                        <h3>Manutenção e evolução</h3>
+                        <p>Ajustes, melhorias e novas páginas para negócios que querem continuar evoluindo.</p>
+                    </article>
                 </div>
+            </section>
+
+            <div class="paper-band">
+                <section class="section">
+                    <div class="section-head">
+                        <h2>O que muda quando os serviços trabalham juntos?</h2>
+                        <p>Marca, site e marketing precisam contar a mesma história. Quando cada peça fala uma coisa, o cliente sente insegurança.</p>
+                    </div>
+                    <div class="grid-3">
+                        <article class="card">
+                            <span class="card-kicker">Antes</span>
+                            <h3>Peças soltas</h3>
+                            <p>Logo de um jeito, site de outro, anúncio sem conexão e atendimento improvisado.</p>
+                        </article>
+                        <article class="card">
+                            <span class="card-kicker">Durante</span>
+                            <h3>Estratégia central</h3>
+                            <p>A Nexo define a mensagem principal e constrói as entregas em volta dela.</p>
+                        </article>
+                        <article class="card">
+                            <span class="card-kicker">Depois</span>
+                            <h3>Presença coerente</h3>
+                            <p>O comprador entende sua oferta, confia mais rápido e sabe como entrar em contato.</p>
+                        </article>
+                    </div>
+                </section>
             </div>
 
-            <div class="step-container" style="margin-top: 80px;">
-                <h2 class="step-title">02. Detalhes do Projeto</h2>
-                
-                <div class="form-inputs-grid">
-                    <div class="input-group">
-                        <label for="client-name">Seu Nome / Nome da Empresa</label>
-                                                <input type="text" id="client-name" required placeholder=" ">
-
+            <section class="section" id="diagnostico">
+                <div class="diagnostic">
+                    <div>
+                        <span class="eyebrow">Briefing rápido</span>
+                        <h2>Monte uma solicitação em menos de dois minutos.</h2>
+                        <p class="lead">Marque suas prioridades e conte o momento da empresa. A mensagem será enviada para o WhatsApp da Nexo com contexto.</p>
                     </div>
 
-                    <div class="input-group">
-                        <label for="client-phone">Contato (WhatsApp/Email)</label>
-                                                <input type="tel" id="client-phone" required placeholder=" ">
+                    <form id="diagnostic-form" class="form-panel">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="diag-name">Nome ou empresa</label>
+                                <input type="text" id="diag-name" required>
+                            </div>
+                            <div class="field">
+                                <label for="diag-contact">WhatsApp ou e-mail</label>
+                                <input type="text" id="diag-contact" required>
+                            </div>
+                        </div>
 
-                    </div>
+                        <span class="choice-title">O que você precisa?</span>
+                        <div class="choice-grid">
+                            <label class="choice"><input type="checkbox" name="needs" value="Site profissional"> Site profissional</label>
+                            <label class="choice"><input type="checkbox" name="needs" value="Identidade visual"> Identidade visual</label>
+                            <label class="choice"><input type="checkbox" name="needs" value="Marketing completo"> Marketing completo</label>
+                            <label class="choice"><input type="checkbox" name="needs" value="Anúncios"> Anúncios</label>
+                            <label class="choice"><input type="checkbox" name="needs" value="Loja virtual"> Loja virtual</label>
+                            <label class="choice"><input type="checkbox" name="needs" value="Automação"> Automação</label>
+                        </div>
+
+                        <div class="field">
+                            <label for="diag-message">Explique seu objetivo</label>
+                            <textarea id="diag-message" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar briefing</button>
+                    </form>
                 </div>
-
-                <div class="input-group" style="margin-top: 20px;">
-                    <label for="project-desc" style="top: 25px;">Descrição do Projeto & Objetivos</label>
-                                        <textarea id="project-desc" rows="4" required placeholder=" " style="width: 100%; padding: 18px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; color: #fff; outline: none; font-family: 'Lexend', sans-serif; resize: none;"></textarea>
-
-                </div>
-
-                <div class="input-group price-bidding-group" style="margin-top: 40px; max-width: 400px;">
-                    <label for="target-price">Preço Pretendido (R$)</label>
-                    <input type="text" id="target-price" required placeholder=" ">
-                    <span class="bidding-badge">Oferta do Cliente</span>
-                </div>
-
-                <button type="submit" class="btn-submit-premium">
-    Solicitar Oferta Exclusiva
-</button>
-            </div>
-
-        </form>
-    </section>
-
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal-glass" id="modal-confirmacao">
-            <div class="modal-icon">?</div>
-            <h3>REVISAR BRIEFING</h3>
-            <p style="margin-bottom: 15px;">Confira os detalhes da sua solicitação antes de enviar para nossa cúpula:</p>
-            
-            <div id="briefing-resumo" class="briefing-resumo"></div>
-            
-            <div class="modal-buttons">
-                <button type="button" class="btn-secondary" id="btn-editar">Editar Escolhas</button>
-                <button type="button" class="btn-primary" id="btn-confirmar">Enviar pelo WhatsApp</button>
-            </div>
-        </div>
-
-        <div class="modal-glass" id="modal-sucesso" style="display: none;">
-            <div class="modal-icon icon-success">✓</div>
-            <h3>BRIEFING RECEBIDO</h3>
-            <p>Seu briefing foi preparado no WhatsApp da Nexo. Assim conseguimos continuar a conversa com contexto e responder mais rápido.</p>
-            <button type="button" class="btn-primary" id="btn-fechar-sucesso" style="margin-top: 20px; width: 100%;">Voltar ao Site</button>
-        </div>
+            </section>
+        </main>
     </div>
 
-    <footer class="footer-nexo">
-        <div class="footer-container">
-            <div class="footer-column branding">
-                <img src="logo.png" alt="Nexo Logo" class="footer-logo">
-                <p>O nexo entre grandes ideias e resultados extraordinários. Elevando o padrão digital desde 2024.</p>
-                <div class="footer-socials">
-                    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" target="_blank" rel="noopener">WA</a>
-                    <a href="mailto:agnexo.company@gmail.com">E-MAIL</a>
-                </div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <img src="logo.png" alt="Nexo Digital" class="footer-logo">
+                <p>Sites, marcas e marketing para empresas que querem parecer confiáveis, explicar melhor sua oferta e atrair clientes.</p>
             </div>
-            <div class="footer-column">
+            <div>
                 <h3>Explorar</h3>
                 <ul>
                     <li><a href="index.html">Início</a></li>
+                    <li><a href="pacotes.html">Planos</a></li>
                     <li><a href="servicos.html">Serviços</a></li>
-                    <li><a href="pacotes.html">Pacotes</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                 </ul>
             </div>
-            <div class="footer-column">
+            <div>
                 <h3>Contato</h3>
                 <ul>
-                    <li><a href="contato.html">Iniciar Projeto</a></li>
+                    <li><a href="contato.html">Solicitar diagnóstico</a></li>
                     <li><a href="mailto:agnexo.company@gmail.com">agnexo.company@gmail.com</a></li>
-                    <li><a href="login.html">Área do Cliente</a></li>
+                    <li><a href="login.html">Área do cliente</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="bottom-container">
-                <p>&copy; 2026 Nexo Digital. Todos os direitos reservados.</p>
-                <div class="legal-links">
-                    <span>Termos em breve</span>
-                    <span>Privacidade em breve</span>
-                </div>
-            </div>
+            <p>© 2026 Nexo Digital. Todos os direitos reservados.</p>
+            <p>Agenda 2026 aberta.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20gostaria%20de%20iniciar%20um%20projeto!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <a href="https://wa.me/5516997135849?text=Olá,%20estou%20no%20site%20da%20Nexo%20e%20quero%20montar%20um%20projeto." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
         </svg>
     </a>
