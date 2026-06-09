@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Acesse a área do cliente Nexo Digital.">
-    <title>Área do cliente | Nexo Digital</title>
+    <meta name="description" content="Acesse a área do cliente Nexo Digital com sua conta Google.">
+    <title>Entrar | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-auth-page="login">
     <main class="login-page">
         <section class="login-card">
             <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
@@ -17,30 +17,23 @@
                 <span>Nexo Digital</span>
             </a>
 
-            <div style="margin: 34px 0 24px;">
+            <div class="auth-copy">
                 <span class="eyebrow">Área do cliente</span>
-                <h1 style="font-size: 34px; line-height: 1.1;">Acesse seu projeto</h1>
-                <p class="lead" style="font-size: 15px; margin-top: 12px;">A área do cliente está em implantação. Por enquanto, solicite seu acesso com a equipe Nexo.</p>
+                <h1>Entrar na sua conta</h1>
+                <p class="lead">Use o mesmo Google usado no cadastro para acessar seu perfil, dados do projeto e próximos passos.</p>
             </div>
 
-            <button type="button" class="btn btn-outline btn-google" style="width: 100%; margin-bottom: 18px;">Entrar com Google</button>
+            <div class="auth-status" data-auth-status>Pronto para entrar com Google.</div>
 
-            <form id="split-login-form">
-                <div class="field">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" placeholder="contato@suaempresa.com" required>
-                </div>
-                <div class="field">
-                    <label for="password">Senha</label>
-                    <input type="password" id="password" placeholder="Sua senha" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
-            </form>
+            <button type="button" class="btn btn-primary auth-google-button" data-google-access>
+                Entrar com Google
+            </button>
 
-            <p style="margin-top: 20px; color: var(--muted); font-size: 14px;">Ainda não tem acesso? <a href="registrar.html">Solicitar cadastro</a></p>
-            <p style="margin-top: 10px; color: var(--muted); font-size: 14px;"><a href="index.html">Voltar ao site</a></p>
+            <p class="auth-switch">Primeira vez aqui? <a href="registrar.html">Cadastrar com Google</a></p>
+            <p class="auth-back"><a href="index.html">Voltar ao site</a></p>
         </section>
     </main>
-    <script src="script.js"></script>
+
+    <script type="module" src="auth.js"></script>
 </body>
 </html>

@@ -130,48 +130,9 @@ function setupDiagnosticForm() {
     });
 }
 
-function setupAccountForms() {
-    const loginForm = document.getElementById('split-login-form');
-    const registerForm = document.getElementById('split-register-form');
-
-    if (loginForm) {
-        loginForm.addEventListener('submit', event => {
-            event.preventDefault();
-            alert('A área do cliente está em implantação. Fale com a Nexo pelo WhatsApp para liberar seu acesso.');
-        });
-    }
-
-    if (registerForm) {
-        registerForm.addEventListener('submit', event => {
-            event.preventDefault();
-
-            const name = document.getElementById('reg-name')?.value.trim();
-            const email = document.getElementById('reg-email')?.value.trim();
-            const phone = document.getElementById('reg-phone')?.value.trim();
-
-            openWhatsApp([
-                'Olá, quero criar meu acesso na área do cliente Nexo.',
-                '',
-                `Nome: ${name}`,
-                `E-mail: ${email}`,
-                `WhatsApp: ${phone}`
-            ].join('\n'));
-
-            registerForm.reset();
-        });
-    }
-
-    document.querySelectorAll('.btn-google').forEach(button => {
-        button.addEventListener('click', () => {
-            alert('Login com Google em implantação. Use o formulário ou fale conosco pelo WhatsApp.');
-        });
-    });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     setupMenu();
     setupPageTransitions();
     setupContactForm();
     setupDiagnosticForm();
-    setupAccountForms();
 });

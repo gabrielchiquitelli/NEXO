@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Solicite cadastro na área do cliente Nexo Digital.">
-    <title>Solicitar acesso | Nexo Digital</title>
+    <meta name="description" content="Crie seu primeiro acesso à área do cliente Nexo Digital com Google.">
+    <title>Cadastrar | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-auth-page="register">
     <main class="login-page">
         <section class="login-card">
             <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
@@ -17,36 +17,23 @@
                 <span>Nexo Digital</span>
             </a>
 
-            <div style="margin: 34px 0 24px;">
-                <span class="eyebrow">Novo acesso</span>
-                <h1 style="font-size: 34px; line-height: 1.1;">Solicite sua área do cliente</h1>
-                <p class="lead" style="font-size: 15px; margin-top: 12px;">Envie seus dados e a Nexo retorna pelo WhatsApp para liberar o acesso quando seu projeto estiver ativo.</p>
+            <div class="auth-copy">
+                <span class="eyebrow">Primeiro acesso</span>
+                <h1>Cadastrar com Google</h1>
+                <p class="lead">Na primeira vez, o Google cria sua conta no Firebase. Depois disso, é só entrar normalmente pela página de login.</p>
             </div>
 
-            <form id="split-register-form">
-                <div class="field">
-                    <label for="reg-name">Nome completo</label>
-                    <input type="text" id="reg-name" placeholder="Seu nome" required>
-                </div>
-                <div class="field">
-                    <label for="reg-email">E-mail</label>
-                    <input type="email" id="reg-email" placeholder="contato@empresa.com" required>
-                </div>
-                <div class="field">
-                    <label for="reg-phone">WhatsApp</label>
-                    <input type="tel" id="reg-phone" placeholder="(00) 00000-0000" required>
-                </div>
-                <div class="field">
-                    <label for="reg-password">Senha desejada</label>
-                    <input type="password" id="reg-password" placeholder="Sua senha" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Solicitar cadastro</button>
-            </form>
+            <div class="auth-status" data-auth-status>Comece criando seu acesso com Google.</div>
 
-            <p style="margin-top: 20px; color: var(--muted); font-size: 14px;">Já tem acesso? <a href="login.html">Entrar</a></p>
-            <p style="margin-top: 10px; color: var(--muted); font-size: 14px;"><a href="index.html">Voltar ao site</a></p>
+            <button type="button" class="btn btn-primary auth-google-button" data-google-access>
+                Criar acesso com Google
+            </button>
+
+            <p class="auth-switch">Já criou seu acesso? <a href="login.html">Entrar com Google</a></p>
+            <p class="auth-back"><a href="index.html">Voltar ao site</a></p>
         </section>
     </main>
-    <script src="script.js"></script>
+
+    <script type="module" src="auth.js"></script>
 </body>
 </html>

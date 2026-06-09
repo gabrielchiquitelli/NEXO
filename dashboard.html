@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Área do cliente Nexo Digital.">
+    <title>Minha área | Nexo Digital</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="account-page" data-auth-page="dashboard">
+    <header class="account-topbar">
+        <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
+            <img src="logo.png" alt="Nexo Digital">
+            <span>Nexo Digital</span>
+        </a>
+
+        <div class="account-topbar-actions">
+            <span data-user-email></span>
+            <button type="button" class="btn btn-outline" data-sign-out>Sair</button>
+        </div>
+    </header>
+
+    <main class="account-layout">
+        <aside class="account-sidebar">
+            <div class="account-user-card">
+                <div class="profile-avatar">
+                    <img src="" alt="Foto do perfil" data-profile-avatar hidden>
+                    <span data-profile-initials>ND</span>
+                </div>
+                <strong data-user-name>Cliente Nexo</strong>
+                <span data-profile-status>Carregando</span>
+            </div>
+
+            <nav class="account-tabs" aria-label="Navegação da área do cliente">
+                <button type="button" class="account-tab active" data-tab-target="overview">Visão geral</button>
+                <button type="button" class="account-tab" data-tab-target="profile">Perfil</button>
+            </nav>
+        </aside>
+
+        <section class="account-content">
+            <div class="auth-status" data-auth-status>Carregando sua área...</div>
+
+            <div class="account-panel" data-tab-panel="overview">
+                <span class="eyebrow">Área do cliente</span>
+                <h1>Bem-vindo, <span data-user-name>Cliente Nexo</span></h1>
+                <p class="lead">Este é o começo da sua área interna. Seus dados principais já ficam salvos no Firebase e podem ser usados depois para projetos, pedidos, pagamentos e acompanhamento.</p>
+
+                <div class="account-summary-grid">
+                    <article class="account-summary-card">
+                        <span>Status</span>
+                        <strong data-profile-status>Complete seu perfil</strong>
+                    </article>
+                    <article class="account-summary-card">
+                        <span>E-mail</span>
+                        <strong data-user-email>Carregando</strong>
+                    </article>
+                    <article class="account-summary-card">
+                        <span>Banco</span>
+                        <strong>Cloud Firestore</strong>
+                    </article>
+                </div>
+
+                <button type="button" class="btn btn-primary" data-tab-target="profile">Completar perfil</button>
+            </div>
+
+            <div class="account-panel" data-tab-panel="profile" hidden>
+                <span class="eyebrow">Perfil</span>
+                <h1>Seus dados</h1>
+                <p class="lead">Complete as informações que a Nexo vai usar para organizar seu atendimento e entender melhor o projeto.</p>
+
+                <form id="profile-form" class="profile-form">
+                    <div class="profile-photo-row">
+                        <div class="profile-avatar profile-avatar-large">
+                            <img src="" alt="Foto do perfil" data-profile-avatar hidden>
+                            <span data-profile-initials>ND</span>
+                        </div>
+                        <div class="field">
+                            <label for="profile-photo">Link da foto</label>
+                            <input type="url" id="profile-photo" placeholder="https://...">
+                            <button type="button" class="btn btn-outline profile-photo-button" data-use-google-photo>Usar foto do Google</button>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="profile-name">Nome completo</label>
+                            <input type="text" id="profile-name" placeholder="Seu nome" required>
+                        </div>
+                        <div class="field">
+                            <label for="profile-email">E-mail</label>
+                            <input type="email" id="profile-email" disabled>
+                        </div>
+                        <div class="field">
+                            <label for="profile-phone">WhatsApp</label>
+                            <input type="tel" id="profile-phone" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="field">
+                            <label for="profile-business">Empresa ou marca</label>
+                            <input type="text" id="profile-business" placeholder="Nome da empresa">
+                        </div>
+                        <div class="field">
+                            <label for="profile-segment">Segmento</label>
+                            <input type="text" id="profile-segment" placeholder="Ex: clínica, loja, restaurante">
+                        </div>
+                        <div class="field">
+                            <label for="profile-site">Site ou Instagram</label>
+                            <input type="text" id="profile-site" placeholder="@marca ou https://site.com">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="profile-plan">Plano de interesse</label>
+                        <select id="profile-plan">
+                            <option value="">Selecione uma opção</option>
+                            <option value="Presença Profissional">Presença Profissional</option>
+                            <option value="Brand Site Premium">Brand Site Premium</option>
+                            <option value="Máquina de Clientes">Máquina de Clientes</option>
+                            <option value="Marketing 360">Marketing 360</option>
+                            <option value="Loja Virtual Pro">Loja Virtual Pro</option>
+                            <option value="Operação Digital Completa">Operação Digital Completa</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="profile-notes">Observações</label>
+                        <textarea id="profile-notes" rows="5" placeholder="Conte o que você quer melhorar, vender ou organizar."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Salvar perfil</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
