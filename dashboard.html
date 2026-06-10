@@ -47,6 +47,7 @@
                 <button type="button" class="account-tab active" data-tab-target="overview" role="tab" aria-controls="panel-overview" aria-selected="true">Início</button>
                 <button type="button" class="account-tab" data-tab-target="profile" role="tab" aria-controls="panel-profile" aria-selected="false">Perfil</button>
                 <button type="button" class="account-tab" data-tab-target="purchases" role="tab" aria-controls="panel-purchases" aria-selected="false">Compras</button>
+                <button type="button" class="account-tab" data-tab-target="admin" data-admin-only role="tab" aria-controls="panel-admin" aria-selected="false" hidden>Admin</button>
             </nav>
         </aside>
 
@@ -158,14 +159,54 @@
             <div class="account-panel" data-tab-panel="purchases" id="panel-purchases" role="tabpanel" hidden>
                 <span class="eyebrow">Compras</span>
                 <h1>Compras feitas</h1>
-                <p class="lead">Aqui ficam os projetos fechados, status e próximos passos. Quando você fizer a primeira compra, ela aparece nesta lista.</p>
+                <p class="lead">Aqui ficam os pedidos enviados, status e próximos passos. Se mudar de ideia antes da análise, você pode cancelar.</p>
 
                 <div class="purchases-list" data-purchases-list></div>
+            </div>
+
+            <div class="account-panel" data-tab-panel="admin" id="panel-admin" role="tabpanel" hidden>
+                <span class="eyebrow">Admin Nexo</span>
+                <h1>Pedidos e conversas</h1>
+                <p class="lead">Veja os briefings recebidos pelo site, acompanhe status e responda o chat dos clientes.</p>
+
+                <div class="admin-grid">
+                    <section class="admin-block">
+                        <div class="admin-block-head">
+                            <h2>Pedidos recebidos</h2>
+                            <button type="button" class="btn btn-outline" data-admin-refresh>Atualizar</button>
+                        </div>
+                        <div class="admin-list" data-admin-orders>
+                            <div class="empty-state">
+                                <strong>Carregando pedidos...</strong>
+                                <p>Os briefings enviados pelo site aparecem aqui.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="admin-block">
+                        <div class="admin-block-head">
+                            <h2>Chat do site</h2>
+                            <span data-admin-chat-status>Selecione uma conversa</span>
+                        </div>
+                        <div class="admin-chat-layout">
+                            <div class="admin-list admin-chat-list" data-admin-conversations></div>
+                            <div class="admin-chat-panel">
+                                <div class="chat-messages admin-chat-messages" data-admin-messages></div>
+                                <form class="admin-chat-form" data-admin-chat-form>
+                                    <input type="text" data-admin-chat-input placeholder="Responder cliente..." autocomplete="off">
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
         </section>
     </main>
 
     <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>

@@ -2,13 +2,93 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /usuarios/{userId} {
-      allow create: if request.auth != null
-        && request.auth.uid == userId
-        && request.resource.data.uid == request.auth.uid;
+    function isSignedIn() {
+      return request.auth != null;
+    }
 
-      allow read, update, delete: if request.auth != null
-        && request.auth.uid == userId;
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/usuarios/$(request.auth.uid))
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.cargo == "admin";
+    }
+
+    function keepsOwnRole() {
+      return (
+        !resource.data.keys().hasAny(["cargo"])
+        && request.resource.data.cargo == "cliente"
+      ) || (
+        resource.data.keys().hasAny(["cargo"])
+        && request.resource.data.cargo == resource.data.cargo
+      );
+    }
+
+    match /usuarios/{userId} {
+      allow create: if isOwner(userId)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.cargo == "cliente";
+
+      allow read: if isOwner(userId) || isAdmin();
+
+      allow update: if isAdmin() || (
+        isOwner(userId)
+        && request.resource.data.uid == resource.data.uid
+        && keepsOwnRole()
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    match /pedidos/{pedidoId} {
+      allow create: if isSignedIn()
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.status == "novo";
+
+      allow read: if isSignedIn()
+        && (resource.data.userId == request.auth.uid || isAdmin());
+
+      allow update: if isAdmin() || (
+        isSignedIn()
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.status == "cancelado"
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "status",
+          "canceladoEm",
+          "atualizadoEm"
+        ])
+      );
+
+      allow delete: if isAdmin();
+    }
+
+    match /conversas/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+
+      allow create: if isOwner(userId)
+        && request.resource.data.userId == request.auth.uid;
+
+      allow update: if isAdmin() || (
+        isOwner(userId)
+        && request.resource.data.userId == resource.data.userId
+      );
+
+      allow delete: if isAdmin();
+
+      match /mensagens/{messageId} {
+        allow read: if isOwner(userId) || isAdmin();
+
+        allow create: if isSignedIn()
+          && (
+            (request.auth.uid == userId && request.resource.data.autor == "cliente")
+            || (isAdmin() && request.resource.data.autor == "admin")
+          );
+
+        allow update, delete: if isAdmin();
+      }
     }
 
     match /{document=**} {

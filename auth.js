@@ -10,13 +10,19 @@ import {
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
+  collection,
   doc,
   getDoc,
+  getDocs,
+  query,
   serverTimestamp,
-  setDoc
+  setDoc,
+  updateDoc,
+  where
 } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
 
 const USERS_COLLECTION = "usuarios";
+const ORDERS_COLLECTION = "pedidos";
 const FIRST_PURCHASE_DISCOUNT = 20;
 
 const page = document.body.dataset.authPage || "site";
@@ -56,6 +62,39 @@ function redirectToDashboard(source = "login", tab = "overview") {
   window.location.href = `dashboard.html?${params.toString()}`;
 }
 
+function getSafeNextUrl() {
+  const rawNext = new URLSearchParams(window.location.search).get("next");
+  const allowedPages = new Set(["briefing.html", "dashboard.html", "index.html", "pacotes.html"]);
+
+  if (!rawNext || /^(https?:|\/\/|javascript:|data:|mailto:|tel:)/i.test(rawNext)) {
+    return "";
+  }
+
+  try {
+    const nextUrl = new URL(rawNext, window.location.href);
+    const pageName = nextUrl.pathname.split("/").pop() || "index.html";
+
+    if (nextUrl.origin !== window.location.origin || !allowedPages.has(pageName)) {
+      return "";
+    }
+
+    return `${pageName}${nextUrl.search}${nextUrl.hash}`;
+  } catch (error) {
+    return "";
+  }
+}
+
+function redirectAfterAuth(source = "login", tab = "overview") {
+  const nextUrl = getSafeNextUrl();
+
+  if (nextUrl) {
+    window.location.href = nextUrl;
+    return;
+  }
+
+  redirectToDashboard(source, tab);
+}
+
 function userRef(uid) {
   return doc(db, USERS_COLLECTION, uid);
 }
@@ -91,6 +130,7 @@ function buildProfileFromUser(user, existingProfile = {}, extra = {}) {
     planoInteresse: existingProfile.planoInteresse || "",
     observacoes: existingProfile.observacoes || "",
     compras: Array.isArray(existingProfile.compras) ? existingProfile.compras : [],
+    cargo: existingProfile.cargo || extra.cargo || "cliente",
     descontoPrimeiraCompra: createDefaultDiscount(existingProfile.descontoPrimeiraCompra),
     provedor: existingProfile.provedor || extra.provedor || getProviderName(user),
     atualizadoEm: serverTimestamp()
@@ -126,7 +166,7 @@ async function finishGoogleAccess(source) {
   const { isNew } = await ensureUserProfile(result.user, { provedor: "google" });
 
   setStatus(isNew ? "Conta criada. Complete seu perfil..." : "Login concluído. Abrindo sua área...");
-  redirectToDashboard(isNew ? "novo" : "login", isNew ? "profile" : "overview");
+  redirectAfterAuth(isNew ? "novo" : "login", isNew ? "profile" : "overview");
 }
 
 async function handleGoogleButton(source) {
@@ -164,7 +204,7 @@ async function handleEmailRegister(event) {
     await ensureUserProfile(result.user, { nome: name, provedor: "email" });
 
     setStatus("Conta criada. Complete seu perfil...");
-    redirectToDashboard("novo", "profile");
+    redirectAfterAuth("novo", "profile");
   } catch (error) {
     setStatus(getFirebaseMessage(error), "error");
   }
@@ -182,13 +222,30 @@ async function handleEmailLogin(event) {
 
     await ensureUserProfile(result.user, { provedor: "email" });
     setStatus("Login concluído. Abrindo sua área...");
-    redirectToDashboard("login", "overview");
+    redirectAfterAuth("login", "overview");
   } catch (error) {
     setStatus(getFirebaseMessage(error), "error");
   }
 }
 
+function preserveNextOnAuthLinks() {
+  const nextUrl = getSafeNextUrl();
+  if (!nextUrl) return;
+
+  document.querySelectorAll(".auth-switch a").forEach(link => {
+    const target = link.getAttribute("href");
+    if (!target) return;
+
+    const targetUrl = new URL(target, window.location.href);
+    const pageName = targetUrl.pathname.split("/").pop();
+    targetUrl.searchParams.set("next", nextUrl);
+    link.href = `${pageName}?${targetUrl.searchParams.toString()}`;
+  });
+}
+
 function setupAuthEntryPage() {
+  preserveNextOnAuthLinks();
+
   document.querySelector("[data-google-access]")?.addEventListener("click", () => {
     handleGoogleButton(page === "register" ? "cadastro" : "login");
   });
@@ -200,7 +257,7 @@ function setupAuthEntryPage() {
     .then(async result => {
       if (!result?.user) return;
       const { isNew } = await ensureUserProfile(result.user, { provedor: "google" });
-      redirectToDashboard(isNew ? "novo" : "login", isNew ? "profile" : "overview");
+      redirectAfterAuth(isNew ? "novo" : "login", isNew ? "profile" : "overview");
     })
     .catch(error => {
       setStatus(getFirebaseMessage(error), "error");
@@ -246,14 +303,68 @@ function setAvatar(profile, user) {
   });
 }
 
-function renderPurchases(profile) {
+function getDateTimeLabel(value) {
+  if (!value) return "Sem data registrada";
+
+  const date = typeof value.toDate === "function"
+    ? value.toDate()
+    : new Date(value.seconds ? value.seconds * 1000 : value);
+
+  if (Number.isNaN(date.getTime())) {
+    return "Sem data registrada";
+  }
+
+  return new Intl.DateTimeFormat("pt-BR", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(date);
+}
+
+function getDateTimeValue(value) {
+  if (!value) return 0;
+  if (typeof value.toMillis === "function") return value.toMillis();
+  if (value.seconds) return value.seconds * 1000;
+
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? 0 : date.getTime();
+}
+
+function getOrderStatusLabel(status) {
+  const labels = {
+    novo: "Novo pedido",
+    em_analise: "Em análise",
+    proposta_enviada: "Proposta enviada",
+    aprovado: "Aprovado",
+    em_producao: "Em produção",
+    concluido: "Concluído",
+    cancelado: "Cancelado"
+  };
+
+  return labels[status] || "Novo pedido";
+}
+
+async function getUserOrders(user) {
+  const ordersQuery = query(
+    collection(db, ORDERS_COLLECTION),
+    where("userId", "==", user.uid)
+  );
+  const snapshot = await getDocs(ordersQuery);
+
+  return snapshot.docs
+    .map(order => ({ id: order.id, ...order.data() }))
+    .sort((a, b) => getDateTimeValue(b.criadoEm) - getDateTimeValue(a.criadoEm));
+}
+
+function renderPurchases(orders = [], user = null) {
   const list = document.querySelector("[data-purchases-list]");
   if (!list) return;
 
-  const purchases = Array.isArray(profile.compras) ? profile.compras : [];
   list.innerHTML = "";
 
-  if (purchases.length === 0) {
+  if (orders.length === 0) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
     const title = document.createElement("strong");
@@ -267,20 +378,52 @@ function renderPurchases(profile) {
     return;
   }
 
-  purchases.forEach(purchase => {
+  orders.forEach(order => {
     const item = document.createElement("article");
     const status = document.createElement("span");
     const title = document.createElement("strong");
     const text = document.createElement("p");
+    const meta = document.createElement("p");
+    const canCancel = ["novo", "em_analise"].includes(order.status || "novo");
 
     item.className = "purchase-card";
-    status.textContent = purchase.status || "Em andamento";
-    title.textContent = purchase.nome || "Projeto Nexo";
-    text.textContent = purchase.descricao || "Compra registrada na área do cliente.";
+    status.textContent = getOrderStatusLabel(order.status);
+    title.textContent = order.planoNome || order.plano || "Projeto Nexo";
+    text.textContent = order.objetivo || order.resumo || "Briefing enviado para análise da Nexo.";
+    meta.textContent = `Enviado em ${getDateTimeLabel(order.criadoEm)}${order.empresa ? ` · ${order.empresa}` : ""}`;
 
-    item.append(status, title, text);
+    item.append(status, title, text, meta);
+
+    if (canCancel && user) {
+      const cancelButton = document.createElement("button");
+      cancelButton.type = "button";
+      cancelButton.className = "btn btn-outline purchase-cancel-button";
+      cancelButton.textContent = "Cancelar pedido";
+      cancelButton.addEventListener("click", async () => {
+        cancelButton.disabled = true;
+        cancelButton.textContent = "Cancelando...";
+
+        await updateDoc(doc(db, ORDERS_COLLECTION, order.id), {
+          status: "cancelado",
+          canceladoEm: serverTimestamp(),
+          atualizadoEm: serverTimestamp()
+        });
+
+        const updatedOrders = await getUserOrders(user);
+        renderPurchases(updatedOrders, user);
+      });
+
+      item.appendChild(cancelButton);
+    }
+
     list.appendChild(item);
   });
+}
+
+async function loadAndRenderPurchases(user) {
+  renderPurchases([]);
+  const orders = await getUserOrders(user);
+  renderPurchases(orders, user);
 }
 
 function fillProfileForm(profile, user) {
@@ -318,7 +461,6 @@ function fillProfileForm(profile, user) {
   });
 
   setAvatar(profile, user);
-  renderPurchases(profile);
 }
 
 async function saveProfile(user, existingProfile = {}) {
@@ -350,6 +492,11 @@ async function saveProfile(user, existingProfile = {}) {
 function selectTab(target) {
   const tabs = document.querySelectorAll(".account-tab[data-tab-target]");
   const panels = document.querySelectorAll("[data-tab-panel]");
+  const requestedTab = [...tabs].find(item => item.dataset.tabTarget === target);
+
+  if (requestedTab?.hidden) {
+    target = "overview";
+  }
 
   tabs.forEach(item => {
     const isActive = item.dataset.tabTarget === target;
@@ -387,6 +534,7 @@ function setupDashboard() {
       const result = await ensureUserProfile(user);
       profile = result.profile;
       fillProfileForm(profile, user);
+      await loadAndRenderPurchases(user);
 
       const params = new URLSearchParams(window.location.search);
       const requestedTab = params.get("tab");

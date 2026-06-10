@@ -4,7 +4,13 @@ Este site usa:
 
 - Firebase Authentication com Google;
 - Firebase Authentication com Email/Senha;
-- Cloud Firestore para salvar o perfil em `usuarios/{uid}`.
+- Cloud Firestore para salvar perfil, pedidos e chat.
+
+Coleções usadas:
+
+- `usuarios/{uid}`: perfil, desconto e cargo do usuário;
+- `pedidos/{pedidoId}`: briefings enviados pelo site;
+- `conversas/{uid}/mensagens/{messageId}`: chat entre cliente e admin.
 
 ## 1. Ativar os métodos de login
 
@@ -50,9 +56,27 @@ Se estiver perdido, use a busca no topo do Firebase e digite `Firestore Database
 4. Cole o conteúdo do arquivo `firestore.rules`.
 5. Clique em **Publicar**.
 
-Essas regras deixam cada usuário ler e editar apenas o próprio perfil em `usuarios/{uid}`.
+Essas regras deixam cada cliente acessar apenas o próprio perfil, pedidos e chat. A conta com `cargo` igual a `admin` consegue ver todos os pedidos, responder chats e alterar status.
 
-## 5. Testar localmente
+## 5. Definir sua conta como admin
+
+Depois de criar sua conta pelo site:
+
+1. No Firebase, entre em **Firestore Database**.
+2. Abra a aba **Dados**.
+3. Clique na coleção `usuarios`.
+4. Abra o documento com o seu usuário.
+5. Adicione ou edite o campo:
+
+```text
+cargo: admin
+```
+
+O tipo do campo pode ser **string/texto**.
+
+Quando você entrar em `dashboard.html`, a aba **Admin** vai aparecer.
+
+## 6. Testar localmente
 
 No terminal, dentro da pasta do site:
 
@@ -76,7 +100,11 @@ Teste assim:
 6. Volte para `index.html`.
 7. No canto do menu, o ícone de login deve virar a foto ou iniciais da pessoa.
 8. Clique na foto e confira o menu: **Ver perfil**, **Compras feitas**, **Minha área** e **Sair da conta**.
-9. No Firebase, vá em **Firestore Database** > **Dados** e veja a coleção `usuarios`.
+9. Volte para a página inicial e faça o diagnóstico de plano.
+10. Clique em **Completar briefing** e envie o formulário.
+11. O pedido deve aparecer em **dashboard.html?tab=purchases**.
+12. Na sua conta admin, abra a aba **Admin** para ver pedidos e chats.
+13. No Firebase, vá em **Firestore Database** > **Dados** e confira `usuarios`, `pedidos` e `conversas`.
 
 ## Erros comuns
 

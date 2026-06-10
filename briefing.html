@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Briefing Nexo Digital para entender o negócio, indicar o melhor plano e iniciar um projeto.">
+    <title>Briefing do projeto | Nexo Digital</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
+    <div class="site-shell">
+        <div class="announcement">
+            <span>Briefing digital sem enrolação.</span>
+            <a href="registrar.html">Criar conta e ativar desconto</a>
+        </div>
+
+        <nav class="nav" id="navbar" aria-label="Menu principal">
+            <a href="index.html" class="brand" aria-label="Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="pacotes.html">Planos</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login" aria-label="Área do cliente">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12Z" stroke="white" stroke-width="1.6"/>
+                        <path d="M6 21V19C6 16.8 7.8 15 10 15H14C16.2 15 18 16.8 18 19V21" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+        <main id="main-content" tabindex="-1">
+            <section class="page-hero briefing-hero">
+                <span class="eyebrow">Briefing inteligente</span>
+                <h1>Conte o essencial do seu negócio.</h1>
+                <p class="lead">A Nexo usa essas respostas para entender o momento da empresa, preparar a proposta e organizar o pedido dentro da sua conta.</p>
+            </section>
+
+            <section class="section section-tight">
+                <div class="briefing-layout">
+                    <aside class="briefing-summary">
+                        <span class="eyebrow">Plano selecionado</span>
+                        <h2 data-selected-plan>Brand Site Premium</h2>
+                        <p data-selected-plan-description>Identidade visual, site profissional e apresentação clara para aumentar percepção de valor.</p>
+                        <div class="discount-note">
+                            <strong>20% de desconto</strong>
+                            <span>Ao criar sua conta, o benefício de primeira compra fica ativo no seu perfil.</span>
+                        </div>
+                    </aside>
+
+                    <form class="form-panel briefing-form" id="briefing-form">
+                        <div class="auth-status" data-briefing-status role="status" aria-live="polite">Preencha o briefing para enviar seu pedido.</div>
+
+                        <div class="field">
+                            <label for="briefing-plan">Plano de interesse</label>
+                            <select id="briefing-plan" required>
+                                <option value="presenca-profissional">Presença Profissional</option>
+                                <option value="brand-site-premium">Brand Site Premium</option>
+                                <option value="maquina-de-clientes">Máquina de Clientes</option>
+                                <option value="marketing-360">Marketing 360</option>
+                                <option value="loja-virtual-pro">Loja Virtual Pro</option>
+                                <option value="operacao-digital-completa">Operação Digital Completa</option>
+                            </select>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="briefing-name">Seu nome</label>
+                                <input type="text" id="briefing-name" autocomplete="name" placeholder="Nome do responsável" required>
+                            </div>
+                            <div class="field">
+                                <label for="briefing-whatsapp">WhatsApp</label>
+                                <input type="tel" id="briefing-whatsapp" autocomplete="tel" placeholder="(00) 00000-0000" required>
+                            </div>
+                            <div class="field">
+                                <label for="briefing-business">Empresa ou marca</label>
+                                <input type="text" id="briefing-business" placeholder="Nome da empresa" required>
+                            </div>
+                            <div class="field">
+                                <label for="briefing-segment">Segmento</label>
+                                <input type="text" id="briefing-segment" placeholder="Ex: clínica, loja, restaurante" required>
+                            </div>
+                            <div class="field">
+                                <label for="briefing-site">Site ou Instagram</label>
+                                <input type="text" id="briefing-site" placeholder="@marca ou https://site.com">
+                            </div>
+                            <div class="field">
+                                <label for="briefing-budget">Investimento previsto</label>
+                                <select id="briefing-budget" required>
+                                    <option value="">Selecione uma faixa</option>
+                                    <option value="ate-1000">Até R$ 1.000</option>
+                                    <option value="1000-3000">R$ 1.000 a R$ 3.000</option>
+                                    <option value="3000-6000">R$ 3.000 a R$ 6.000</option>
+                                    <option value="6000-12000">R$ 6.000 a R$ 12.000</option>
+                                    <option value="a-definir">Quero definir com a Nexo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="briefing-goal">Qual resultado você quer alcançar?</label>
+                            <textarea id="briefing-goal" rows="4" placeholder="Ex: ter um site profissional, lançar a marca, gerar leads, organizar marketing..." required></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label for="briefing-audience">Quem é seu público ideal?</label>
+                            <textarea id="briefing-audience" rows="3" placeholder="Conte quem compra, onde está e qual problema essa pessoa quer resolver." required></textarea>
+                        </div>
+
+                        <div class="field">
+                            <label for="briefing-difference">O que torna seu negócio diferente?</label>
+                            <textarea id="briefing-difference" rows="3" placeholder="Pode ser atendimento, preço, resultado, localização, experiência, produto..." required></textarea>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="briefing-deadline">Prazo desejado</label>
+                                <select id="briefing-deadline" required>
+                                    <option value="">Selecione uma opção</option>
+                                    <option value="urgente">Tenho urgência</option>
+                                    <option value="30-dias">Até 30 dias</option>
+                                    <option value="60-dias">Até 60 dias</option>
+                                    <option value="sem-pressa">Sem pressa, quero fazer bem feito</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="briefing-reference">Referência visual ou concorrente</label>
+                                <input type="text" id="briefing-reference" placeholder="Link, @perfil ou nome de referência">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="briefing-notes">Observações importantes</label>
+                            <textarea id="briefing-notes" rows="4" placeholder="Conte qualquer detalhe que ajuda a Nexo a entender melhor seu projeto."></textarea>
+                        </div>
+
+                        <label class="choice briefing-consent">
+                            <input type="checkbox" id="briefing-consent" required>
+                            Entendo que este envio cria um pedido de análise, sem cobrança automática.
+                        </label>
+
+                        <div class="briefing-actions">
+                            <button type="submit" class="btn btn-primary">Enviar briefing</button>
+                            <button type="button" class="btn btn-outline" data-briefing-cancel>Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <img src="logo.png" alt="Nexo Digital" class="footer-logo">
+                <p>Sites, marcas e marketing para empresas que querem parecer confiáveis, explicar melhor sua oferta e atrair clientes.</p>
+            </div>
+            <div>
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="pacotes.html">Planos</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="sobre.html">Sobre</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Conta</h3>
+                <ul>
+                    <li><a href="registrar.html">Criar conta</a></li>
+                    <li><a href="login.html">Entrar</a></li>
+                    <li><a href="dashboard.html">Minha área</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Nexo Digital. Todos os direitos reservados.</p>
+            <p>Briefing salvo com segurança no Firebase.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="accessibility.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
+    <script type="module" src="briefing.js"></script>
+</body>
+</html>

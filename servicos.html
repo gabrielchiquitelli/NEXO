@@ -131,38 +131,18 @@
                     <div>
                         <span class="eyebrow">Briefing rápido</span>
                         <h2>Monte uma solicitação em menos de dois minutos.</h2>
-                        <p class="lead">Marque suas prioridades e conte o momento da empresa. A mensagem será enviada para o WhatsApp da Nexo com contexto.</p>
+                        <p class="lead">Use o diagnóstico da página inicial para receber uma recomendação e depois complete o briefing dentro da sua conta.</p>
                     </div>
 
-                    <form id="diagnostic-form" class="form-panel">
-                        <div class="form-grid">
-                            <div class="field">
-                                <label for="diag-name">Nome ou empresa</label>
-                                <input type="text" id="diag-name" required>
-                            </div>
-                            <div class="field">
-                                <label for="diag-contact">WhatsApp ou e-mail</label>
-                                <input type="text" id="diag-contact" required>
-                            </div>
+                    <div class="form-panel service-briefing-panel">
+                        <span class="card-kicker">Fluxo recomendado</span>
+                        <h3>Descubra o plano antes de pedir proposta.</h3>
+                        <p>O diagnóstico evita confusão e já leva você para o briefing certo, com desconto de primeira compra quando criar a conta.</p>
+                        <div class="briefing-actions">
+                            <a href="index.html#diagnostico-planos" class="btn btn-primary">Fazer diagnóstico</a>
+                            <a href="briefing.html" class="btn btn-outline">Ir direto ao briefing</a>
                         </div>
-
-                        <span class="choice-title">O que você precisa?</span>
-                        <div class="choice-grid">
-                            <label class="choice"><input type="checkbox" name="needs" value="Site profissional"> Site profissional</label>
-                            <label class="choice"><input type="checkbox" name="needs" value="Identidade visual"> Identidade visual</label>
-                            <label class="choice"><input type="checkbox" name="needs" value="Marketing completo"> Marketing completo</label>
-                            <label class="choice"><input type="checkbox" name="needs" value="Anúncios"> Anúncios</label>
-                            <label class="choice"><input type="checkbox" name="needs" value="Loja virtual"> Loja virtual</label>
-                            <label class="choice"><input type="checkbox" name="needs" value="Automação"> Automação</label>
-                        </div>
-
-                        <div class="field">
-                            <label for="diag-message">Explique seu objetivo</label>
-                            <textarea id="diag-message" rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Enviar briefing</button>
-                    </form>
+                    </div>
                 </div>
             </section>
         </main>
@@ -207,5 +187,6 @@
     <script src="script.js"></script>
     <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
 </body>
 </html>

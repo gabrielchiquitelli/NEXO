@@ -52,7 +52,7 @@
                     <h1>Nexo Digital</h1>
                     <p class="lead">Criamos a estrutura completa para sua marca parecer confiável, explicar melhor sua oferta e transformar atenção em clientes: site, identidade visual, marketing, conteúdo e automação.</p>
                     <div class="hero-actions">
-                        <a href="contato.html" class="btn btn-primary">Quero atrair clientes</a>
+                        <a href="#diagnostico-planos" class="btn btn-primary">Quero atrair clientes</a>
                         <a href="pacotes.html" class="btn btn-outline">Ver planos</a>
                     </div>
                     <div class="hero-proof">
@@ -70,6 +70,66 @@
                         <div><strong>03</strong><span>Campanhas para vender</span></div>
                     </div>
                 </div>
+            </section>
+
+            <section class="section" id="diagnostico-planos">
+                <div class="section-head">
+                    <h2>Descubra o plano ideal em menos de 2 minutos.</h2>
+                    <p>Responda algumas perguntas rápidas. No final, a Nexo indica o plano mais coerente e você pode completar o briefing sem mandar mensagem no WhatsApp.</p>
+                </div>
+
+                <form class="quiz-card" id="plan-quiz">
+                    <div class="quiz-progress" aria-hidden="true">
+                        <span data-quiz-progress></span>
+                    </div>
+
+                    <fieldset class="quiz-step active" data-quiz-step="0">
+                        <legend>Qual é o principal objetivo agora?</legend>
+                        <label class="quiz-option"><input type="radio" name="objective" value="presence" required> Parecer mais profissional online</label>
+                        <label class="quiz-option"><input type="radio" name="objective" value="brand"> Criar identidade visual com site</label>
+                        <label class="quiz-option"><input type="radio" name="objective" value="leads"> Gerar mais clientes e leads</label>
+                        <label class="quiz-option"><input type="radio" name="objective" value="operation"> Ter marketing completo e recorrente</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-step" data-quiz-step="1" hidden>
+                        <legend>Como está sua presença digital hoje?</legend>
+                        <label class="quiz-option"><input type="radio" name="stage" value="starting" required> Estou começando ou tenho pouca estrutura</label>
+                        <label class="quiz-option"><input type="radio" name="stage" value="has-brand"> Já tenho marca, mas o site não vende bem</label>
+                        <label class="quiz-option"><input type="radio" name="stage" value="selling"> Já vendo e quero escalar campanhas</label>
+                        <label class="quiz-option"><input type="radio" name="stage" value="complete"> Quero terceirizar boa parte do digital</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-step" data-quiz-step="2" hidden>
+                        <legend>O que você mais precisa entregar primeiro?</legend>
+                        <label class="quiz-option"><input type="radio" name="deliverable" value="site" required> Site ou landing page</label>
+                        <label class="quiz-option"><input type="radio" name="deliverable" value="identity"> Logo, identidade visual e site</label>
+                        <label class="quiz-option"><input type="radio" name="deliverable" value="campaign"> Página, criativos e campanha</label>
+                        <label class="quiz-option"><input type="radio" name="deliverable" value="content"> Conteúdo, anúncios e rotina mensal</label>
+                    </fieldset>
+
+                    <fieldset class="quiz-step" data-quiz-step="3" hidden>
+                        <legend>Qual é sua urgência?</legend>
+                        <label class="quiz-option"><input type="radio" name="urgency" value="fast" required> Quero começar o quanto antes</label>
+                        <label class="quiz-option"><input type="radio" name="urgency" value="planned"> Quero planejar com calma</label>
+                        <label class="quiz-option"><input type="radio" name="urgency" value="recurring"> Quero acompanhamento contínuo</label>
+                    </fieldset>
+
+                    <div class="quiz-result" data-quiz-result hidden>
+                        <span class="eyebrow">Plano indicado</span>
+                        <h3 data-quiz-plan>Brand Site Premium</h3>
+                        <p data-quiz-reason>Esse plano combina com o momento do seu negócio.</p>
+                        <div class="quiz-result-actions">
+                            <a href="briefing.html" class="btn btn-primary" data-quiz-briefing>Completar briefing</a>
+                            <a href="registrar.html" class="btn btn-outline" data-quiz-register>Criar conta e ativar 20%</a>
+                            <button type="button" class="btn btn-outline" data-quiz-reset>Cancelar e refazer</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button type="button" class="btn btn-outline" data-quiz-prev disabled>Voltar</button>
+                        <button type="button" class="btn btn-primary" data-quiz-next>Continuar</button>
+                    </div>
+                </form>
             </section>
 
             <section class="section">
@@ -114,7 +174,7 @@
                             </ul>
                             <div class="plan-footer">
                                 <span class="plan-note">Projeto de entrada</span>
-                                <a href="pacotes.html#presenca" class="btn btn-dark">Ver plano</a>
+                                <a href="briefing.html?plano=presenca-profissional" class="btn btn-dark">Começar briefing</a>
                             </div>
                         </article>
 
@@ -130,7 +190,7 @@
                             </ul>
                             <div class="plan-footer">
                                 <span class="plan-note">Melhor custo-benefício</span>
-                                <a href="pacotes.html#brand-site" class="btn btn-dark">Ver plano</a>
+                                <a href="briefing.html?plano=brand-site-premium" class="btn btn-dark">Começar briefing</a>
                             </div>
                         </article>
 
@@ -145,7 +205,7 @@
                             </ul>
                             <div class="plan-footer">
                                 <span class="plan-note">Foco em aquisição</span>
-                                <a href="pacotes.html#maquina" class="btn btn-dark">Ver plano</a>
+                                <a href="briefing.html?plano=maquina-de-clientes" class="btn btn-dark">Começar briefing</a>
                             </div>
                         </article>
 
@@ -160,7 +220,7 @@
                             </ul>
                             <div class="plan-footer">
                                 <span class="plan-note">Plano recorrente</span>
-                                <a href="pacotes.html#marketing-360" class="btn btn-dark">Ver plano</a>
+                                <a href="briefing.html?plano=marketing-360" class="btn btn-dark">Começar briefing</a>
                             </div>
                         </article>
                     </div>
@@ -235,7 +295,7 @@
                     <p>Conte para a Nexo onde seu negócio está hoje. Nós indicamos o melhor caminho sem empurrar um pacote aleatório.</p>
                 </div>
                 <div class="cta-row">
-                    <a href="contato.html" class="btn btn-dark">Pedir diagnóstico</a>
+                    <a href="#diagnostico-planos" class="btn btn-dark">Fazer diagnóstico</a>
                 </div>
             </section>
         </main>
@@ -278,7 +338,9 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="quiz.js"></script>
     <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
 </body>
 </html>
