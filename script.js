@@ -32,6 +32,12 @@ function setupMenu() {
     const nav = document.querySelector('.nav-links');
     if (!button || !nav) return;
 
+    function closeMenu() {
+        button.classList.remove('active');
+        nav.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
+    }
+
     button.addEventListener('click', () => {
         const isOpen = button.classList.toggle('active');
         nav.classList.toggle('active', isOpen);
@@ -39,11 +45,11 @@ function setupMenu() {
     });
 
     nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            button.classList.remove('active');
-            nav.classList.remove('active');
-            button.setAttribute('aria-expanded', 'false');
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenu();
     });
 }
 
@@ -54,6 +60,8 @@ function setupPageTransitions() {
             const isLocalPage = href && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto:') && !href.startsWith('tel:');
 
             if (!isLocalPage || link.target === '_blank' || link.hasAttribute('download')) return;
+
+            if (document.documentElement.classList.contains('a11y-reduce-motion')) return;
 
             event.preventDefault();
             document.body.classList.add('fade-out');

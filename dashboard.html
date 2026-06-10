@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body class="account-page" data-auth-page="dashboard">
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
     <header class="account-topbar">
         <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
             <img src="logo.png" alt="Nexo Digital">
@@ -17,12 +18,21 @@
         </a>
 
         <div class="account-topbar-actions">
-            <span data-user-email></span>
+            <div class="account-mini-profile">
+                <div class="profile-avatar profile-avatar-small">
+                    <img src="" alt="Foto do perfil" data-profile-avatar hidden>
+                    <span data-profile-initials>ND</span>
+                </div>
+                <div>
+                    <strong data-user-name>Cliente Nexo</strong>
+                    <span data-user-email></span>
+                </div>
+            </div>
             <button type="button" class="btn btn-outline" data-sign-out>Sair</button>
         </div>
     </header>
 
-    <main class="account-layout">
+    <main class="account-layout" id="main-content" tabindex="-1">
         <aside class="account-sidebar">
             <div class="account-user-card">
                 <div class="profile-avatar">
@@ -33,19 +43,29 @@
                 <span data-profile-status>Carregando</span>
             </div>
 
-            <nav class="account-tabs" aria-label="Navegação da área do cliente">
-                <button type="button" class="account-tab active" data-tab-target="overview">Visão geral</button>
-                <button type="button" class="account-tab" data-tab-target="profile">Perfil</button>
+            <nav class="account-tabs" aria-label="Navegação da área do cliente" role="tablist">
+                <button type="button" class="account-tab active" data-tab-target="overview" role="tab" aria-controls="panel-overview" aria-selected="true">Início</button>
+                <button type="button" class="account-tab" data-tab-target="profile" role="tab" aria-controls="panel-profile" aria-selected="false">Perfil</button>
+                <button type="button" class="account-tab" data-tab-target="purchases" role="tab" aria-controls="panel-purchases" aria-selected="false">Compras</button>
             </nav>
         </aside>
 
         <section class="account-content">
-            <div class="auth-status" data-auth-status>Carregando sua área...</div>
+            <div class="auth-status" data-auth-status role="status" aria-live="polite">Carregando sua área...</div>
 
-            <div class="account-panel" data-tab-panel="overview">
+            <div class="account-panel" data-tab-panel="overview" id="panel-overview" role="tabpanel">
                 <span class="eyebrow">Área do cliente</span>
                 <h1>Bem-vindo, <span data-user-name>Cliente Nexo</span></h1>
-                <p class="lead">Este é o começo da sua área interna. Seus dados principais já ficam salvos no Firebase e podem ser usados depois para projetos, pedidos, pagamentos e acompanhamento.</p>
+                <p class="lead">Sua área já está pronta para perfil, benefício de primeira compra e acompanhamento dos próximos projetos com a Nexo.</p>
+
+                <section class="discount-banner">
+                    <div>
+                        <span>Benefício de boas-vindas</span>
+                        <h2><strong data-discount-percent>20%</strong> de desconto na primeira compra</h2>
+                        <p>Complete seu perfil e chame a Nexo para usar o desconto no primeiro projeto fechado pela área do cliente.</p>
+                    </div>
+                    <a href="pacotes.html" class="btn btn-dark">Ver planos</a>
+                </section>
 
                 <div class="account-summary-grid">
                     <article class="account-summary-card">
@@ -57,15 +77,18 @@
                         <strong data-user-email>Carregando</strong>
                     </article>
                     <article class="account-summary-card">
-                        <span>Banco</span>
-                        <strong>Cloud Firestore</strong>
+                        <span>Benefício</span>
+                        <strong><span data-discount-percent>20%</span> primeira compra</strong>
                     </article>
                 </div>
 
-                <button type="button" class="btn btn-primary" data-tab-target="profile">Completar perfil</button>
+                <div class="quick-actions">
+                    <button type="button" class="btn btn-primary" data-tab-target="profile">Editar perfil</button>
+                    <button type="button" class="btn btn-outline" data-tab-target="purchases">Ver compras</button>
+                </div>
             </div>
 
-            <div class="account-panel" data-tab-panel="profile" hidden>
+            <div class="account-panel" data-tab-panel="profile" id="panel-profile" role="tabpanel" hidden>
                 <span class="eyebrow">Perfil</span>
                 <h1>Seus dados</h1>
                 <p class="lead">Complete as informações que a Nexo vai usar para organizar seu atendimento e entender melhor o projeto.</p>
@@ -131,9 +154,18 @@
                     <button type="submit" class="btn btn-primary">Salvar perfil</button>
                 </form>
             </div>
+
+            <div class="account-panel" data-tab-panel="purchases" id="panel-purchases" role="tabpanel" hidden>
+                <span class="eyebrow">Compras</span>
+                <h1>Compras feitas</h1>
+                <p class="lead">Aqui ficam os projetos fechados, status e próximos passos. Quando você fizer a primeira compra, ela aparece nesta lista.</p>
+
+                <div class="purchases-list" data-purchases-list></div>
+            </div>
         </section>
     </main>
 
+    <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
 </body>
 </html>

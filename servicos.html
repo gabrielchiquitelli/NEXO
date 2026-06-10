@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
     <div class="site-shell">
         <div class="announcement">
             <span>Não sabe qual serviço contratar?</span>
             <a href="#diagnostico">Faça o briefing rápido</a>
         </div>
 
-        <nav class="nav" id="navbar">
+        <nav class="nav" id="navbar" aria-label="Menu principal">
             <a href="index.html" class="brand" aria-label="Nexo Digital">
                 <img src="logo.png" alt="Nexo Digital">
                 <span>Nexo Digital</span>
@@ -25,7 +26,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="pacotes.html">Planos</a></li>
-                <li><a href="servicos.html" class="active">Serviços</a></li>
+                <li><a href="servicos.html" class="active" aria-current="page">Serviços</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
@@ -42,7 +43,7 @@
             </div>
         </nav>
 
-        <main>
+        <main id="main-content" tabindex="-1">
             <section class="page-hero">
                 <span class="eyebrow">Serviços</span>
                 <h1>Tudo que sua presença digital precisa para vender com mais confiança.</h1>
@@ -204,5 +205,7 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="accessibility.js"></script>
+    <script type="module" src="auth.js"></script>
 </body>
 </html>

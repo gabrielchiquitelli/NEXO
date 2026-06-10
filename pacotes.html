@@ -11,20 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
     <div class="site-shell">
         <div class="announcement">
             <span>Planos claros para momentos diferentes do negócio.</span>
             <a href="contato.html">Receber indicação</a>
         </div>
 
-        <nav class="nav" id="navbar">
+        <nav class="nav" id="navbar" aria-label="Menu principal">
             <a href="index.html" class="brand" aria-label="Nexo Digital">
                 <img src="logo.png" alt="Nexo Digital">
                 <span>Nexo Digital</span>
             </a>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="pacotes.html" class="active">Planos</a></li>
+                <li><a href="pacotes.html" class="active" aria-current="page">Planos</a></li>
                 <li><a href="servicos.html">Serviços</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
@@ -42,7 +43,7 @@
             </div>
         </nav>
 
-        <main>
+        <main id="main-content" tabindex="-1">
             <section class="page-hero">
                 <span class="eyebrow">Planos Nexo</span>
                 <h1>Escolha pelo resultado que você quer alcançar.</h1>
@@ -278,5 +279,7 @@
     </a>
 
     <script src="script.js"></script>
+    <script src="accessibility.js"></script>
+    <script type="module" src="auth.js"></script>
 </body>
 </html>

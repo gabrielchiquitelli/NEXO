@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crie seu primeiro acesso à área do cliente Nexo Digital com Google.">
+    <meta name="description" content="Crie seu acesso à área do cliente Nexo Digital.">
     <title>Cadastrar | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body data-auth-page="register">
-    <main class="login-page">
-        <section class="login-card">
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
+    <main class="login-page" id="main-content" tabindex="-1">
+        <section class="login-card login-card-wide">
             <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
                 <img src="logo.png" alt="Nexo Digital">
                 <span>Nexo Digital</span>
@@ -19,21 +20,46 @@
 
             <div class="auth-copy">
                 <span class="eyebrow">Primeiro acesso</span>
-                <h1>Cadastrar com Google</h1>
-                <p class="lead">Na primeira vez, o Google cria sua conta no Firebase. Depois disso, é só entrar normalmente pela página de login.</p>
+                <h1>Criar sua conta</h1>
+                <p class="lead">Cadastre com Google ou com e-mail e senha. Depois você completa seu perfil e ativa o desconto de boas-vindas.</p>
             </div>
 
-            <div class="auth-status" data-auth-status>Comece criando seu acesso com Google.</div>
+            <div class="auth-status" data-auth-status role="status" aria-live="polite">Escolha como quer criar seu acesso.</div>
 
             <button type="button" class="btn btn-primary auth-google-button" data-google-access>
                 Criar acesso com Google
             </button>
 
-            <p class="auth-switch">Já criou seu acesso? <a href="login.html">Entrar com Google</a></p>
+            <div class="auth-divider"><span>ou cadastre com e-mail</span></div>
+
+            <form id="email-register-form" class="auth-form">
+                <div class="field">
+                    <label for="register-name">Nome completo</label>
+                    <input type="text" id="register-name" placeholder="Seu nome" autocomplete="name" required>
+                </div>
+                <div class="field">
+                    <label for="register-email">E-mail</label>
+                    <input type="email" id="register-email" placeholder="contato@suaempresa.com" autocomplete="email" required>
+                </div>
+                <div class="form-grid form-grid-tight">
+                    <div class="field">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" placeholder="Mínimo 6 caracteres" autocomplete="new-password" minlength="6" required>
+                    </div>
+                    <div class="field">
+                        <label for="register-confirm">Confirmar senha</label>
+                        <input type="password" id="register-confirm" placeholder="Repita a senha" autocomplete="new-password" minlength="6" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline auth-submit-button">Criar conta com e-mail</button>
+            </form>
+
+            <p class="auth-switch">Já criou seu acesso? <a href="login.html">Entrar</a></p>
             <p class="auth-back"><a href="index.html">Voltar ao site</a></p>
         </section>
     </main>
 
+    <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
 </body>
 </html>

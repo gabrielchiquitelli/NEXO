@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Acesse a área do cliente Nexo Digital com sua conta Google.">
+    <meta name="description" content="Acesse a área do cliente Nexo Digital.">
     <title>Entrar | Nexo Digital</title>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 </head>
 <body data-auth-page="login">
-    <main class="login-page">
-        <section class="login-card">
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
+    <main class="login-page" id="main-content" tabindex="-1">
+        <section class="login-card login-card-wide">
             <a href="index.html" class="brand" aria-label="Voltar para Nexo Digital">
                 <img src="logo.png" alt="Nexo Digital">
                 <span>Nexo Digital</span>
@@ -20,20 +21,35 @@
             <div class="auth-copy">
                 <span class="eyebrow">Área do cliente</span>
                 <h1>Entrar na sua conta</h1>
-                <p class="lead">Use o mesmo Google usado no cadastro para acessar seu perfil, dados do projeto e próximos passos.</p>
+                <p class="lead">Acesse seu perfil, benefício de boas-vindas e histórico de compras usando Google ou e-mail e senha.</p>
             </div>
 
-            <div class="auth-status" data-auth-status>Pronto para entrar com Google.</div>
+            <div class="auth-status" data-auth-status role="status" aria-live="polite">Pronto para entrar.</div>
 
             <button type="button" class="btn btn-primary auth-google-button" data-google-access>
                 Entrar com Google
             </button>
 
-            <p class="auth-switch">Primeira vez aqui? <a href="registrar.html">Cadastrar com Google</a></p>
+            <div class="auth-divider"><span>ou entre com e-mail</span></div>
+
+            <form id="email-login-form" class="auth-form">
+                <div class="field">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" placeholder="contato@suaempresa.com" autocomplete="email" required>
+                </div>
+                <div class="field">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" placeholder="Sua senha" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-outline auth-submit-button">Entrar com e-mail</button>
+            </form>
+
+            <p class="auth-switch">Primeira vez aqui? <a href="registrar.html">Criar conta</a></p>
             <p class="auth-back"><a href="index.html">Voltar ao site</a></p>
         </section>
     </main>
 
+    <script src="accessibility.js"></script>
     <script type="module" src="auth.js"></script>
 </body>
 </html>
