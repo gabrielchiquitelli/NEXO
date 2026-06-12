@@ -1512,6 +1512,12 @@ textarea {
     line-height: 1.5;
 }
 
+.admin-order-actions {
+    display: grid;
+    gap: 8px;
+    justify-items: end;
+}
+
 .admin-order-top select {
     min-width: 190px;
     padding: 11px;
@@ -1519,6 +1525,16 @@ textarea {
     border: 1px solid var(--line-strong);
     border-radius: 8px;
     color: var(--ink);
+}
+
+.admin-danger-button {
+    border-color: #fecaca;
+    color: var(--danger);
+}
+
+.admin-danger-button:hover {
+    border-color: var(--danger);
+    color: var(--danger);
 }
 
 .admin-order-details {
@@ -1635,6 +1651,24 @@ textarea {
 .chat-message p,
 .chat-empty p {
     line-height: 1.5;
+}
+
+.chat-delete-button {
+    margin-top: 8px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    opacity: 0.72;
+    cursor: pointer;
+}
+
+.chat-delete-button:hover {
+    opacity: 1;
 }
 
 .admin-chat-form,
@@ -1990,9 +2024,11 @@ html.a11y-reduce-motion *::after {
         display: block;
     }
 
+    .admin-order-actions,
     .admin-order-top select {
         width: 100%;
         margin-top: 14px;
+        justify-items: stretch;
     }
 
     .admin-chat-form,

@@ -38,6 +38,30 @@ const planDetails = {
   "operacao-digital-completa": {
     nome: "Operação Digital Completa",
     descricao: "Estratégia, execução e acompanhamento para terceirizar boa parte da operação digital."
+  },
+  "site-avulso": {
+    nome: "Site Profissional Avulso",
+    descricao: "Site institucional ou one-page para apresentar a empresa, serviços, provas e caminhos de contato."
+  },
+  "identidade-visual-avulsa": {
+    nome: "Identidade Visual Avulsa",
+    descricao: "Logo, cores, tipografia e direção visual para a marca parecer mais profissional."
+  },
+  "landing-page-avulsa": {
+    nome: "Landing Page Avulsa",
+    descricao: "Página focada em campanha, captação de leads, lançamento ou oferta específica."
+  },
+  "trafego-pago-avulso": {
+    nome: "Tráfego Pago Avulso",
+    descricao: "Configuração inicial de campanha, público, criativos e ajustes para começar a vender."
+  },
+  "social-media-avulso": {
+    nome: "Social Media Avulso",
+    descricao: "Peças, calendário e conteúdo para deixar as redes mais organizadas e profissionais."
+  },
+  "automacao-avulsa": {
+    nome: "Automação Avulsa",
+    descricao: "Fluxos simples para captar leads, organizar respostas e melhorar o atendimento digital."
   }
 };
 
@@ -54,11 +78,15 @@ function setStatus(message, type = "info") {
   statusBox.dataset.type = type;
 }
 
-function getSelectedPlanSlug() {
+function getExplicitPlanSlug() {
   const params = new URLSearchParams(window.location.search);
   const plan = params.get("plano");
 
-  return planDetails[plan] ? plan : "brand-site-premium";
+  return planDetails[plan] ? plan : "";
+}
+
+function getSelectedPlanSlug() {
+  return getExplicitPlanSlug() || "brand-site-premium";
 }
 
 function updatePlanSummary(slug) {
@@ -128,13 +156,13 @@ function saveDraft() {
   localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
 }
 
-function loadDraft() {
+function loadDraft(preferredPlan = "") {
   const rawDraft = localStorage.getItem(DRAFT_KEY);
   if (!rawDraft) return false;
 
   try {
     const draft = JSON.parse(rawDraft);
-    updatePlanSummary(draft.plan || getSelectedPlanSlug());
+    updatePlanSummary(preferredPlan || draft.plan || getSelectedPlanSlug());
     setFieldValue("briefing-name", draft.name);
     setFieldValue("briefing-whatsapp", draft.whatsapp);
     setFieldValue("briefing-business", draft.business);
@@ -206,9 +234,10 @@ function redirectToRegister() {
 function setupBriefing() {
   if (!form || !planSelect) return;
 
-  updatePlanSummary(getSelectedPlanSlug());
+  const selectedPlan = getSelectedPlanSlug();
+  updatePlanSummary(selectedPlan);
 
-  const hasDraft = loadDraft();
+  const hasDraft = loadDraft(getExplicitPlanSlug());
   if (hasDraft) {
     setStatus("Seu briefing foi recuperado. Entre ou envie para salvar no painel.");
   }

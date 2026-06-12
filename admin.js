@@ -3,6 +3,7 @@ import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/fi
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -126,11 +127,14 @@ async function loadOrders() {
             <h3>${escapeHtml(order.planoNome || "Projeto Nexo")}</h3>
             <p>${escapeHtml(order.empresa || "Empresa não informada")} · ${escapeHtml(order.segmento || "Segmento não informado")}</p>
           </div>
-          <select aria-label="Alterar status do pedido">
-            ${["novo", "em_analise", "proposta_enviada", "aprovado", "em_producao", "concluido", "cancelado"].map(status => `
-              <option value="${status}" ${status === (order.status || "novo") ? "selected" : ""}>${escapeHtml(getStatusLabel(status))}</option>
-            `).join("")}
-          </select>
+          <div class="admin-order-actions">
+            <select aria-label="Alterar status do pedido">
+              ${["novo", "em_analise", "proposta_enviada", "aprovado", "em_producao", "concluido", "cancelado"].map(status => `
+                <option value="${status}" ${status === (order.status || "novo") ? "selected" : ""}>${escapeHtml(getStatusLabel(status))}</option>
+              `).join("")}
+            </select>
+            <button type="button" class="btn btn-outline admin-danger-button" data-delete-order>Excluir compra</button>
+          </div>
         </div>
         <dl class="admin-order-details">
           <div><dt>Cliente</dt><dd>${escapeHtml(order.clienteNome || "Sem nome")} · ${escapeHtml(order.clienteEmail || "Sem e-mail")}</dd></div>
@@ -149,6 +153,7 @@ async function loadOrders() {
 
     ordersList.querySelectorAll(".admin-order-card").forEach(card => {
       const select = card.querySelector("select");
+      const deleteButton = card.querySelector("[data-delete-order]");
       const orderId = card.dataset.orderId;
 
       select?.addEventListener("change", async () => {
@@ -158,6 +163,16 @@ async function loadOrders() {
           atualizadoEm: serverTimestamp()
         });
         select.disabled = false;
+      });
+
+      deleteButton?.addEventListener("click", async () => {
+        const confirmed = window.confirm("Excluir esta compra/pedido do painel? Essa ação não aparece mais para o cliente.");
+        if (!confirmed) return;
+
+        deleteButton.disabled = true;
+        deleteButton.textContent = "Excluindo...";
+        await deleteDoc(doc(db, ORDERS_COLLECTION, orderId));
+        await loadOrders();
       });
     });
   } catch (error) {
@@ -175,11 +190,29 @@ function renderMessages(messages) {
   }
 
   messagesList.innerHTML = messages.map(message => `
-    <div class="chat-message ${message.autor === "admin" ? "from-admin" : "from-client"}">
+    <div class="chat-message ${message.autor === "admin" ? "from-admin" : "from-client"}" data-message-id="${escapeHtml(message.id)}">
       <span>${message.autor === "admin" ? "Nexo" : "Cliente"} · ${escapeHtml(getDateTimeLabel(message.criadoEm))}</span>
       <p>${escapeHtml(message.texto)}</p>
+      <button type="button" class="chat-delete-button" data-delete-message>Excluir</button>
     </div>
   `).join("");
+
+  messagesList.querySelectorAll("[data-delete-message]").forEach(button => {
+    button.addEventListener("click", async () => {
+      if (!selectedConversationId) return;
+
+      const message = button.closest("[data-message-id]");
+      const messageId = message?.dataset.messageId;
+      if (!messageId) return;
+
+      const confirmed = window.confirm("Excluir esta mensagem do chat?");
+      if (!confirmed) return;
+
+      button.disabled = true;
+      button.textContent = "Excluindo...";
+      await deleteDoc(doc(db, CHATS_COLLECTION, selectedConversationId, "mensagens", messageId));
+    });
+  });
 
   messagesList.scrollTop = messagesList.scrollHeight;
 }

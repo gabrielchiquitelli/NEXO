@@ -1,8 +1,10 @@
 import { auth, db, googleProvider } from "./firebase-config.js";
 import {
+  browserLocalPersistence,
   createUserWithEmailAndPassword,
   getRedirectResult,
   onAuthStateChanged,
+  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
@@ -27,6 +29,9 @@ const FIRST_PURCHASE_DISCOUNT = 20;
 
 const page = document.body.dataset.authPage || "site";
 const statusBox = document.querySelector("[data-auth-status]");
+const authPersistenceReady = setPersistence(auth, browserLocalPersistence).catch(error => {
+  console.warn("Não foi possível configurar persistência local do login.", error);
+});
 
 function setStatus(message, type = "info") {
   if (!statusBox) return;
@@ -162,6 +167,7 @@ async function ensureUserProfile(user, extra = {}) {
 async function finishGoogleAccess(source) {
   setStatus(source === "cadastro" ? "Criando seu acesso com Google..." : "Entrando com Google...");
 
+  await authPersistenceReady;
   const result = await signInWithPopup(auth, googleProvider);
   const { isNew } = await ensureUserProfile(result.user, { provedor: "google" });
 
@@ -175,6 +181,7 @@ async function handleGoogleButton(source) {
   } catch (error) {
     if (error?.code === "auth/popup-blocked") {
       setStatus(getFirebaseMessage(error), "error");
+      await authPersistenceReady;
       await signInWithRedirect(auth, googleProvider);
       return;
     }
@@ -198,6 +205,7 @@ async function handleEmailRegister(event) {
 
   try {
     setStatus("Criando seu acesso com e-mail e senha...");
+    await authPersistenceReady;
     const result = await createUserWithEmailAndPassword(auth, email, password);
 
     await updateProfile(result.user, { displayName: name });
@@ -218,6 +226,7 @@ async function handleEmailLogin(event) {
 
   try {
     setStatus("Entrando com e-mail e senha...");
+    await authPersistenceReady;
     const result = await signInWithEmailAndPassword(auth, email, password);
 
     await ensureUserProfile(result.user, { provedor: "email" });
@@ -564,8 +573,8 @@ function setupDashboard() {
         setStatus("Salvando perfil...");
         profile = { ...profile, ...(await saveProfile(user, profile)) };
         fillProfileForm(profile, user);
-        selectTab("overview");
-        setStatus("Perfil salvo. Seu desconto de boas-vindas já está ativo.", "success");
+        setStatus("Perfil salvo. Voltando para a página inicial...", "success");
+        window.location.href = "index.html";
       } catch (error) {
         setStatus(getFirebaseMessage(error), "error");
       }
