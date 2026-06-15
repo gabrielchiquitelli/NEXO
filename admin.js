@@ -29,6 +29,7 @@ const messagesList = document.querySelector("[data-admin-messages]");
 const chatStatus = document.querySelector("[data-admin-chat-status]");
 const chatForm = document.querySelector("[data-admin-chat-form]");
 const chatInput = document.querySelector("[data-admin-chat-input]");
+const deleteConversationButton = document.querySelector("[data-delete-conversation]");
 
 let currentAdmin = null;
 let selectedConversationId = "";
@@ -133,6 +134,19 @@ function renderEmpty(target, title, text) {
       <p>${escapeHtml(text)}</p>
     </div>
   `;
+}
+
+function setChatSelectionState(conversationId = "", label = "Selecione uma conversa") {
+  selectedConversationId = conversationId;
+
+  if (chatStatus) {
+    chatStatus.textContent = label;
+  }
+
+  if (deleteConversationButton) {
+    deleteConversationButton.disabled = !conversationId;
+    deleteConversationButton.textContent = "Excluir conversa";
+  }
 }
 
 async function loadOrders() {
@@ -298,6 +312,11 @@ async function loadPartnerships() {
 function renderMessages(messages) {
   if (!messagesList) return;
 
+  if (!selectedConversationId) {
+    messagesList.innerHTML = '<div class="empty-state"><strong>Selecione uma conversa.</strong><p>Escolha um cliente ao lado para ver e responder as mensagens.</p></div>';
+    return;
+  }
+
   if (!messages.length) {
     messagesList.innerHTML = '<div class="empty-state"><strong>Sem mensagens ainda.</strong><p>Quando o cliente escrever pelo chat, a conversa aparece aqui.</p></div>';
     return;
@@ -307,7 +326,7 @@ function renderMessages(messages) {
     <div class="chat-message ${message.autor === "admin" ? "from-admin" : "from-client"}" data-message-id="${escapeHtml(message.id)}">
       <span>${message.autor === "admin" ? "Nexo" : "Cliente"} · ${escapeHtml(getDateTimeLabel(message.criadoEm))}</span>
       <p>${escapeHtml(message.texto)}</p>
-      <button type="button" class="chat-delete-button" data-delete-message>Excluir</button>
+      <button type="button" class="chat-delete-button" data-delete-message>Excluir mensagem</button>
     </div>
   `).join("");
 
@@ -322,9 +341,16 @@ function renderMessages(messages) {
       const confirmed = window.confirm("Excluir esta mensagem do chat?");
       if (!confirmed) return;
 
-      button.disabled = true;
-      button.textContent = "Excluindo...";
-      await deleteDoc(doc(db, CHATS_COLLECTION, selectedConversationId, "mensagens", messageId));
+      try {
+        button.disabled = true;
+        button.textContent = "Excluindo...";
+        await deleteDoc(doc(db, CHATS_COLLECTION, selectedConversationId, "mensagens", messageId));
+      } catch (error) {
+        console.error(error);
+        window.alert("Não foi possível excluir esta mensagem agora.");
+        button.disabled = false;
+        button.textContent = "Excluir mensagem";
+      }
     });
   });
 
@@ -332,15 +358,11 @@ function renderMessages(messages) {
 }
 
 function openConversation(conversationId, data) {
-  selectedConversationId = conversationId;
+  setChatSelectionState(conversationId, data?.nome || data?.email || "Conversa selecionada");
 
   conversationsList?.querySelectorAll("button").forEach(button => {
     button.classList.toggle("active", button.dataset.conversationId === conversationId);
   });
-
-  if (chatStatus) {
-    chatStatus.textContent = data?.nome || data?.email || "Conversa selecionada";
-  }
 
   if (unsubscribeMessages) unsubscribeMessages();
 
@@ -365,6 +387,12 @@ function startConversationListener() {
       .sort((a, b) => getDateTimeValue(b.atualizadoEm) - getDateTimeValue(a.atualizadoEm));
 
     if (!conversations.length) {
+      if (unsubscribeMessages) {
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+      }
+
+      setChatSelectionState();
       renderEmpty(conversationsList, "Nenhuma conversa aberta.", "O chat do site aparece aqui quando um cliente mandar mensagem.");
       renderMessages([]);
       return;
@@ -391,11 +419,50 @@ function startConversationListener() {
     }
   }, error => {
     console.error(error);
+    setChatSelectionState();
     renderEmpty(conversationsList, "Não foi possível carregar o chat.", "Confira o cargo admin e as regras do Firestore.");
   });
 }
 
+async function deleteSelectedConversation() {
+  if (!selectedConversationId) return;
+
+  const conversationId = selectedConversationId;
+  const confirmed = window.confirm("Excluir esta conversa e todas as mensagens?");
+  if (!confirmed) return;
+
+  try {
+    if (deleteConversationButton) {
+      deleteConversationButton.disabled = true;
+      deleteConversationButton.textContent = "Excluindo...";
+    }
+
+    const messagesSnapshot = await getDocs(collection(db, CHATS_COLLECTION, conversationId, "mensagens"));
+    await Promise.all(messagesSnapshot.docs.map(message => deleteDoc(message.ref)));
+    await deleteDoc(doc(db, CHATS_COLLECTION, conversationId));
+
+    if (selectedConversationId === conversationId) {
+      if (unsubscribeMessages) {
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+      }
+
+      setChatSelectionState();
+      renderMessages([]);
+    }
+  } catch (error) {
+    console.error(error);
+    window.alert("Não foi possível excluir esta conversa agora.");
+    if (deleteConversationButton) {
+      deleteConversationButton.disabled = !selectedConversationId;
+      deleteConversationButton.textContent = "Excluir conversa";
+    }
+  }
+}
+
 function setupAdminChatForm() {
+  deleteConversationButton?.addEventListener("click", deleteSelectedConversation);
+
   chatForm?.addEventListener("submit", async event => {
     event.preventDefault();
 

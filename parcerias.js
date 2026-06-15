@@ -1,8 +1,5 @@
 import { auth, db } from "./firebase-config.js";
-import {
-  onAuthStateChanged,
-  reload
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
   addDoc,
   collection,
@@ -51,15 +48,6 @@ async function submitPartnership() {
   if (!currentUser) {
     setStatus("Crie sua conta ou entre para enviar a parceria.", "error");
     redirectToRegister();
-    return;
-  }
-
-  await reload(currentUser);
-  if (!currentUser.emailVerified && !currentProfile.telefoneVerificado) {
-    setStatus("Confirme seu e-mail ou telefone no perfil antes de enviar uma parceria.", "error");
-    window.setTimeout(() => {
-      window.location.href = "dashboard.html?tab=profile";
-    }, 1200);
     return;
   }
 

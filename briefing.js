@@ -1,8 +1,5 @@
 import { auth, db } from "./firebase-config.js";
-import {
-  onAuthStateChanged,
-  reload
-} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
   addDoc,
   collection,
@@ -267,16 +264,6 @@ async function saveOrder(user) {
   return orderRef.id;
 }
 
-async function hasVerifiedContact(user) {
-  await reload(user);
-  await user.getIdToken(true);
-
-  const snapshot = await getDoc(doc(db, USERS_COLLECTION, user.uid));
-  const profile = snapshot.exists() ? snapshot.data() : {};
-
-  return Boolean(user.emailVerified || profile.emailVerificado || profile.telefoneVerificado);
-}
-
 function redirectToRegister() {
   saveDraft();
 
@@ -314,16 +301,6 @@ function setupBriefing() {
     }
 
     try {
-      const verifiedContact = await hasVerifiedContact(currentUser);
-
-      if (!verifiedContact) {
-        setStatus("Confirme seu e-mail ou telefone no perfil antes de enviar o pedido.", "error");
-        window.setTimeout(() => {
-          window.location.href = "dashboard.html?tab=profile";
-        }, 1200);
-        return;
-      }
-
       setStatus("Salvando seu pedido no painel da Nexo...");
       await saveOrder(currentUser);
       setStatus("Pedido salvo. Abrindo sua área do cliente...", "success");

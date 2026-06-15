@@ -4,16 +4,11 @@ import {
   createUserWithEmailAndPassword,
   getRedirectResult,
   onAuthStateChanged,
-  PhoneAuthProvider,
-  RecaptchaVerifier,
-  reload,
-  sendEmailVerification,
   setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signInWithRedirect,
   signOut,
-  updatePhoneNumber,
   updateProfile
 } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
@@ -42,8 +37,6 @@ const statusBox = document.querySelector("[data-auth-status]");
 const authPersistenceReady = setPersistence(auth, browserLocalPersistence).catch(error => {
   console.warn("Não foi possível configurar persistência local do login.", error);
 });
-let phoneVerificationId = "";
-let recaptchaVerifier = null;
 let profilePhotoPreviewUrl = "";
 
 function setStatus(message, type = "info") {
@@ -61,15 +54,7 @@ function getFirebaseMessage(error) {
     "auth/invalid-email": "Digite um e-mail válido.",
     "auth/missing-password": "Digite sua senha.",
     "auth/network-request-failed": "Sem conexão com o Firebase agora. Confira sua internet e tente de novo.",
-    "auth/operation-not-allowed": "Ative Google, Email/Senha e Telefone em Authentication > Método de login no Firebase.",
-    "auth/invalid-phone-number": "Digite o telefone com DDD. Exemplo: (16) 99999-9999.",
-    "auth/missing-phone-number": "Digite o WhatsApp antes de enviar o código.",
-    "auth/missing-verification-code": "Digite o código recebido por SMS.",
-    "auth/invalid-verification-code": "Código incorreto. Confira o SMS e tente novamente.",
-    "auth/code-expired": "Esse código expirou. Envie um novo código.",
-    "auth/captcha-check-failed": "Não foi possível validar o reCAPTCHA. Tente enviar o código novamente.",
-    "auth/provider-already-linked": "Esse telefone já está vinculado à sua conta.",
-    "auth/credential-already-in-use": "Esse telefone já está sendo usado em outra conta.",
+    "auth/operation-not-allowed": "Ative Google e Email/Senha em Authentication > Método de login no Firebase.",
     "auth/popup-blocked": "O navegador bloqueou o popup. Vou tentar abrir pelo redirecionamento.",
     "auth/popup-closed-by-user": "A janela do Google foi fechada antes de concluir o login.",
     "auth/too-many-requests": "Muitas tentativas em pouco tempo. Aguarde alguns minutos e tente novamente.",
@@ -77,7 +62,7 @@ function getFirebaseMessage(error) {
     "auth/user-not-found": "Não encontrei uma conta com esse e-mail. Faça o cadastro primeiro.",
     "auth/weak-password": "Use uma senha com pelo menos 6 caracteres.",
     "auth/wrong-password": "Senha incorreta.",
-    "auth/requires-recent-login": "Por segurança, saia e entre de novo antes de confirmar esse telefone.",
+    "auth/requires-recent-login": "Por segurança, saia e entre de novo antes de alterar seus dados.",
     "permission-denied": "O Firebase bloqueou o acesso ao banco. Publique as regras no Cloud Firestore, não no Realtime Database.",
     "profile-photo-invalid-type": "Use uma foto em JPG, PNG ou WEBP.",
     "profile-photo-too-large": "A foto precisa ter até 3 MB.",
@@ -223,35 +208,13 @@ function consumeRegisterSourceData() {
   }
 }
 
-function normalizePhoneNumber(phone) {
-  const digits = String(phone || "").replace(/\D/g, "");
-
-  if (!digits) return "";
-  if (digits.startsWith("55") && digits.length >= 12) return `+${digits}`;
-  if (digits.length === 10 || digits.length === 11) return `+55${digits}`;
-
-  return phone.trim().startsWith("+") ? phone.trim() : "";
-}
-
-function isPhoneVerifiedForProfile(profile, phone) {
-  const normalizedPhone = normalizePhoneNumber(phone);
-  const verifiedPhone = normalizePhoneNumber(profile?.telefoneVerificadoNumero || profile?.whatsapp);
-
-  return Boolean(profile?.telefoneVerificado && normalizedPhone && normalizedPhone === verifiedPhone);
-}
-
 function buildProfileFromUser(user, existingProfile = {}, extra = {}) {
-  const phoneNumber = user.phoneNumber || existingProfile.telefoneVerificadoNumero || "";
-
   return {
     uid: user.uid,
     email: user.email || existingProfile.email || extra.email || "",
-    emailVerificado: Boolean(user.emailVerified || existingProfile.emailVerificado),
     nome: extra.nome || existingProfile.nome || user.displayName || "",
     foto: extra.foto || existingProfile.foto || user.photoURL || "",
     whatsapp: existingProfile.whatsapp || "",
-    telefoneVerificado: Boolean(existingProfile.telefoneVerificado || user.phoneNumber),
-    telefoneVerificadoNumero: phoneNumber,
     empresa: existingProfile.empresa || "",
     segmento: existingProfile.segmento || "",
     site: existingProfile.site || "",
@@ -344,10 +307,9 @@ async function handleEmailRegister(event) {
     const sourceData = getRegisterSourceData();
 
     await updateProfile(result.user, { displayName: name });
-    await sendEmailVerification(result.user);
     await ensureUserProfile(result.user, { nome: name, provedor: "email", ...sourceData });
 
-    setStatus("Conta criada. Enviamos a verificação para seu e-mail.");
+    setStatus("Conta criada. Complete seu perfil para liberar sua área.");
     redirectAfterAuth("novo", "profile");
   } catch (error) {
     setStatus(getFirebaseMessage(error), "error");
@@ -474,46 +436,6 @@ function setAvatar(profile, user) {
   });
 }
 
-function updateVerificationPanel(profile = {}, user = null) {
-  const emailVerified = Boolean(user?.emailVerified || profile.emailVerificado);
-  const phoneValue = document.getElementById("profile-phone")?.value || profile.whatsapp || user?.phoneNumber || "";
-  const phoneVerified = isPhoneVerifiedForProfile(profile, phoneValue)
-    || Boolean(user?.phoneNumber && normalizePhoneNumber(user.phoneNumber) === normalizePhoneNumber(phoneValue));
-
-  const emailBadge = document.querySelector("[data-email-verification-badge]");
-  const emailText = document.querySelector("[data-email-verification-text]");
-  const emailButton = document.querySelector("[data-send-email-verification]");
-  const phoneBadge = document.querySelector("[data-phone-verification-badge]");
-  const phoneText = document.querySelector("[data-phone-verification-text]");
-
-  if (emailBadge) {
-    emailBadge.textContent = emailVerified ? "Confirmado" : "Pendente";
-    emailBadge.dataset.verified = String(emailVerified);
-  }
-
-  if (emailText) {
-    emailText.textContent = emailVerified
-      ? `E-mail confirmado: ${user?.email || profile.email || ""}`
-      : `Confirme o e-mail ${user?.email || profile.email || ""} para provar que ele é seu.`;
-  }
-
-  if (emailButton) {
-    emailButton.disabled = emailVerified || !user?.email;
-    emailButton.textContent = emailVerified ? "E-mail confirmado" : "Enviar verificação";
-  }
-
-  if (phoneBadge) {
-    phoneBadge.textContent = phoneVerified ? "Confirmado" : "Pendente";
-    phoneBadge.dataset.verified = String(phoneVerified);
-  }
-
-  if (phoneText) {
-    phoneText.textContent = phoneVerified
-      ? `Telefone confirmado: ${phoneValue || profile.telefoneVerificadoNumero}`
-      : "Digite seu WhatsApp no campo abaixo e confirme com o código recebido por SMS.";
-  }
-}
-
 function setPhotoFileLabel(text) {
   const label = document.querySelector("[data-profile-photo-name]");
   if (label) label.textContent = text;
@@ -608,90 +530,6 @@ function previewProfilePhoto(file, user) {
     nome: document.getElementById("profile-name")?.value || user?.displayName
   }, user);
   setPhotoFileLabel(`${file.name} selecionado.`);
-}
-
-function getRecaptchaVerifier() {
-  if (recaptchaVerifier) return recaptchaVerifier;
-
-  auth.languageCode = "pt-BR";
-  recaptchaVerifier = new RecaptchaVerifier(auth, "profile-recaptcha-container", {
-    size: "invisible"
-  });
-
-  return recaptchaVerifier;
-}
-
-function resetRecaptchaVerifier() {
-  if (!recaptchaVerifier) return;
-
-  recaptchaVerifier.clear();
-  recaptchaVerifier = null;
-}
-
-async function sendCurrentEmailVerification(user) {
-  await reload(user);
-
-  if (user.emailVerified) {
-    await user.getIdToken(true);
-    return "verified";
-  }
-
-  await sendEmailVerification(user);
-  return "sent";
-}
-
-async function sendPhoneVerificationCode(user) {
-  const phoneField = document.getElementById("profile-phone");
-  const phoneNumber = normalizePhoneNumber(phoneField?.value || "");
-
-  if (!phoneNumber) {
-    const error = new Error("Telefone inválido");
-    error.code = "auth/invalid-phone-number";
-    throw error;
-  }
-
-  const provider = new PhoneAuthProvider(auth);
-  phoneVerificationId = await provider.verifyPhoneNumber(phoneNumber, getRecaptchaVerifier());
-  return phoneNumber;
-}
-
-async function confirmPhoneVerificationCode(user) {
-  const code = document.getElementById("profile-phone-code")?.value.trim() || "";
-  const phoneField = document.getElementById("profile-phone");
-  const phoneNumber = normalizePhoneNumber(phoneField?.value || "");
-
-  if (!phoneVerificationId) {
-    const error = new Error("Código não enviado");
-    error.code = "auth/missing-verification-code";
-    throw error;
-  }
-
-  if (!code) {
-    const error = new Error("Código vazio");
-    error.code = "auth/missing-verification-code";
-    throw error;
-  }
-
-  const credential = PhoneAuthProvider.credential(phoneVerificationId, code);
-  await updatePhoneNumber(user, credential);
-  await reload(user);
-  await user.getIdToken(true);
-
-  await setDoc(userRef(user.uid), {
-    whatsapp: phoneField?.value.trim() || phoneNumber,
-    telefoneVerificado: true,
-    telefoneVerificadoNumero: phoneNumber,
-    telefoneVerificadoEm: serverTimestamp(),
-    emailVerificado: Boolean(user.emailVerified),
-    atualizadoEm: serverTimestamp()
-  }, { merge: true });
-
-  phoneVerificationId = "";
-  const codeField = document.getElementById("profile-phone-code");
-  if (codeField) codeField.value = "";
-  resetRecaptchaVerifier();
-
-  return phoneNumber;
 }
 
 function getDateTimeLabel(value) {
@@ -874,14 +712,11 @@ function fillProfileForm(profile, user) {
 
   syncProfileReferrerField();
   setAvatar(profile, user);
-  updateVerificationPanel(profile, user);
 }
 
 async function saveProfile(user, existingProfile = {}) {
   const photoFile = getProfilePhotoFile();
   const phoneValue = document.getElementById("profile-phone")?.value.trim() || "";
-  const phoneVerified = isPhoneVerifiedForProfile(existingProfile, phoneValue)
-    || Boolean(user.phoneNumber && normalizePhoneNumber(user.phoneNumber) === normalizePhoneNumber(phoneValue));
   const photoUrl = photoFile
     ? await createProfilePhotoDataUrl(photoFile)
     : document.getElementById("profile-photo")?.value.trim() || existingProfile.foto || user.photoURL || "";
@@ -890,10 +725,7 @@ async function saveProfile(user, existingProfile = {}) {
     nome: document.getElementById("profile-name")?.value.trim() || "",
     foto: photoUrl,
     email: user.email || document.getElementById("profile-email")?.value.trim() || "",
-    emailVerificado: Boolean(user.emailVerified),
     whatsapp: phoneValue,
-    telefoneVerificado: phoneVerified,
-    telefoneVerificadoNumero: phoneVerified ? normalizePhoneNumber(phoneValue) : "",
     empresa: document.getElementById("profile-business")?.value.trim() || "",
     segmento: document.getElementById("profile-segment")?.value.trim() || "",
     site: document.getElementById("profile-site")?.value.trim() || "",
@@ -1048,111 +880,10 @@ function setupDashboard() {
       }
     });
 
-    document.getElementById("profile-phone")?.addEventListener("input", () => {
-      updateVerificationPanel(profile, user);
-    });
-
-    document.querySelector("[data-send-email-verification]")?.addEventListener("click", async event => {
-      const button = event.currentTarget;
-      button.disabled = true;
-
-      try {
-        setStatus("Enviando verificação para seu e-mail...");
-        const result = await sendCurrentEmailVerification(user);
-        profile = { ...profile, emailVerificado: Boolean(user.emailVerified) };
-        await setDoc(userRef(user.uid), {
-          emailVerificado: Boolean(user.emailVerified),
-          atualizadoEm: serverTimestamp()
-        }, { merge: true });
-        updateVerificationPanel(profile, user);
-        setStatus(result === "verified" ? "Seu e-mail já está confirmado." : "Enviamos a verificação. Abra seu e-mail e confirme.", "success");
-      } catch (error) {
-        setStatus(getFirebaseMessage(error), "error");
-      } finally {
-        updateVerificationPanel(profile, user);
-      }
-    });
-
-    document.querySelector("[data-refresh-verification]")?.addEventListener("click", async () => {
-      try {
-        setStatus("Conferindo confirmação do e-mail...");
-        await reload(user);
-        await user.getIdToken(true);
-        profile = { ...profile, emailVerificado: Boolean(user.emailVerified) };
-        await setDoc(userRef(user.uid), {
-          emailVerificado: Boolean(user.emailVerified),
-          atualizadoEm: serverTimestamp()
-        }, { merge: true });
-        updateVerificationPanel(profile, user);
-        setStatus(user.emailVerified ? "E-mail confirmado." : "Ainda não apareceu como confirmado. Abra o link enviado no e-mail.", user.emailVerified ? "success" : "info");
-      } catch (error) {
-        setStatus(getFirebaseMessage(error), "error");
-      }
-    });
-
-    document.querySelector("[data-send-phone-code]")?.addEventListener("click", async event => {
-      const button = event.currentTarget;
-      button.disabled = true;
-
-      try {
-        setStatus("Enviando código por SMS...");
-        const phoneNumber = await sendPhoneVerificationCode(user);
-        setStatus(`Código enviado para ${phoneNumber}. Digite o código recebido.`, "success");
-      } catch (error) {
-        resetRecaptchaVerifier();
-        setStatus(getFirebaseMessage(error), "error");
-      } finally {
-        button.disabled = false;
-      }
-    });
-
-    document.querySelector("[data-confirm-phone-code]")?.addEventListener("click", async event => {
-      const button = event.currentTarget;
-      button.disabled = true;
-
-      try {
-        setStatus("Confirmando telefone...");
-        const phoneNumber = await confirmPhoneVerificationCode(user);
-        profile = {
-          ...profile,
-          whatsapp: document.getElementById("profile-phone")?.value.trim() || phoneNumber,
-          telefoneVerificado: true,
-          telefoneVerificadoNumero: phoneNumber,
-          emailVerificado: Boolean(user.emailVerified)
-        };
-        updateVerificationPanel(profile, user);
-        setStatus("Telefone confirmado com sucesso.", "success");
-      } catch (error) {
-        resetRecaptchaVerifier();
-        setStatus(getFirebaseMessage(error), "error");
-      } finally {
-        button.disabled = false;
-      }
-    });
-
     document.getElementById("profile-form")?.addEventListener("submit", async event => {
       event.preventDefault();
 
       try {
-        await reload(user);
-        await user.getIdToken(true);
-        const phoneValue = document.getElementById("profile-phone")?.value.trim() || "";
-        const hasVerifiedPhone = isPhoneVerifiedForProfile(profile, phoneValue)
-          || Boolean(user.phoneNumber && normalizePhoneNumber(user.phoneNumber) === normalizePhoneNumber(phoneValue));
-        const hasVerifiedContact = Boolean(user.emailVerified) || hasVerifiedPhone;
-
-        profile = {
-          ...profile,
-          emailVerificado: Boolean(user.emailVerified),
-          telefoneVerificado: hasVerifiedPhone
-        };
-        updateVerificationPanel(profile, user);
-
-        if (!hasVerifiedContact) {
-          setStatus("Confirme seu e-mail ou telefone antes de salvar o perfil.", "error");
-          return;
-        }
-
         setStatus("Salvando perfil...");
         profile = { ...profile, ...(await saveProfile(user, profile)) };
         fillProfileForm(profile, user);

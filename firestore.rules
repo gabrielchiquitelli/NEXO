@@ -16,42 +16,6 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.cargo == "admin";
     }
 
-    function hasVerifiedEmail() {
-      return isSignedIn() && request.auth.token.email_verified == true;
-    }
-
-    function hasVerifiedPhone() {
-      return isSignedIn() && request.auth.token.phone_number != null;
-    }
-
-    function hasVerifiedContact() {
-      return hasVerifiedEmail() || hasVerifiedPhone();
-    }
-
-    function keepsEmailVerificationTrusted() {
-      return !request.resource.data.keys().hasAny(["emailVerificado"])
-        || request.resource.data.emailVerificado == hasVerifiedEmail();
-    }
-
-    function keepsPhoneVerificationTrusted() {
-      return (
-        !request.resource.data.keys().hasAny(["telefoneVerificado"])
-        && !request.resource.data.keys().hasAny(["telefoneVerificadoNumero"])
-      ) || (
-        hasVerifiedPhone()
-        && request.resource.data.telefoneVerificado == true
-        && request.resource.data.telefoneVerificadoNumero == request.auth.token.phone_number
-      ) || (
-        !hasVerifiedPhone()
-        && request.resource.data.telefoneVerificado == false
-        && request.resource.data.telefoneVerificadoNumero == ""
-      );
-    }
-
-    function keepsVerificationTrusted() {
-      return keepsEmailVerificationTrusted() && keepsPhoneVerificationTrusted();
-    }
-
     function keepsOwnRole() {
       return (
         !resource.data.keys().hasAny(["cargo"])
@@ -65,8 +29,7 @@ service cloud.firestore {
     match /usuarios/{userId} {
       allow create: if isOwner(userId)
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.cargo == "cliente"
-        && keepsVerificationTrusted();
+        && request.resource.data.cargo == "cliente";
 
       allow read: if isOwner(userId) || isAdmin();
 
@@ -74,11 +37,6 @@ service cloud.firestore {
         isOwner(userId)
         && request.resource.data.uid == resource.data.uid
         && keepsOwnRole()
-        && keepsVerificationTrusted()
-        && (
-          request.resource.data.get("primeiroAcessoCompleto", false) != true
-          || hasVerifiedContact()
-        )
       );
 
       allow delete: if isAdmin();
@@ -87,8 +45,7 @@ service cloud.firestore {
     match /pedidos/{pedidoId} {
       allow create: if isSignedIn()
         && request.resource.data.userId == request.auth.uid
-        && request.resource.data.status == "novo"
-        && hasVerifiedContact();
+        && request.resource.data.status == "novo";
 
       allow read: if isSignedIn()
         && (resource.data.userId == request.auth.uid || isAdmin());
@@ -111,8 +68,7 @@ service cloud.firestore {
     match /parcerias/{parceriaId} {
       allow create: if isSignedIn()
         && request.resource.data.userId == request.auth.uid
-        && request.resource.data.status == "novo"
-        && hasVerifiedContact();
+        && request.resource.data.status == "novo";
 
       allow read: if isAdmin() || (
         isSignedIn()

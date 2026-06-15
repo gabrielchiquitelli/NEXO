@@ -4,7 +4,6 @@ Este site usa:
 
 - Firebase Authentication com Google;
 - Firebase Authentication com Email/Senha;
-- Firebase Authentication com Telefone para confirmar WhatsApp por SMS;
 - Cloud Firestore para salvar perfil, pedidos e chat.
 
 Não precisa ativar **Storage** nem mudar para Blaze. A foto do perfil é reduzida no navegador e salva pequena dentro do documento do usuário no Firestore.
@@ -23,18 +22,9 @@ Coleções usadas:
 3. Entre na aba **Método de login**.
 4. Ative **Google**.
 5. Ative **Email/Senha**.
-6. Ative **Telefone**.
-7. Clique em **Salvar** em cada provedor.
+6. Clique em **Salvar** em cada provedor.
 
 Se não achar: use a busca no topo do Firebase e pesquise `Authentication`.
-
-Para o SMS funcionar no Brasil:
-
-1. Em **Authentication**, entre na aba **Configurações**.
-2. Procure **Política de região de SMS**.
-3. Libere o Brasil, ou deixe a política permitir o país onde seus clientes vão estar.
-
-Observação: a confirmação de **e-mail** do Firebase chega como um link oficial no e-mail. A confirmação de **telefone** chega como código por SMS.
 
 ## 2. Conferir domínios autorizados
 
@@ -69,7 +59,7 @@ Se estiver perdido, use a busca no topo do Firebase e digite `Firestore Database
 4. Cole o conteúdo do arquivo `firestore.rules`.
 5. Clique em **Publicar**.
 
-Essas regras deixam cada cliente acessar apenas o próprio perfil, pedidos, parcerias e chat. Elas também bloqueiam pedido, parceria e perfil completo quando a conta não tem e-mail ou telefone confirmado. A conta com `cargo` igual a `admin` consegue ver pedidos, comissões de indicação, parcerias, candidatos, chats e alterar status.
+Essas regras deixam cada cliente acessar apenas o próprio perfil, pedidos, parcerias e chat. A conta com `cargo` igual a `admin` consegue ver pedidos, comissões de indicação, parcerias, candidatos, chats, alterar status e excluir registros.
 
 ## 5. Definir sua conta como admin
 
@@ -108,28 +98,24 @@ Teste assim:
 1. Crie uma conta com **Google** ou com **e-mail e senha**.
 2. O site deve abrir `dashboard.html?tab=profile`.
 3. Complete os campos do perfil.
-4. Confirme o **e-mail** ou o **telefone**.
-5. Para telefone, digite o WhatsApp, clique em **Enviar código**, receba o SMS e confirme.
-6. Escolha uma foto em JPG, PNG ou WEBP.
-7. Clique em **Salvar perfil**.
-8. O site deve voltar para a aba **Início**.
-9. A aba inicial deve mostrar o desconto de **20% na primeira compra**.
-10. Volte para `index.html`.
-11. No canto do menu, o ícone de login deve virar a foto ou iniciais da pessoa.
-12. Clique na foto e confira o menu: **Ver perfil**, **Compras feitas**, **Minha área** e **Sair da conta**.
-13. Abra **dashboard.html?tab=referrals** e copie o link de indicação.
-14. Crie outra conta usando `registrar.html?ref=CODIGO`.
-15. Volte para a página inicial e faça o diagnóstico de plano.
-16. Clique em **Completar briefing** e envie o formulário.
-17. O pedido deve aparecer em **dashboard.html?tab=purchases**.
-18. Na sua conta admin, abra a aba **Admin** para ver pedidos, comissões, parcerias e chats.
-19. No Firebase, vá em **Firestore Database** > **Dados** e confira `usuarios`, `pedidos`, `parcerias` e `conversas`.
+4. Escolha uma foto em JPG, PNG ou WEBP.
+5. Clique em **Salvar perfil**.
+6. O site deve voltar para a página inicial.
+7. A área da conta deve mostrar o desconto de **20% na primeira compra**.
+8. Volte para `index.html`.
+9. No canto do menu, o ícone de login deve virar a foto ou iniciais da pessoa.
+10. Clique na foto e confira o menu: **Ver perfil**, **Compras feitas**, **Minha área** e **Sair da conta**.
+11. Abra **dashboard.html?tab=referrals** e copie o link de indicação.
+12. Crie outra conta usando `registrar.html?ref=CODIGO`.
+13. Volte para a página inicial e faça o diagnóstico de plano.
+14. Clique em **Completar briefing** e envie o formulário.
+15. O pedido deve aparecer em **dashboard.html?tab=purchases**.
+16. Na sua conta admin, abra a aba **Admin** para ver pedidos, comissões, parcerias e chats.
+17. No Firebase, vá em **Firestore Database** > **Dados** e confira `usuarios`, `pedidos`, `parcerias` e `conversas`.
 
 ## Erros comuns
 
-- `auth/operation-not-allowed`: Google, Email/Senha ou Telefone ainda não foi ativado em **Authentication** > **Método de login**.
-- `auth/invalid-phone-number`: digite o telefone com DDD. Exemplo: `(16) 99999-9999`.
-- `auth/captcha-check-failed`: o reCAPTCHA do telefone falhou. Confira domínio autorizado e tente de novo.
+- `auth/operation-not-allowed`: Google ou Email/Senha ainda não foi ativado em **Authentication** > **Método de login**.
 - `auth/unauthorized-domain`: o domínio usado para abrir o site não está em **Authentication** > **Configurações** > **Domínios autorizados**.
 - `permission-denied`: as regras do **Cloud Firestore** não foram publicadas ou você publicou as regras na tela errada.
 - Se a foto não salvar, escolha uma imagem menor em JPG, PNG ou WEBP. O site reduz a imagem antes de salvar no Firestore.

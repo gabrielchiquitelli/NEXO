@@ -98,47 +98,9 @@
             <div class="account-panel" data-tab-panel="profile" id="panel-profile" role="tabpanel" hidden>
                 <span class="eyebrow">Perfil</span>
                 <h1>Seus dados</h1>
-                <p class="lead">Complete as informações que a Nexo vai usar no atendimento. Para salvar, confirme pelo menos o e-mail ou o telefone.</p>
+                <p class="lead">Complete as informações que a Nexo vai usar no atendimento. Depois de salvar, você volta direto para a página inicial.</p>
 
                 <form id="profile-form" class="profile-form">
-                    <section class="verification-panel" aria-labelledby="verification-title">
-                        <div>
-                            <span class="card-kicker">Contato verificado</span>
-                            <h2 id="verification-title">Confirme e-mail ou telefone</h2>
-                            <p>Isso ajuda a evitar cadastro falso e deixa seu atendimento mais seguro.</p>
-                        </div>
-
-                        <div class="verification-grid">
-                            <article class="verification-card">
-                                <div>
-                                    <span data-email-verification-badge>Pendente</span>
-                                    <strong>E-mail</strong>
-                                    <p data-email-verification-text>Confira se seu e-mail já foi confirmado.</p>
-                                </div>
-                                <div class="verification-actions">
-                                    <button type="button" class="btn btn-outline" data-send-email-verification>Enviar verificação</button>
-                                    <button type="button" class="btn btn-outline" data-refresh-verification>Já confirmei</button>
-                                </div>
-                            </article>
-
-                            <article class="verification-card">
-                                <div>
-                                    <span data-phone-verification-badge>Pendente</span>
-                                    <strong>Telefone</strong>
-                                    <p data-phone-verification-text>Digite seu WhatsApp abaixo e receba um código por SMS.</p>
-                                </div>
-                                <div class="verification-actions">
-                                    <button type="button" class="btn btn-outline" data-send-phone-code>Enviar código</button>
-                                    <div class="phone-code-row">
-                                        <input type="text" id="profile-phone-code" inputmode="numeric" autocomplete="one-time-code" placeholder="Código recebido">
-                                        <button type="button" class="btn btn-primary" data-confirm-phone-code>Confirmar</button>
-                                    </div>
-                                    <div id="profile-recaptcha-container"></div>
-                                </div>
-                            </article>
-                        </div>
-                    </section>
-
                     <div class="profile-photo-row">
                         <div class="profile-avatar profile-avatar-large">
                             <img src="" alt="Foto do perfil" data-profile-avatar hidden>
@@ -317,9 +279,15 @@
                     </section>
 
                     <section class="admin-block">
-                        <div class="admin-block-head">
-                            <h2>Chat do site</h2>
-                            <span data-admin-chat-status>Selecione uma conversa</span>
+                        <div class="admin-block-head admin-chat-headline">
+                            <div>
+                                <h2>Chat do site</h2>
+                                <span>Responda clientes e gerencie conversas do atendimento.</span>
+                            </div>
+                            <div class="admin-chat-tools">
+                                <span data-admin-chat-status>Selecione uma conversa</span>
+                                <button type="button" class="btn btn-outline admin-danger-button" data-delete-conversation disabled>Excluir conversa</button>
+                            </div>
                         </div>
                         <div class="admin-chat-layout">
                             <div class="admin-list admin-chat-list" data-admin-conversations></div>

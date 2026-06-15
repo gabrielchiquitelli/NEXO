@@ -44,8 +44,15 @@ function createAccessibilityPanel() {
     const wrapper = document.createElement('div');
     wrapper.className = 'accessibility-widget';
     wrapper.innerHTML = `
-        <button type="button" class="accessibility-trigger" aria-expanded="false" aria-controls="accessibility-panel">
-            Acessibilidade
+        <button type="button" class="accessibility-trigger" aria-expanded="false" aria-controls="accessibility-panel" aria-label="Abrir opções de acessibilidade" title="Acessibilidade">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="4" r="2"></circle>
+                <path d="M5 8h14"></path>
+                <path d="M12 8v5"></path>
+                <path d="m8 21 4-8 4 8"></path>
+                <path d="M8 12h8"></path>
+            </svg>
+            <span class="visually-hidden">Acessibilidade</span>
         </button>
         <section class="accessibility-panel" id="accessibility-panel" aria-label="Opções de acessibilidade" hidden>
             <div>
@@ -76,12 +83,24 @@ function setupAccessibilityPanel() {
     applyAccessibilityPrefs(prefs);
     updateAccessibilityButtons(panel, prefs);
 
+    function closePanel(restoreFocus = false) {
+        panel.hidden = true;
+        trigger.setAttribute('aria-expanded', 'false');
+        if (restoreFocus) trigger.focus();
+    }
+
     trigger.addEventListener('click', () => {
         const isOpen = panel.hidden;
+
+        if (isOpen) {
+            document.dispatchEvent(new CustomEvent('nexo:close-chat'));
+        }
 
         panel.hidden = !isOpen;
         trigger.setAttribute('aria-expanded', String(isOpen));
     });
+
+    document.addEventListener('nexo:close-accessibility', () => closePanel(false));
 
     panel.querySelectorAll('[data-a11y-toggle]').forEach(button => {
         button.addEventListener('click', () => {
@@ -104,9 +123,7 @@ function setupAccessibilityPanel() {
 
     document.addEventListener('keydown', event => {
         if (event.key === 'Escape' && !panel.hidden) {
-            panel.hidden = true;
-            trigger.setAttribute('aria-expanded', 'false');
-            trigger.focus();
+            closePanel(true);
         }
     });
 }

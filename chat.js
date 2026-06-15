@@ -38,8 +38,13 @@ function createChatWidget() {
   widget.className = "site-chat-widget";
   widget.dataset.siteChat = "true";
   widget.innerHTML = `
-    <button type="button" class="site-chat-trigger" data-chat-toggle aria-expanded="false" aria-controls="site-chat-panel">
-      Chat
+    <button type="button" class="site-chat-trigger" data-chat-toggle aria-expanded="false" aria-controls="site-chat-panel" aria-label="Abrir chat" title="Chat">
+      <svg aria-hidden="true" viewBox="0 0 24 24">
+        <path d="M21 12a8.5 8.5 0 0 1-9 8.45 9.5 9.5 0 0 1-4.2-.98L3 20l1.3-3.7A8.1 8.1 0 0 1 3 12a8.5 8.5 0 0 1 9-8.45A8.5 8.5 0 0 1 21 12Z"></path>
+        <path d="M8 11.5h8"></path>
+        <path d="M8 15h5"></path>
+      </svg>
+      <span class="visually-hidden">Abrir chat</span>
     </button>
     <section class="site-chat-panel" id="site-chat-panel" aria-label="Chat Nexo Digital" hidden>
       <header class="site-chat-head">
@@ -85,6 +90,10 @@ function getElements() {
 function setChatOpen(open) {
   const { trigger, panel, input } = getElements();
   if (!trigger || !panel) return;
+
+  if (open) {
+    document.dispatchEvent(new CustomEvent("nexo:close-accessibility"));
+  }
 
   chatIsOpen = open;
   panel.hidden = !open;
@@ -195,6 +204,7 @@ function setupChatEvents() {
 
   trigger?.addEventListener("click", () => setChatOpen(!chatIsOpen));
   close?.addEventListener("click", () => setChatOpen(false));
+  document.addEventListener("nexo:close-chat", () => setChatOpen(false));
 
   panel?.addEventListener("keydown", event => {
     if (event.key === "Escape") {
