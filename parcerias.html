@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcerias Nexo Digital: indique clientes, ganhe comissão ou candidate-se para ajudar em projetos digitais.">
+    <title>Parcerias | Nexo Digital</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteudo principal</a>
+    <div class="site-shell">
+        <div class="announcement">
+            <span>Indique clientes ou trabalhe em projetos com a Nexo.</span>
+            <a href="#formulario-parceria">Quero participar</a>
+        </div>
+
+        <nav class="nav" id="navbar" aria-label="Menu principal">
+            <a href="index.html" class="brand" aria-label="Nexo Digital">
+                <img src="logo.png" alt="Nexo Digital">
+                <span>Nexo Digital</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="pacotes.html">Planos</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="parcerias.html" class="active" aria-current="page">Parcerias</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="nav-login" aria-label="Área do cliente">
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M12 12C14.2 12 16 10.2 16 8C16 5.8 14.2 4 12 4C9.8 4 8 5.8 8 8C8 10.2 9.8 12 12 12Z" stroke="white" stroke-width="1.6"/>
+                        <path d="M6 21V19C6 16.8 7.8 15 10 15H14C16.2 15 18 16.8 18 19V21" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Abrir menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+        <main id="main-content" tabindex="-1">
+            <section class="page-hero">
+                <span class="eyebrow">Trabalhe conosco</span>
+                <h1>Parcerias simples, claras e organizadas.</h1>
+                <p class="lead">Você pode indicar clientes para a Nexo e ganhar comissão, ou se cadastrar para ajudar em projetos de site, design, conteúdo, atendimento e organização.</p>
+                <div class="hero-actions">
+                    <a href="registrar.html" class="btn btn-primary">Criar conta</a>
+                    <a href="#formulario-parceria" class="btn btn-outline">Enviar interesse</a>
+                </div>
+            </section>
+
+            <section class="section section-tight">
+                <div class="grid-3">
+                    <article class="card">
+                        <span class="card-kicker">Indicação</span>
+                        <h3>Ganhe por cliente indicado</h3>
+                        <p>Crie sua conta, compartilhe seu código e acompanhe quando o indicado enviar um pedido pelo site.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">Projetos</span>
+                        <h3>Ajude em entregas</h3>
+                        <p>Se você trabalha com design, sites, textos, tráfego, social media ou atendimento, envie seu perfil para análise.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">Organização</span>
+                        <h3>Tudo no painel</h3>
+                        <p>As indicações e candidaturas ficam registradas na área admin para ninguém se perder no processo.</p>
+                    </article>
+                </div>
+            </section>
+
+            <div class="paper-band">
+                <section class="section">
+                    <div class="section-head">
+                        <h2>Como funciona a indicação?</h2>
+                        <p>O cliente informa seu código ou cria conta pelo seu link. Se o projeto for aprovado, a comissão fica registrada para conferência.</p>
+                    </div>
+                    <div class="grid-4">
+                        <article class="step-card">
+                            <span class="step-number">01</span>
+                            <h3>Crie conta</h3>
+                            <p>Seu código aparece na aba Indicações dentro da área do cliente.</p>
+                        </article>
+                        <article class="step-card">
+                            <span class="step-number">02</span>
+                            <h3>Envie o link</h3>
+                            <p>A pessoa entra pelo seu link ou informa seu código no cadastro.</p>
+                        </article>
+                        <article class="step-card">
+                            <span class="step-number">03</span>
+                            <h3>Pedido enviado</h3>
+                            <p>Quando ela preencher o briefing, a indicação aparece no pedido.</p>
+                        </article>
+                        <article class="step-card">
+                            <span class="step-number">04</span>
+                            <h3>Comissão</h3>
+                            <p>A comissão padrão é de 10% sobre o projeto fechado, conferida pela Nexo.</p>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <section class="section" id="formulario-parceria">
+                <div class="diagnostic">
+                    <div>
+                        <span class="eyebrow">Participar</span>
+                        <h2>Envie seu interesse.</h2>
+                        <p class="lead">Use este formulário para avisar que quer indicar clientes ou ajudar em projetos. Para enviar, entre na sua conta.</p>
+                    </div>
+
+                    <form class="form-panel" id="partner-form">
+                        <div class="auth-status" data-partner-status role="status" aria-live="polite">Entre na sua conta para enviar uma parceria.</div>
+
+                        <div class="field">
+                            <label for="partner-type">Quero participar como</label>
+                            <select id="partner-type" required>
+                                <option value="">Selecione</option>
+                                <option value="indicador">Indicador de clientes</option>
+                                <option value="colaborador">Pessoa para ajudar em projetos</option>
+                                <option value="ambos">Os dois</option>
+                            </select>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="partner-name">Nome</label>
+                                <input type="text" id="partner-name" placeholder="Seu nome" required>
+                            </div>
+                            <div class="field">
+                                <label for="partner-whatsapp">WhatsApp</label>
+                                <input type="tel" id="partner-whatsapp" placeholder="(00) 00000-0000" required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="partner-area">Área ou perfil</label>
+                            <select id="partner-area" required>
+                                <option value="">Selecione</option>
+                                <option value="indicacao">Tenho pessoas para indicar</option>
+                                <option value="design">Design / identidade visual</option>
+                                <option value="site">Sites / desenvolvimento</option>
+                                <option value="conteudo">Conteúdo / social media</option>
+                                <option value="trafego">Tráfego pago</option>
+                                <option value="atendimento">Atendimento / organização</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="partner-portfolio">Instagram, site ou portfólio</label>
+                            <input type="text" id="partner-portfolio" placeholder="@perfil ou link">
+                        </div>
+
+                        <div class="field">
+                            <label for="partner-message">Conte rapidamente como quer ajudar</label>
+                            <textarea id="partner-message" rows="5" placeholder="Ex: conheço comerciantes da minha cidade, faço artes para Instagram, desenvolvo sites..." required></textarea>
+                        </div>
+
+                        <div class="briefing-actions">
+                            <button type="submit" class="btn btn-primary">Enviar interesse</button>
+                            <a href="registrar.html?next=parcerias.html" class="btn btn-outline" data-partner-auth-link>Criar conta</a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <img src="logo.png" alt="Nexo Digital" class="footer-logo">
+                <p>Sites, marcas e marketing para empresas que querem parecer confiáveis, explicar melhor sua oferta e atrair clientes.</p>
+            </div>
+            <div>
+                <h3>Explorar</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="pacotes.html">Planos</a></li>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="parcerias.html">Parcerias</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Conta</h3>
+                <ul>
+                    <li><a href="registrar.html">Criar conta</a></li>
+                    <li><a href="login.html">Entrar</a></li>
+                    <li><a href="dashboard.html?tab=referrals">Minhas indicações</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Nexo Digital. Todos os direitos reservados.</p>
+            <p>Parcerias com registro no painel.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="accessibility.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="chat.js"></script>
+    <script type="module" src="parcerias.js"></script>
+</body>
+</html>

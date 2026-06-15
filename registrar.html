@@ -21,10 +21,29 @@
             <div class="auth-copy">
                 <span class="eyebrow">Primeiro acesso</span>
                 <h1>Criar sua conta</h1>
-                <p class="lead">Cadastre com Google ou com e-mail e senha. Depois você completa seu perfil e ativa o desconto de boas-vindas.</p>
+                <p class="lead">Cadastre com Google ou com e-mail e senha. Depois confirme e-mail ou telefone, complete seu perfil e ative o desconto de boas-vindas.</p>
             </div>
 
             <div class="auth-status" data-auth-status role="status" aria-live="polite">Escolha como quer criar seu acesso.</div>
+
+            <div class="auth-form auth-source-box">
+                <div class="field">
+                    <label for="register-source">Como você conheceu a Nexo?</label>
+                    <select id="register-source" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="google">Google</option>
+                        <option value="whatsapp">WhatsApp</option>
+                        <option value="indicacao">Indicação de alguém</option>
+                        <option value="site">Site da Nexo</option>
+                        <option value="outro">Outro lugar</option>
+                    </select>
+                </div>
+                <div class="field" data-register-referrer-field hidden>
+                    <label for="register-referrer">Quem indicou?</label>
+                    <input type="text" id="register-referrer" placeholder="Nome, e-mail ou código de indicação">
+                </div>
+            </div>
 
             <button type="button" class="btn btn-primary auth-google-button" data-google-access>
                 Criar acesso com Google

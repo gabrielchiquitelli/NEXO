@@ -1,5 +1,8 @@
 import { auth, db } from "./firebase-config.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import {
+  onAuthStateChanged,
+  reload
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
 import {
   addDoc,
   collection,
@@ -13,6 +16,7 @@ const ORDERS_COLLECTION = "pedidos";
 const USERS_COLLECTION = "usuarios";
 const DRAFT_KEY = "nexo-briefing-draft";
 const FIRST_PURCHASE_DISCOUNT = 20;
+const REFERRAL_COMMISSION_PERCENT = 10;
 
 const planDetails = {
   "site-simples": {
@@ -151,6 +155,21 @@ function collectBriefingData(user) {
   };
 }
 
+function createReferralCommission(profile = {}) {
+  const referrer = profile.indicadoPor || profile.indicadoPorCodigo || "";
+
+  if (profile.origemConhecimento !== "indicacao" || !referrer) {
+    return null;
+  }
+
+  return {
+    indicador: referrer,
+    codigo: profile.indicadoPorCodigo || referrer,
+    percentual: profile.percentualComissaoIndicacao || REFERRAL_COMMISSION_PERCENT,
+    status: "pendente"
+  };
+}
+
 function saveDraft() {
   if (!form) return;
 
@@ -219,10 +238,17 @@ async function prefillFromProfile(user) {
 }
 
 async function saveOrder(user) {
+  const userSnapshot = await getDoc(doc(db, USERS_COLLECTION, user.uid));
+  const profile = userSnapshot.exists() ? userSnapshot.data() : {};
   const briefing = collectBriefingData(user);
+  const comissaoIndicacao = createReferralCommission(profile);
 
   const orderRef = await addDoc(collection(db, ORDERS_COLLECTION), {
     ...briefing,
+    origemConhecimento: profile.origemConhecimento || "",
+    indicadoPor: profile.indicadoPor || profile.indicadoPorCodigo || "",
+    codigoIndicacaoCliente: profile.codigoIndicacao || "",
+    comissaoIndicacao,
     criadoEm: serverTimestamp(),
     atualizadoEm: serverTimestamp()
   });
@@ -239,6 +265,16 @@ async function saveOrder(user) {
 
   localStorage.removeItem(DRAFT_KEY);
   return orderRef.id;
+}
+
+async function hasVerifiedContact(user) {
+  await reload(user);
+  await user.getIdToken(true);
+
+  const snapshot = await getDoc(doc(db, USERS_COLLECTION, user.uid));
+  const profile = snapshot.exists() ? snapshot.data() : {};
+
+  return Boolean(user.emailVerified || profile.emailVerificado || profile.telefoneVerificado);
 }
 
 function redirectToRegister() {
@@ -278,6 +314,16 @@ function setupBriefing() {
     }
 
     try {
+      const verifiedContact = await hasVerifiedContact(currentUser);
+
+      if (!verifiedContact) {
+        setStatus("Confirme seu e-mail ou telefone no perfil antes de enviar o pedido.", "error");
+        window.setTimeout(() => {
+          window.location.href = "dashboard.html?tab=profile";
+        }, 1200);
+        return;
+      }
+
       setStatus("Salvando seu pedido no painel da Nexo...");
       await saveOrder(currentUser);
       setStatus("Pedido salvo. Abrindo sua área do cliente...", "success");

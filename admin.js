@@ -18,10 +18,12 @@ import {
 const USERS_COLLECTION = "usuarios";
 const ORDERS_COLLECTION = "pedidos";
 const CHATS_COLLECTION = "conversas";
+const PARTNERS_COLLECTION = "parcerias";
 
 const adminTab = document.querySelector("[data-admin-only]");
 const ordersList = document.querySelector("[data-admin-orders]");
 const refreshButton = document.querySelector("[data-admin-refresh]");
+const partnersList = document.querySelector("[data-admin-partners]");
 const conversationsList = document.querySelector("[data-admin-conversations]");
 const messagesList = document.querySelector("[data-admin-messages]");
 const chatStatus = document.querySelector("[data-admin-chat-status]");
@@ -76,6 +78,36 @@ function getStatusLabel(status) {
   };
 
   return labels[status] || "Novo pedido";
+}
+
+function getPartnershipStatusLabel(status) {
+  const labels = {
+    novo: "Novo interesse",
+    em_contato: "Em contato",
+    aprovado: "Aprovado",
+    recusado: "Recusado",
+    arquivado: "Arquivado"
+  };
+
+  return labels[status] || "Novo interesse";
+}
+
+function getCommissionStatusLabel(status) {
+  const labels = {
+    pendente: "Comissão pendente",
+    aprovada: "Comissão aprovada",
+    cancelada: "Comissão cancelada",
+    paga: "Comissão paga"
+  };
+
+  return labels[status] || "Comissão pendente";
+}
+
+function getCommissionStatusForOrder(status, currentStatus = "pendente") {
+  if (status === "cancelado") return "cancelada";
+  if (["aprovado", "em_producao", "concluido"].includes(status)) return "aprovada";
+
+  return currentStatus || "pendente";
 }
 
 function selectDashboardTab(target) {
@@ -147,6 +179,8 @@ async function loadOrders() {
           <div><dt>Prazo</dt><dd>${escapeHtml(order.prazo || "Não informado")}</dd></div>
           <div><dt>Referência</dt><dd>${escapeHtml(order.referencia || "Não informado")}</dd></div>
           <div><dt>Observações</dt><dd>${escapeHtml(order.observacoes || "Nenhuma observação")}</dd></div>
+          <div><dt>Origem</dt><dd>${escapeHtml(order.origemConhecimento || "Não informado")}${order.indicadoPor ? ` · Indicado por ${escapeHtml(order.indicadoPor)}` : ""}</dd></div>
+          <div><dt>Comissão</dt><dd>${order.comissaoIndicacao ? `${escapeHtml(order.comissaoIndicacao.indicador || "Indicador")} · ${escapeHtml(String(order.comissaoIndicacao.percentual || 10))}% · ${escapeHtml(getCommissionStatusLabel(order.comissaoIndicacao.status))}` : "Sem comissão"}</dd></div>
         </dl>
       </article>
     `).join("");
@@ -158,10 +192,17 @@ async function loadOrders() {
 
       select?.addEventListener("change", async () => {
         select.disabled = true;
-        await updateDoc(doc(db, ORDERS_COLLECTION, orderId), {
+        const order = orders.find(item => item.id === orderId);
+        const updateData = {
           status: select.value,
           atualizadoEm: serverTimestamp()
-        });
+        };
+
+        if (order?.comissaoIndicacao) {
+          updateData["comissaoIndicacao.status"] = getCommissionStatusForOrder(select.value, order.comissaoIndicacao.status);
+        }
+
+        await updateDoc(doc(db, ORDERS_COLLECTION, orderId), updateData);
         select.disabled = false;
       });
 
@@ -178,6 +219,79 @@ async function loadOrders() {
   } catch (error) {
     console.error(error);
     renderEmpty(ordersList, "Não foi possível carregar os pedidos.", "Confira se sua conta está com cargo admin e se as regras do Cloud Firestore foram publicadas.");
+  }
+}
+
+async function loadPartnerships() {
+  if (!partnersList) return;
+
+  renderEmpty(partnersList, "Carregando parcerias...", "Buscando indicações e candidaturas enviadas pelo site.");
+
+  try {
+    const snapshot = await getDocs(collection(db, PARTNERS_COLLECTION));
+    const partnerships = snapshot.docs
+      .map(item => ({ id: item.id, ...item.data() }))
+      .sort((a, b) => getDateTimeValue(b.criadoEm) - getDateTimeValue(a.criadoEm));
+
+    if (!partnerships.length) {
+      renderEmpty(partnersList, "Nenhuma parceria enviada ainda.", "Quando alguém preencher a página Parcerias, aparece aqui.");
+      return;
+    }
+
+    partnersList.innerHTML = partnerships.map(partner => `
+      <article class="admin-order-card" data-partner-id="${escapeHtml(partner.id)}">
+        <div class="admin-order-top">
+          <div>
+            <span>${escapeHtml(getPartnershipStatusLabel(partner.status))}</span>
+            <h3>${escapeHtml(partner.nome || "Parceiro Nexo")}</h3>
+            <p>${escapeHtml(partner.tipo || "Tipo não informado")} · ${escapeHtml(partner.area || "Área não informada")}</p>
+          </div>
+          <div class="admin-order-actions">
+            <select aria-label="Alterar status da parceria">
+              ${["novo", "em_contato", "aprovado", "recusado", "arquivado"].map(status => `
+                <option value="${status}" ${status === (partner.status || "novo") ? "selected" : ""}>${escapeHtml(getPartnershipStatusLabel(status))}</option>
+              `).join("")}
+            </select>
+            <button type="button" class="btn btn-outline admin-danger-button" data-delete-partner>Excluir</button>
+          </div>
+        </div>
+        <dl class="admin-order-details">
+          <div><dt>Contato</dt><dd>${escapeHtml(partner.email || "Sem e-mail")} · ${escapeHtml(partner.whatsapp || "Sem WhatsApp")}</dd></div>
+          <div><dt>Código</dt><dd>${escapeHtml(partner.codigoIndicacao || "Sem código")}</dd></div>
+          <div><dt>Portfólio</dt><dd>${escapeHtml(partner.portfolio || "Não informado")}</dd></div>
+          <div><dt>Enviado</dt><dd>${escapeHtml(getDateTimeLabel(partner.criadoEm))}</dd></div>
+          <div><dt>Mensagem</dt><dd>${escapeHtml(partner.mensagem || "Sem mensagem")}</dd></div>
+        </dl>
+      </article>
+    `).join("");
+
+    partnersList.querySelectorAll(".admin-order-card").forEach(card => {
+      const select = card.querySelector("select");
+      const deleteButton = card.querySelector("[data-delete-partner]");
+      const partnerId = card.dataset.partnerId;
+
+      select?.addEventListener("change", async () => {
+        select.disabled = true;
+        await updateDoc(doc(db, PARTNERS_COLLECTION, partnerId), {
+          status: select.value,
+          atualizadoEm: serverTimestamp()
+        });
+        select.disabled = false;
+      });
+
+      deleteButton?.addEventListener("click", async () => {
+        const confirmed = window.confirm("Excluir esta parceria/candidatura do painel?");
+        if (!confirmed) return;
+
+        deleteButton.disabled = true;
+        deleteButton.textContent = "Excluindo...";
+        await deleteDoc(doc(db, PARTNERS_COLLECTION, partnerId));
+        await loadPartnerships();
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    renderEmpty(partnersList, "Não foi possível carregar parcerias.", "Confira se sua conta está com cargo admin e se as regras do Cloud Firestore foram publicadas.");
   }
 }
 
@@ -309,7 +423,10 @@ function setupAdmin() {
   if (!adminTab) return;
 
   setupAdminChatForm();
-  refreshButton?.addEventListener("click", loadOrders);
+  refreshButton?.addEventListener("click", async () => {
+    await loadOrders();
+    await loadPartnerships();
+  });
 
   onAuthStateChanged(auth, async user => {
     currentAdmin = user;
@@ -328,6 +445,7 @@ function setupAdmin() {
 
       showAdminArea();
       await loadOrders();
+      await loadPartnerships();
       startConversationListener();
     } catch (error) {
       console.error(error);

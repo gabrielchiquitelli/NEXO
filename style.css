@@ -163,7 +163,7 @@ textarea {
 
 .nav-links a {
     display: block;
-    padding: 10px 12px;
+    padding: 10px 10px;
     border-radius: 8px;
     color: var(--muted);
     font-size: 13px;
@@ -1061,6 +1061,10 @@ textarea {
     display: grid;
 }
 
+.auth-source-box {
+    margin-bottom: 18px;
+}
+
 .form-grid-tight {
     gap: 10px;
 }
@@ -1236,7 +1240,7 @@ textarea {
 
 .account-summary-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 12px;
     margin: 30px 0;
 }
@@ -1250,11 +1254,103 @@ textarea {
     margin-top: 28px;
 }
 
+.verification-panel {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 26px;
+    padding: 22px;
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.verification-panel h2 {
+    color: var(--ink);
+    font-size: 26px;
+    line-height: 1.12;
+}
+
+.verification-panel p,
+.field-help {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.verification-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.verification-card {
+    display: grid;
+    gap: 16px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.verification-card span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 6px 9px;
+    background: #fff7ed;
+    border: 1px solid #fed7aa;
+    border-radius: 999px;
+    color: #c2410c;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.verification-card span[data-verified="true"] {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+    color: var(--green);
+}
+
+.verification-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--ink);
+    font-size: 18px;
+}
+
+.verification-actions {
+    display: grid;
+    gap: 10px;
+    align-content: end;
+}
+
+.phone-code-row,
+.profile-upload-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.phone-code-row input {
+    min-width: 160px;
+    flex: 1;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    color: var(--ink);
+}
+
 .profile-photo-row {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
     margin-bottom: 18px;
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
 }
 
 .profile-photo-row .field {
@@ -1265,6 +1361,20 @@ textarea {
 .profile-photo-button {
     width: fit-content;
     margin-top: 10px;
+}
+
+.profile-upload-actions .profile-photo-button {
+    margin-top: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 .purchases-list {
@@ -1448,6 +1558,56 @@ textarea {
 .purchase-cancel-button {
     width: fit-content;
     margin-top: 8px;
+}
+
+.referral-panel {
+    margin-top: 28px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.72fr) minmax(280px, 1fr);
+    gap: 18px;
+    align-items: center;
+    background: var(--blue-soft);
+    border: 1px solid rgba(37, 99, 235, 0.18);
+    border-radius: 8px;
+}
+
+.referral-panel strong {
+    display: block;
+    color: var(--ink);
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1;
+}
+
+.referral-panel p {
+    margin-top: 10px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+}
+
+.referral-link-box {
+    display: grid;
+    gap: 10px;
+}
+
+.referral-link-box label {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.referral-link-box input {
+    min-width: 0;
+    width: 100%;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    color: var(--ink-soft);
+}
+
+.referral-rules {
+    margin-top: 18px;
 }
 
 .admin-grid {
@@ -2003,6 +2163,8 @@ html.a11y-reduce-motion *::after {
     .team-grid,
     .form-grid,
     .choice-grid,
+    .referral-panel,
+    .verification-grid,
     .account-summary-grid,
     .admin-order-details {
         grid-template-columns: 1fr;
@@ -2069,6 +2231,10 @@ html.a11y-reduce-motion *::after {
 
     .account-topbar-actions,
     .account-topbar-actions .btn,
+    .phone-code-row,
+    .phone-code-row .btn,
+    .profile-upload-actions,
+    .profile-upload-actions .btn,
     .auth-submit-button {
         width: 100%;
     }

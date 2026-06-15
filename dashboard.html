@@ -47,6 +47,7 @@
                 <button type="button" class="account-tab active" data-tab-target="overview" role="tab" aria-controls="panel-overview" aria-selected="true">Início</button>
                 <button type="button" class="account-tab" data-tab-target="profile" role="tab" aria-controls="panel-profile" aria-selected="false">Perfil</button>
                 <button type="button" class="account-tab" data-tab-target="purchases" role="tab" aria-controls="panel-purchases" aria-selected="false">Compras</button>
+                <button type="button" class="account-tab" data-tab-target="referrals" role="tab" aria-controls="panel-referrals" aria-selected="false">Indicações</button>
                 <button type="button" class="account-tab" data-tab-target="admin" data-admin-only role="tab" aria-controls="panel-admin" aria-selected="false" hidden>Admin</button>
             </nav>
         </aside>
@@ -81,29 +82,77 @@
                         <span>Benefício</span>
                         <strong><span data-discount-percent>20%</span> primeira compra</strong>
                     </article>
+                    <article class="account-summary-card">
+                        <span>Seu código</span>
+                        <strong data-referral-code>NEXO</strong>
+                    </article>
                 </div>
 
                 <div class="quick-actions">
                     <button type="button" class="btn btn-primary" data-tab-target="profile">Editar perfil</button>
                     <button type="button" class="btn btn-outline" data-tab-target="purchases">Ver compras</button>
+                    <button type="button" class="btn btn-outline" data-tab-target="referrals">Ver indicações</button>
                 </div>
             </div>
 
             <div class="account-panel" data-tab-panel="profile" id="panel-profile" role="tabpanel" hidden>
                 <span class="eyebrow">Perfil</span>
                 <h1>Seus dados</h1>
-                <p class="lead">Complete as informações que a Nexo vai usar para organizar seu atendimento e entender melhor o projeto.</p>
+                <p class="lead">Complete as informações que a Nexo vai usar no atendimento. Para salvar, confirme pelo menos o e-mail ou o telefone.</p>
 
                 <form id="profile-form" class="profile-form">
+                    <section class="verification-panel" aria-labelledby="verification-title">
+                        <div>
+                            <span class="card-kicker">Contato verificado</span>
+                            <h2 id="verification-title">Confirme e-mail ou telefone</h2>
+                            <p>Isso ajuda a evitar cadastro falso e deixa seu atendimento mais seguro.</p>
+                        </div>
+
+                        <div class="verification-grid">
+                            <article class="verification-card">
+                                <div>
+                                    <span data-email-verification-badge>Pendente</span>
+                                    <strong>E-mail</strong>
+                                    <p data-email-verification-text>Confira se seu e-mail já foi confirmado.</p>
+                                </div>
+                                <div class="verification-actions">
+                                    <button type="button" class="btn btn-outline" data-send-email-verification>Enviar verificação</button>
+                                    <button type="button" class="btn btn-outline" data-refresh-verification>Já confirmei</button>
+                                </div>
+                            </article>
+
+                            <article class="verification-card">
+                                <div>
+                                    <span data-phone-verification-badge>Pendente</span>
+                                    <strong>Telefone</strong>
+                                    <p data-phone-verification-text>Digite seu WhatsApp abaixo e receba um código por SMS.</p>
+                                </div>
+                                <div class="verification-actions">
+                                    <button type="button" class="btn btn-outline" data-send-phone-code>Enviar código</button>
+                                    <div class="phone-code-row">
+                                        <input type="text" id="profile-phone-code" inputmode="numeric" autocomplete="one-time-code" placeholder="Código recebido">
+                                        <button type="button" class="btn btn-primary" data-confirm-phone-code>Confirmar</button>
+                                    </div>
+                                    <div id="profile-recaptcha-container"></div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
                     <div class="profile-photo-row">
                         <div class="profile-avatar profile-avatar-large">
                             <img src="" alt="Foto do perfil" data-profile-avatar hidden>
                             <span data-profile-initials>ND</span>
                         </div>
                         <div class="field">
-                            <label for="profile-photo">Link da foto</label>
-                            <input type="url" id="profile-photo" placeholder="https://...">
-                            <button type="button" class="btn btn-outline profile-photo-button" data-use-google-photo>Usar foto do Google</button>
+                            <label for="profile-photo-file">Foto do perfil</label>
+                            <input type="hidden" id="profile-photo">
+                            <input type="file" id="profile-photo-file" accept="image/png,image/jpeg,image/webp" class="visually-hidden">
+                            <div class="profile-upload-actions">
+                                <label for="profile-photo-file" class="btn btn-outline profile-photo-button">Escolher foto</label>
+                                <button type="button" class="btn btn-outline profile-photo-button" data-use-google-photo>Usar foto do Google</button>
+                            </div>
+                            <span class="field-help" data-profile-photo-name>PNG, JPG ou WEBP até 3 MB. O site reduz a imagem para foto de perfil.</span>
                         </div>
                     </div>
 
@@ -161,6 +210,26 @@
                         </select>
                     </div>
 
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="profile-source">Como conheceu a Nexo?</label>
+                            <select id="profile-source">
+                                <option value="">Selecione uma opção</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="google">Google</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="indicacao">Indicação de alguém</option>
+                                <option value="site">Site da Nexo</option>
+                                <option value="parceria">Parceria</option>
+                                <option value="outro">Outro lugar</option>
+                            </select>
+                        </div>
+                        <div class="field" data-profile-referrer-field hidden>
+                            <label for="profile-referrer">Quem indicou?</label>
+                            <input type="text" id="profile-referrer" placeholder="Nome, e-mail ou código de indicação">
+                        </div>
+                    </div>
+
                     <div class="field">
                         <label for="profile-notes">Observações</label>
                         <textarea id="profile-notes" rows="5" placeholder="Conte o que você quer melhorar, vender ou organizar."></textarea>
@@ -178,6 +247,43 @@
                 <div class="purchases-list" data-purchases-list></div>
             </div>
 
+            <div class="account-panel" data-tab-panel="referrals" id="panel-referrals" role="tabpanel" hidden>
+                <span class="eyebrow">Indicações</span>
+                <h1>Ganhe indicando clientes</h1>
+                <p class="lead">Compartilhe seu código. Quando alguém criar conta por indicação e fechar um projeto com a Nexo, sua comissão fica registrada para conferência.</p>
+
+                <section class="referral-panel">
+                    <div>
+                        <span class="card-kicker">Seu código</span>
+                        <strong data-referral-code>NEXO</strong>
+                        <p>Comissão padrão: <b data-referral-percent>10%</b> sobre o projeto fechado do cliente indicado.</p>
+                    </div>
+                    <div class="referral-link-box">
+                        <label for="referral-link">Link para enviar</label>
+                        <input type="text" id="referral-link" data-referral-link readonly>
+                        <button type="button" class="btn btn-outline" data-copy-referral>Copiar link</button>
+                    </div>
+                </section>
+
+                <div class="grid-3 referral-rules">
+                    <article class="card">
+                        <span class="card-kicker">01</span>
+                        <h3>Envie o link</h3>
+                        <p>A pessoa cria conta pelo seu link ou informa seu código no cadastro.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">02</span>
+                        <h3>Ela envia um pedido</h3>
+                        <p>Quando o briefing vira pedido, a indicação aparece para o admin no painel.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-kicker">03</span>
+                        <h3>Comissão conferida</h3>
+                        <p>Depois do projeto aprovado, a Nexo confere e combina o pagamento da comissão.</p>
+                    </article>
+                </div>
+            </div>
+
             <div class="account-panel" data-tab-panel="admin" id="panel-admin" role="tabpanel" hidden>
                 <span class="eyebrow">Admin Nexo</span>
                 <h1>Pedidos e conversas</h1>
@@ -193,6 +299,19 @@
                             <div class="empty-state">
                                 <strong>Carregando pedidos...</strong>
                                 <p>Os briefings enviados pelo site aparecem aqui.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="admin-block">
+                        <div class="admin-block-head">
+                            <h2>Parcerias e candidatos</h2>
+                            <span>Indicações e pessoas para ajudar em projetos</span>
+                        </div>
+                        <div class="admin-list" data-admin-partners>
+                            <div class="empty-state">
+                                <strong>Carregando parcerias...</strong>
+                                <p>Os formulários de trabalhe conosco aparecem aqui.</p>
                             </div>
                         </div>
                     </section>
