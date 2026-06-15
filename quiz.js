@@ -1,33 +1,33 @@
 const planRecommendations = {
     presence: {
-        plan: 'Presença Profissional',
-        slug: 'presenca-profissional',
-        reason: 'Você precisa de uma base confiável para apresentar o negócio, explicar a oferta e receber contatos com clareza.'
+        plan: 'Site Simples',
+        slug: 'site-simples',
+        reason: 'Você precisa de uma página direta para apresentar o negócio e receber contatos.'
     },
     brand: {
-        plan: 'Brand Site Premium',
-        slug: 'brand-site-premium',
-        reason: 'Seu momento pede identidade visual forte e um site profissional trabalhando juntos.'
+        plan: 'Marca + Site',
+        slug: 'marca-site',
+        reason: 'Seu momento pede um visual mais profissional e um site simples trabalhando juntos.'
     },
     leads: {
-        plan: 'Máquina de Clientes',
-        slug: 'maquina-de-clientes',
-        reason: 'Você já está pensando em aquisição. O foco deve ser página, campanha e conversão.'
+        plan: 'Página de Venda',
+        slug: 'pagina-venda',
+        reason: 'Você quer divulgar uma oferta específica. Uma página de venda deixa o caminho mais claro.'
     },
     operation: {
-        plan: 'Marketing 360',
-        slug: 'marketing-360',
-        reason: 'Você precisa de rotina, conteúdo, anúncios e melhoria contínua para sustentar crescimento.'
+        plan: 'Presença Mensal',
+        slug: 'presenca-mensal',
+        reason: 'Você precisa de ajuda simples e contínua para manter site, informações e redes mais organizados.'
     },
     store: {
-        plan: 'Loja Virtual Pro',
-        slug: 'loja-virtual-pro',
-        reason: 'Seu projeto precisa de catálogo, produtos e estrutura para vender online.'
+        plan: 'Página de Venda',
+        slug: 'pagina-venda',
+        reason: 'Para vender ou divulgar algo específico, comece com uma página simples e bem direcionada.'
     },
     complete: {
-        plan: 'Operação Digital Completa',
-        slug: 'operacao-digital-completa',
-        reason: 'Seu cenário pede uma estrutura mais ampla, com estratégia, execução e acompanhamento.'
+        plan: 'Presença Mensal',
+        slug: 'presenca-mensal',
+        reason: 'Seu cenário pede acompanhamento simples para manter tudo em dia mês a mês.'
     }
 };
 

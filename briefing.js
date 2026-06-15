@@ -15,53 +15,69 @@ const DRAFT_KEY = "nexo-briefing-draft";
 const FIRST_PURCHASE_DISCOUNT = 20;
 
 const planDetails = {
-  "presenca-profissional": {
-    nome: "Presença Profissional",
-    descricao: "Landing page ou site simples para seu negócio parecer confiável e receber contatos com clareza."
+  "site-simples": {
+    nome: "Site Simples",
+    descricao: "Site de uma página para apresentar seu negócio e receber contatos pelo WhatsApp."
   },
-  "brand-site-premium": {
-    nome: "Brand Site Premium",
-    descricao: "Identidade visual, site profissional e apresentação clara para aumentar percepção de valor."
+  "marca-site": {
+    nome: "Marca + Site",
+    descricao: "Logo simples, cores da marca e site de uma página para começar com aparência profissional."
   },
-  "maquina-de-clientes": {
-    nome: "Máquina de Clientes",
-    descricao: "Página, criativos e campanhas para transformar atenção em oportunidades reais."
+  "pagina-venda": {
+    nome: "Página de Venda",
+    descricao: "Landing page simples para divulgar um produto, serviço, promoção ou campanha."
   },
-  "marketing-360": {
-    nome: "Marketing 360",
-    descricao: "Rotina mensal de conteúdo, anúncios, análise e melhoria contínua da comunicação."
+  "presenca-mensal": {
+    nome: "Presença Mensal",
+    descricao: "Pequenos ajustes, artes simples e suporte básico para manter sua presença organizada."
   },
-  "loja-virtual-pro": {
-    nome: "Loja Virtual Pro",
-    descricao: "Estrutura de loja, catálogo e experiência de compra para vender produtos online."
-  },
-  "operacao-digital-completa": {
-    nome: "Operação Digital Completa",
-    descricao: "Estratégia, execução e acompanhamento para terceirizar boa parte da operação digital."
+  "logo-simples": {
+    nome: "Logo",
+    descricao: "Um logo simples para sua marca começar com aparência mais profissional."
   },
   "site-avulso": {
-    nome: "Site Profissional Avulso",
-    descricao: "Site institucional ou one-page para apresentar a empresa, serviços, provas e caminhos de contato."
-  },
-  "identidade-visual-avulsa": {
-    nome: "Identidade Visual Avulsa",
-    descricao: "Logo, cores, tipografia e direção visual para a marca parecer mais profissional."
+    nome: "Site",
+    descricao: "Site de uma página para apresentar o negócio, contatos, links e redes sociais."
   },
   "landing-page-avulsa": {
-    nome: "Landing Page Avulsa",
-    descricao: "Página focada em campanha, captação de leads, lançamento ou oferta específica."
+    nome: "Landing Page",
+    descricao: "Página simples para uma oferta, promoção, lançamento ou serviço específico."
   },
-  "trafego-pago-avulso": {
-    nome: "Tráfego Pago Avulso",
-    descricao: "Configuração inicial de campanha, público, criativos e ajustes para começar a vender."
+  "artes-instagram": {
+    nome: "Artes para Instagram",
+    descricao: "Artes simples para divulgar seu negócio nas redes sociais."
   },
-  "social-media-avulso": {
-    nome: "Social Media Avulso",
-    descricao: "Peças, calendário e conteúdo para deixar as redes mais organizadas e profissionais."
+  "cartao-digital": {
+    nome: "Cartão Digital",
+    descricao: "Página simples com WhatsApp, endereço, redes sociais e links importantes."
   },
-  "automacao-avulsa": {
-    nome: "Automação Avulsa",
-    descricao: "Fluxos simples para captar leads, organizar respostas e melhorar o atendimento digital."
+  "ajustes-site": {
+    nome: "Ajustes no Site",
+    descricao: "Pequenas alterações em textos, fotos, botões, links ou informações do site."
+  },
+  "link-bio": {
+    nome: "Link da Bio",
+    descricao: "Página simples com botões para WhatsApp, Instagram, catálogo, localização e links importantes."
+  },
+  "cardapio-digital": {
+    nome: "Cardápio Digital",
+    descricao: "Cardápio online simples para restaurante, lanchonete, doceria ou delivery."
+  },
+  "google-meu-negocio": {
+    nome: "Google Meu Negócio",
+    descricao: "Organização do perfil no Google para aparecer melhor em buscas locais."
+  },
+  "banner-digital": {
+    nome: "Banner Digital",
+    descricao: "Arte simples para divulgação de promoção, aviso, evento ou novidade."
+  },
+  "cartao-visita": {
+    nome: "Cartão de Visita",
+    descricao: "Arte para cartão com seus dados principais, pronta para impressão ou envio digital."
+  },
+  "consultoria-rapida": {
+    nome: "Consultoria Rápida",
+    descricao: "Análise simples para entender o que melhorar no site, marca ou redes sociais."
   }
 };
 
@@ -86,13 +102,14 @@ function getExplicitPlanSlug() {
 }
 
 function getSelectedPlanSlug() {
-  return getExplicitPlanSlug() || "brand-site-premium";
+  return getExplicitPlanSlug() || "site-simples";
 }
 
 function updatePlanSummary(slug) {
-  const plan = planDetails[slug] || planDetails["brand-site-premium"];
+  const safeSlug = planDetails[slug] ? slug : "site-simples";
+  const plan = planDetails[safeSlug];
 
-  if (planSelect) planSelect.value = slug;
+  if (planSelect) planSelect.value = safeSlug;
   if (planTitle) planTitle.textContent = plan.nome;
   if (planDescription) planDescription.textContent = plan.descricao;
 }
@@ -108,7 +125,7 @@ function setFieldValue(id, value) {
 
 function collectBriefingData(user) {
   const planSlug = planSelect?.value || getSelectedPlanSlug();
-  const plan = planDetails[planSlug] || planDetails["brand-site-premium"];
+  const plan = planDetails[planSlug] || planDetails["site-simples"];
 
   return {
     userId: user?.uid || "",
