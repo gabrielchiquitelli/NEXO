@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Navalha & Brasa, barbearia premium com cortes, barba, tratamentos e agendamento online."
+    />
+    <title>Navalha & Brasa | Barbearia Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <a class="brand" href="#inicio" aria-label="Navalha & Brasa">
+        <span class="brand-mark">N&B</span>
+        <span>
+          <strong>Navalha & Brasa</strong>
+          <small>Barbearia premium</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle icon-button" type="button" aria-label="Abrir menu" aria-expanded="false" data-menu-toggle>
+        <i data-lucide="menu"></i>
+      </button>
+
+      <nav class="site-nav" data-nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a class="header-action" href="#agendar">
+        <i data-lucide="calendar-days"></i>
+        <span>Agendar</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio" aria-label="Barbearia Navalha & Brasa">
+        <picture>
+          <img src="assets/hero-barbearia.png" alt="Interior moderno de uma barbearia premium" />
+        </picture>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Corte, barba e ritual masculino</p>
+          <h1>Navalha & Brasa</h1>
+          <p class="hero-copy">
+            Uma barbearia moderna para quem valoriza precisão, conforto e atendimento sem pressa.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#agendar">
+              <i data-lucide="calendar-check"></i>
+              <span>Reservar horário</span>
+            </a>
+            <a class="button button-ghost" href="https://wa.me/5511999990000" target="_blank" rel="noreferrer">
+              <i data-lucide="message-circle"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+          <dl class="hero-stats" aria-label="Indicadores da barbearia">
+            <div>
+              <dt>12+</dt>
+              <dd>anos de ofício</dd>
+            </div>
+            <div>
+              <dt>4.9</dt>
+              <dd>avaliação média</dd>
+            </div>
+            <div>
+              <dt>35min</dt>
+              <dd>corte completo</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="booking-strip" id="agendar" aria-label="Agendamento rápido">
+        <div class="section-shell booking-grid">
+          <div>
+            <p class="eyebrow dark">Agendamento rápido</p>
+            <h2>Escolha o serviço e garanta seu horário.</h2>
+          </div>
+          <form class="booking-form" data-booking-form>
+            <label>
+              <span>Serviço</span>
+              <select name="service" data-service-select>
+                <option value="Corte Clássico|65|35">Corte Clássico - R$ 65</option>
+                <option value="Barba Navalhada|55|30">Barba Navalhada - R$ 55</option>
+                <option value="Corte + Barba|110|60">Corte + Barba - R$ 110</option>
+                <option value="Dia do Noivo|220|110">Dia do Noivo - R$ 220</option>
+              </select>
+            </label>
+            <label>
+              <span>Data</span>
+              <input type="date" name="date" required />
+            </label>
+            <label>
+              <span>Horário</span>
+              <select name="time" required>
+                <option>09:00</option>
+                <option>10:00</option>
+                <option>11:30</option>
+                <option>14:00</option>
+                <option>15:30</option>
+                <option>17:00</option>
+                <option>18:30</option>
+              </select>
+            </label>
+            <button class="button button-dark" type="submit">
+              <i data-lucide="send"></i>
+              <span>Confirmar</span>
+            </button>
+          </form>
+          <div class="booking-summary" aria-live="polite" data-booking-summary>
+            <span>Corte Clássico</span>
+            <strong>R$ 65</strong>
+            <small>35 minutos</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell services-section" id="servicos">
+        <div class="section-heading">
+          <p class="eyebrow dark">Serviços</p>
+          <h2>Pacotes para sair pronto.</h2>
+          <p>
+            Cortes precisos, barba alinhada, finalização de qualidade e produtos selecionados para o seu estilo.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon"><i data-lucide="scissors"></i></div>
+            <h3>Corte Clássico</h3>
+            <p>Consulta rápida, corte no formato do rosto, lavagem e finalização.</p>
+            <div class="service-meta">
+              <strong>R$ 65</strong>
+              <span>35 min</span>
+            </div>
+            <button class="link-button" type="button" data-pick-service="Corte Clássico|65|35">
+              <i data-lucide="plus"></i>
+              <span>Selecionar</span>
+            </button>
+          </article>
+
+          <article class="service-card featured">
+            <div class="service-icon"><i data-lucide="sparkles"></i></div>
+            <h3>Corte + Barba</h3>
+            <p>Experiência completa com toalha quente, navalha, hidratação e styling.</p>
+            <div class="service-meta">
+              <strong>R$ 110</strong>
+              <span>60 min</span>
+            </div>
+            <button class="link-button" type="button" data-pick-service="Corte + Barba|110|60">
+              <i data-lucide="plus"></i>
+              <span>Selecionar</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon"><i data-lucide="badge-check"></i></div>
+            <h3>Barba Navalhada</h3>
+            <p>Desenho de barba, toalha quente, espuma premium e balm calmante.</p>
+            <div class="service-meta">
+              <strong>R$ 55</strong>
+              <span>30 min</span>
+            </div>
+            <button class="link-button" type="button" data-pick-service="Barba Navalhada|55|30">
+              <i data-lucide="plus"></i>
+              <span>Selecionar</span>
+            </button>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon"><i data-lucide="gem"></i></div>
+            <h3>Dia do Noivo</h3>
+            <p>Cabelo, barba, sobrancelha, limpeza facial leve e pausa para brinde.</p>
+            <div class="service-meta">
+              <strong>R$ 220</strong>
+              <span>110 min</span>
+            </div>
+            <button class="link-button" type="button" data-pick-service="Dia do Noivo|220|110">
+              <i data-lucide="plus"></i>
+              <span>Selecionar</span>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="experience-band" id="experiencia">
+        <div class="section-shell experience-grid">
+          <div class="section-heading align-left">
+            <p class="eyebrow">Experiência</p>
+            <h2>Ambiente de clube, técnica de ateliê.</h2>
+            <p>
+              Atendimento pontual, conversa franca sobre estilo e um ritual pensado para você relaxar enquanto sai impecável.
+            </p>
+          </div>
+
+          <div class="feature-list">
+            <article>
+              <i data-lucide="clock-3"></i>
+              <div>
+                <h3>Horários respeitados</h3>
+                <p>Agenda organizada para cada cliente ter tempo real de cadeira.</p>
+              </div>
+            </article>
+            <article>
+              <i data-lucide="shield-check"></i>
+              <div>
+                <h3>Higiene rigorosa</h3>
+                <p>Ferramentas esterilizadas, lâminas descartáveis e bancada limpa a cada serviço.</p>
+              </div>
+            </article>
+            <article>
+              <i data-lucide="coffee"></i>
+              <div>
+                <h3>Café e boa conversa</h3>
+                <p>Espresso, água gelada e trilha sonora na medida para desacelerar.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell gallery-section" id="galeria">
+        <div class="section-heading">
+          <p class="eyebrow dark">Galeria</p>
+          <h2>Detalhes que aparecem no acabamento.</h2>
+        </div>
+
+        <div class="filter-row" role="tablist" aria-label="Filtros da galeria">
+          <button class="filter-button active" type="button" data-filter="all">Tudo</button>
+          <button class="filter-button" type="button" data-filter="corte">Corte</button>
+          <button class="filter-button" type="button" data-filter="barba">Barba</button>
+          <button class="filter-button" type="button" data-filter="produtos">Produtos</button>
+        </div>
+
+        <div class="gallery-grid">
+          <figure data-category="corte">
+            <img src="assets/gallery-corte.png" alt="Barbeiro fazendo acabamento em um corte moderno" />
+            <figcaption>Corte com acabamento limpo</figcaption>
+          </figure>
+          <figure data-category="barba">
+            <img src="assets/gallery-barba.png" alt="Barbeiro aparando uma barba com precisão" />
+            <figcaption>Barba com toalha quente</figcaption>
+          </figure>
+          <figure data-category="produtos">
+            <img src="assets/gallery-produtos.png" alt="Produtos e ferramentas de barbearia em bancada de madeira" />
+            <figcaption>Produtos de finalização</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="team-section" id="equipe">
+        <div class="section-shell">
+          <div class="section-heading">
+            <p class="eyebrow dark">Equipe</p>
+            <h2>Barbeiros que entendem de forma, textura e rotina.</h2>
+          </div>
+
+          <div class="team-grid">
+            <article class="team-card">
+              <span>MC</span>
+              <h3>Mateus Costa</h3>
+              <p>Especialista em fades, cabelos ondulados e consultoria de estilo.</p>
+              <small>Terça a sábado</small>
+            </article>
+            <article class="team-card">
+              <span>RL</span>
+              <h3>Rafael Lima</h3>
+              <p>Barba clássica, navalha e desenho natural para o dia a dia.</p>
+              <small>Segunda a sexta</small>
+            </article>
+            <article class="team-card">
+              <span>DN</span>
+              <h3>Diego Nunes</h3>
+              <p>Tratamentos, finalização e preparação para eventos especiais.</p>
+              <small>Quarta a domingo</small>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials-section">
+        <div class="section-shell testimonials-grid">
+          <article class="quote-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Atendimento pontual, corte impecável e ambiente muito acima da média."</p>
+            <strong>Gustavo M.</strong>
+          </article>
+          <article class="quote-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"A barba ficou alinhada por dias. Dá para sentir o cuidado no detalhe."</p>
+            <strong>Henrique P.</strong>
+          </article>
+          <article class="quote-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <p>"Virei cliente fixo. Eles acertam o estilo sem tentar inventar moda."</p>
+            <strong>Lucas A.</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell faq-contact" id="contato">
+        <div class="faq">
+          <p class="eyebrow dark">Dúvidas</p>
+          <h2>Antes de chegar.</h2>
+          <details open>
+            <summary>Preciso marcar horário?</summary>
+            <p>Recomendamos agendar para garantir seu barbeiro e evitar espera.</p>
+          </details>
+          <details>
+            <summary>Atendem criança?</summary>
+            <p>Sim, atendemos a partir de 5 anos com acompanhamento do responsável.</p>
+          </details>
+          <details>
+            <summary>Quais formas de pagamento?</summary>
+            <p>Pix, cartões, dinheiro e combos mensais para clientes frequentes.</p>
+          </details>
+        </div>
+
+        <aside class="contact-panel">
+          <h2>Venha para a cadeira.</h2>
+          <ul>
+            <li>
+              <i data-lucide="map-pin"></i>
+              <span>Rua das Palmeiras, 120 - Centro</span>
+            </li>
+            <li>
+              <i data-lucide="phone"></i>
+              <span>(11) 99999-0000</span>
+            </li>
+            <li>
+              <i data-lucide="clock"></i>
+              <span>Seg a sáb, 9h às 20h</span>
+            </li>
+          </ul>
+          <a class="button button-primary full" href="https://wa.me/5511999990000" target="_blank" rel="noreferrer">
+            <i data-lucide="message-circle"></i>
+            <span>Chamar no WhatsApp</span>
+          </a>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-shell footer-grid">
+        <div>
+          <a class="brand footer-brand" href="#inicio" aria-label="Navalha & Brasa">
+            <span class="brand-mark">N&B</span>
+            <span>
+              <strong>Navalha & Brasa</strong>
+              <small>Barbearia premium</small>
+            </span>
+          </a>
+          <p>Corte, barba e cuidado masculino com acabamento de alto padrão.</p>
+        </div>
+        <div class="socials" aria-label="Redes sociais">
+          <a class="icon-button" href="#" aria-label="Instagram"><i data-lucide="camera"></i></a>
+          <a class="icon-button" href="#" aria-label="Facebook"><i data-lucide="thumbs-up"></i></a>
+          <a class="icon-button" href="#" aria-label="Mapa"><i data-lucide="map"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite" data-toast></div>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

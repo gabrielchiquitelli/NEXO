@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vista Nova | Loja de Roupa</title>
+    <meta
+      name="description"
+      content="Loja de roupa moderna com moda feminina, masculina e acessórios."
+    />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      defer
+      src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"
+    ></script>
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <div class="announcement">
+      <span>Frete grátis acima de R$ 499</span>
+      <span>Troca fácil em até 30 dias</span>
+      <span>10% off no Pix</span>
+    </div>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Navegação principal">
+        <button class="icon-button mobile-only" id="menuToggle" aria-label="Abrir menu">
+          <i data-lucide="menu"></i>
+        </button>
+
+        <a class="brand" href="#inicio" aria-label="Vista Nova">
+          <span>Vista</span>
+          <strong>Nova</strong>
+        </a>
+
+        <div class="nav-links" aria-label="Seções">
+          <a href="#catalogo">Comprar</a>
+          <a href="#colecoes">Coleções</a>
+          <a href="#lookbook">Lookbook</a>
+          <a href="#contato">Contato</a>
+        </div>
+
+        <div class="nav-actions">
+          <label class="search-field" aria-label="Buscar no catálogo">
+            <i data-lucide="search"></i>
+            <input id="searchInput" type="search" placeholder="Buscar peças" />
+          </label>
+
+          <button class="icon-button search-toggle mobile-only" id="searchToggle" aria-label="Buscar produtos" title="Buscar">
+            <i data-lucide="search"></i>
+          </button>
+
+          <button class="icon-button" id="wishlistToggle" aria-label="Ver favoritos" title="Favoritos">
+            <i data-lucide="heart"></i>
+            <span class="pill-count" id="wishCount">0</span>
+          </button>
+
+          <button class="cart-button" id="cartToggle" aria-label="Abrir carrinho">
+            <i data-lucide="shopping-bag"></i>
+            <span>Carrinho</span>
+            <span class="pill-count" id="cartCount">0</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="mobile-panel" id="mobileNav" aria-hidden="true">
+        <a href="#catalogo">Comprar</a>
+        <a href="#colecoes">Coleções</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="shop-hero" id="inicio" aria-label="Nova coleção">
+        <div class="hero-content">
+          <p class="eyebrow">Coleção urbana 2026</p>
+          <h1>Vista Nova</h1>
+          <p>
+            Alfaiataria leve, malhas premium e peças versáteis para sair de casa pronto.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-link" href="#catalogo">Comprar agora</a>
+            <a class="ghost-link" href="#colecoes">Ver novidades</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="collection-strip" id="colecoes" aria-label="Coleções em destaque">
+        <article class="collection-item">
+          <img
+            src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=85"
+            alt="Casaco moderno em produção de moda"
+          />
+          <div>
+            <span>01</span>
+            <h2>Essenciais urbanos</h2>
+            <p>Peças limpas, cortes precisos e tons fáceis de combinar.</p>
+          </div>
+        </article>
+
+        <article class="collection-item">
+          <img
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=85"
+            alt="Araras de roupas em loja contemporânea"
+          />
+          <div>
+            <span>02</span>
+            <h2>Fim de semana</h2>
+            <p>Vestidos, linho e tricôs leves para um ritmo mais solto.</p>
+          </div>
+        </article>
+
+        <article class="collection-item">
+          <img
+            src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=700&q=85"
+            alt="Editorial de moda com blusa azul"
+          />
+          <div>
+            <span>03</span>
+            <h2>Statement</h2>
+            <p>Cores marcantes, texturas e acessórios para elevar o look.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="shop-shell" id="catalogo" aria-label="Catálogo de produtos">
+        <aside class="filters-panel" id="filtersPanel">
+          <div class="filters-head">
+            <h2>Catálogo</h2>
+            <button class="icon-button mobile-only" id="closeFilters" aria-label="Fechar filtros">
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+
+          <div class="filter-block">
+            <span class="filter-title">Categoria</span>
+            <div class="segmented-control" id="categoryFilters" aria-label="Filtrar por categoria"></div>
+          </div>
+
+          <div class="filter-block">
+            <span class="filter-title">Tamanho</span>
+            <div class="size-options" id="sizeFilters" aria-label="Filtrar por tamanho"></div>
+          </div>
+
+          <div class="filter-block">
+            <label class="filter-title" for="priceRange">Preço máximo</label>
+            <div class="range-row">
+              <input id="priceRange" type="range" min="120" max="720" step="20" value="720" />
+              <output id="priceOutput" for="priceRange">R$ 720</output>
+            </div>
+          </div>
+
+          <button class="text-button" id="clearFilters">
+            <i data-lucide="rotate-ccw"></i>
+            Limpar filtros
+          </button>
+        </aside>
+
+        <section class="catalog-main">
+          <div class="catalog-toolbar">
+            <div>
+              <p class="eyebrow">Pronta entrega</p>
+              <h2>Peças selecionadas</h2>
+            </div>
+
+            <div class="toolbar-actions">
+              <button class="outline-button mobile-only" id="openFilters">
+                <i data-lucide="sliders-horizontal"></i>
+                Filtros
+              </button>
+              <label class="sort-control">
+                <span>Ordenar</span>
+                <select id="sortSelect">
+                  <option value="featured">Destaques</option>
+                  <option value="low">Menor preço</option>
+                  <option value="high">Maior preço</option>
+                  <option value="new">Novidades</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="catalog-status">
+            <span id="resultCount">0 produtos</span>
+            <div class="active-filters" id="activeFilters"></div>
+          </div>
+
+          <div class="product-grid" id="productGrid"></div>
+        </section>
+      </section>
+
+      <section class="editorial-band" aria-label="Destaque de estilo">
+        <div class="editorial-copy">
+          <p class="eyebrow">Capsule wardrobe</p>
+          <h2>Vista melhor com menos peças.</h2>
+          <p>
+            Uma curadoria enxuta para montar combinações de trabalho, jantar e viagem com a mesma base.
+          </p>
+          <a class="text-link" href="#catalogo">Explorar curadoria</a>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85"
+          alt="Modelo usando roupa contemporânea em editorial urbano"
+        />
+      </section>
+
+      <section class="lookbook" id="lookbook" aria-label="Lookbook">
+        <div class="section-heading">
+          <p class="eyebrow">Lookbook</p>
+          <h2>Combinações prontas para a semana</h2>
+        </div>
+        <div class="lookbook-grid">
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=800&q=85"
+              alt="Look com vestido claro"
+            />
+            <figcaption>Vestido + bolsa estruturada</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1520975867597-0f3d946a2f03?auto=format&fit=crop&w=800&q=85"
+              alt="Look masculino com jaqueta"
+            />
+            <figcaption>Jaqueta + camiseta premium</figcaption>
+          </figure>
+          <figure>
+            <img
+              src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=85"
+              alt="Look com alfaiataria moderna"
+            />
+            <figcaption>Blazer + calça ampla</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" id="contato">
+      <div>
+        <a class="brand footer-brand" href="#inicio">
+          <span>Vista</span>
+          <strong>Nova</strong>
+        </a>
+        <p>Moda autoral, acabamento premium e entrega para todo o Brasil.</p>
+      </div>
+      <form class="newsletter" id="newsletterForm">
+        <label for="newsletterEmail">Receba novidades</label>
+        <div>
+          <input id="newsletterEmail" type="email" placeholder="seu@email.com" required />
+          <button class="primary-button" type="submit">Entrar</button>
+        </div>
+      </form>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">Política de troca</a>
+      </div>
+    </footer>
+
+    <div class="scrim" id="scrim" hidden></div>
+
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Carrinho de compras">
+      <div class="drawer-head">
+        <div>
+          <p class="eyebrow">Seu pedido</p>
+          <h2>Carrinho</h2>
+        </div>
+        <button class="icon-button" id="closeCart" aria-label="Fechar carrinho">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-summary">
+        <div>
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">R$ 0</strong>
+        </div>
+        <div>
+          <span>Entrega</span>
+          <strong id="shippingPrice">R$ 24</strong>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <strong id="cartTotal">R$ 0</strong>
+        </div>
+        <button class="primary-button full" id="checkoutButton">Finalizar compra</button>
+      </div>
+    </aside>
+
+    <section class="modal" id="quickViewModal" aria-hidden="true" aria-label="Detalhes do produto">
+      <div class="modal-dialog product-dialog" role="dialog" aria-modal="true">
+        <button class="icon-button modal-close" data-close-modal aria-label="Fechar">
+          <i data-lucide="x"></i>
+        </button>
+        <div id="quickViewContent"></div>
+      </div>
+    </section>
+
+    <section class="modal" id="checkoutModal" aria-hidden="true" aria-label="Checkout">
+      <div class="modal-dialog checkout-dialog" role="dialog" aria-modal="true">
+        <button class="icon-button modal-close" data-close-modal aria-label="Fechar">
+          <i data-lucide="x"></i>
+        </button>
+        <div class="section-heading tight">
+          <p class="eyebrow">Checkout</p>
+          <h2>Finalizar pedido</h2>
+        </div>
+        <form class="checkout-form" id="checkoutForm">
+          <label>
+            Nome completo
+            <input type="text" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            E-mail
+            <input type="email" name="email" autocomplete="email" required />
+          </label>
+          <label>
+            CEP
+            <input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" required />
+          </label>
+          <label>
+            Pagamento
+            <select name="payment" required>
+              <option value="pix">Pix com 10% off</option>
+              <option value="card">Cartão de crédito</option>
+              <option value="boleto">Boleto</option>
+            </select>
+          </label>
+          <button class="primary-button full" type="submit">Enviar pedido</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
