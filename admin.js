@@ -30,6 +30,10 @@ const chatStatus = document.querySelector("[data-admin-chat-status]");
 const chatForm = document.querySelector("[data-admin-chat-form]");
 const chatInput = document.querySelector("[data-admin-chat-input]");
 const deleteConversationButton = document.querySelector("[data-delete-conversation]");
+const adminOrdersCount = document.querySelector("[data-admin-orders-count]");
+const adminOpenOrders = document.querySelector("[data-admin-open-orders]");
+const adminPartnersCount = document.querySelector("[data-admin-partners-count]");
+const adminChatsCount = document.querySelector("[data-admin-chats-count]");
 
 let currentAdmin = null;
 let selectedConversationId = "";
@@ -149,6 +153,10 @@ function setChatSelectionState(conversationId = "", label = "Selecione uma conve
   }
 }
 
+function setMetric(target, value) {
+  if (target) target.textContent = String(value);
+}
+
 async function loadOrders() {
   if (!ordersList) return;
 
@@ -159,6 +167,10 @@ async function loadOrders() {
     const orders = snapshot.docs
       .map(order => ({ id: order.id, ...order.data() }))
       .sort((a, b) => getDateTimeValue(b.criadoEm) - getDateTimeValue(a.criadoEm));
+    const openOrders = orders.filter(order => !["concluido", "cancelado"].includes(order.status || "novo"));
+
+    setMetric(adminOrdersCount, orders.length);
+    setMetric(adminOpenOrders, openOrders.length);
 
     if (!orders.length) {
       renderEmpty(ordersList, "Nenhum pedido recebido ainda.", "Quando alguém enviar um briefing, ele aparece aqui.");
@@ -169,7 +181,7 @@ async function loadOrders() {
       <article class="admin-order-card" data-order-id="${escapeHtml(order.id)}">
         <div class="admin-order-top">
           <div>
-            <span>${escapeHtml(getStatusLabel(order.status))}</span>
+            <span class="admin-status-pill" data-status="${escapeHtml(order.status || "novo")}">${escapeHtml(getStatusLabel(order.status))}</span>
             <h3>${escapeHtml(order.planoNome || "Projeto Nexo")}</h3>
             <p>${escapeHtml(order.empresa || "Empresa não informada")} · ${escapeHtml(order.segmento || "Segmento não informado")}</p>
           </div>
@@ -232,6 +244,8 @@ async function loadOrders() {
     });
   } catch (error) {
     console.error(error);
+    setMetric(adminOrdersCount, 0);
+    setMetric(adminOpenOrders, 0);
     renderEmpty(ordersList, "Não foi possível carregar os pedidos.", "Confira se sua conta está com cargo admin e se as regras do Cloud Firestore foram publicadas.");
   }
 }
@@ -247,6 +261,8 @@ async function loadPartnerships() {
       .map(item => ({ id: item.id, ...item.data() }))
       .sort((a, b) => getDateTimeValue(b.criadoEm) - getDateTimeValue(a.criadoEm));
 
+    setMetric(adminPartnersCount, partnerships.length);
+
     if (!partnerships.length) {
       renderEmpty(partnersList, "Nenhuma parceria enviada ainda.", "Quando alguém preencher a página Parcerias, aparece aqui.");
       return;
@@ -256,7 +272,7 @@ async function loadPartnerships() {
       <article class="admin-order-card" data-partner-id="${escapeHtml(partner.id)}">
         <div class="admin-order-top">
           <div>
-            <span>${escapeHtml(getPartnershipStatusLabel(partner.status))}</span>
+            <span class="admin-status-pill" data-status="${escapeHtml(partner.status || "novo")}">${escapeHtml(getPartnershipStatusLabel(partner.status))}</span>
             <h3>${escapeHtml(partner.nome || "Parceiro Nexo")}</h3>
             <p>${escapeHtml(partner.tipo || "Tipo não informado")} · ${escapeHtml(partner.area || "Área não informada")}</p>
           </div>
@@ -305,6 +321,7 @@ async function loadPartnerships() {
     });
   } catch (error) {
     console.error(error);
+    setMetric(adminPartnersCount, 0);
     renderEmpty(partnersList, "Não foi possível carregar parcerias.", "Confira se sua conta está com cargo admin e se as regras do Cloud Firestore foram publicadas.");
   }
 }
@@ -386,6 +403,8 @@ function startConversationListener() {
       .map(item => ({ id: item.id, ...item.data() }))
       .sort((a, b) => getDateTimeValue(b.atualizadoEm) - getDateTimeValue(a.atualizadoEm));
 
+    setMetric(adminChatsCount, conversations.length);
+
     if (!conversations.length) {
       if (unsubscribeMessages) {
         unsubscribeMessages();
@@ -419,6 +438,7 @@ function startConversationListener() {
     }
   }, error => {
     console.error(error);
+    setMetric(adminChatsCount, 0);
     setChatSelectionState();
     renderEmpty(conversationsList, "Não foi possível carregar o chat.", "Confira o cargo admin e as regras do Firestore.");
   });
